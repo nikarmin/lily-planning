@@ -5,43 +5,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity"
     android:background="#F2F2F2"
-    >
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lily Planning"
-        android:textSize="28dp"
         android:layout_marginTop="100dp"
-        android:textAlignment="center"
         android:fontFamily="@font/annie_use_your_telescope"
-        />
+        android:text="Lily Planning"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="28dp" />
 
     <FrameLayout
+        android:layout_width="303dp"
+        android:layout_height="350dp"
         android:layout_marginTop="28dp"
         android:layout_gravity="center"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
         android:background="@drawable/retangulo">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="oi"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="28dp"
-            />
-
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            />
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:shadowColor="#BFB745"
+            android:shadowDx="2"
+            android:shadowDy="3"
+            android:shadowRadius="2"
+            android:text="Bem-vindo(a) "
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <Button
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:backgroundTint="#CAE89F"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:letterSpacing="0.4"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            app:cornerRadius="60dp" />
+
+        <Button
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="120dp"
+            android:backgroundTint="#CAE89F"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:letterSpacing="0.4"
+            android:text="Cadastro"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            app:cornerRadius="60dp" />
 
     </FrameLayout>
 
