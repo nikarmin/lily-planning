@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/pattern"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:background="@drawable/patternroxa"
+    tools:context=".Login">
 
     <FrameLayout
         android:layout_width="100dp"
@@ -55,50 +54,92 @@
         android:layout_height="270dp"
         android:layout_marginTop="30dp"
         android:layout_gravity="center"
-        android:background="@drawable/retangulo">
+        android:background="@drawable/retangulo"
+        android:backgroundTint="#E5E7FE">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
             android:fontFamily="@font/be_vietnam_pro"
             android:shadowColor="#BFB745"
             android:shadowDx="2"
             android:shadowDy="3"
             android:shadowRadius="2"
-            android:text="Bem-vindo(a) "
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            />
-
-        <Button
-            android:layout_width="225dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="80dp"
-            android:backgroundTint="#CAE89F"
-            android:fontFamily="@font/be_vietnam_pro"
-            android:letterSpacing="0.4"
             android:text="Login"
-            android:textSize="16dp"
-            android:textAllCaps="false"
+            android:letterSpacing="0.3"
             android:textColor="@color/black"
-            app:cornerRadius="60dp"
+            android:textSize="22dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="18dp"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:shadowRadius="2"
+            android:text="Email:"
+            android:letterSpacing="0.15"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            />
+
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/edtradius"
+            android:padding="6dp"
+            android:hint="   Digite seu email..."
+            android:textSize="15dp"
+            android:inputType="textEmailAddress"
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:layout_marginLeft="18dp"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:shadowRadius="2"
+            android:text="Senha:"
+            android:letterSpacing="0.15"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            />
+
+        <EditText
+            android:id="@+id/edtSenha"
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="180dp"
+            android:background="@drawable/edtradius"
+            android:padding="6dp"
+            android:hint="   Digite sua senha..."
+            android:textSize="15dp"
+            android:inputType="textPassword"
             />
 
         <Button
-            android:layout_width="225dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="160dp"
+            android:id="@+id/btnEntrar"
+            android:layout_width="135dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="218dp"
+            android:layout_marginLeft="18dp"
             android:backgroundTint="#CAE89F"
+            android:drawableEnd="@drawable/arrow_right"
             android:fontFamily="@font/be_vietnam_pro"
             android:letterSpacing="0.4"
-            android:text="Cadastro"
-            android:textSize="16dp"
+            android:text="Entrar"
+            android:textSize="12dp"
             android:textAllCaps="false"
             android:textColor="@color/black"
+            android:textAlignment="textStart"
             app:cornerRadius="60dp"
             />
 
@@ -133,9 +174,9 @@
             android:layout_marginRight="-14dp"
             android:layout_marginTop="100dp"
             android:rotation="-130">
+
         </FrameLayout>
 
     </FrameLayout>
 
 </LinearLayout>
-

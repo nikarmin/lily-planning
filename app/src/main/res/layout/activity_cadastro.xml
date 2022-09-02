@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/patternroxa"
+    tools:context=".Cadastro">
+
+    <FrameLayout
+        android:layout_width="100dp"
+        android:layout_height="85dp"
+        android:layout_marginLeft="-15dp"
+        android:layout_marginTop="-10dp"
+        android:background="@drawable/icon"
+        android:rotation="-29"
+        />
+
+    <FrameLayout
+        android:layout_width="180dp"
+        android:layout_height="150dp"
+        android:background="@drawable/blobverde"
+        android:layout_marginRight="-55dp"
+        android:layout_marginTop="-105dp"
+        android:rotation="-29"
+        android:layout_gravity="end"
+        />
+
+    <FrameLayout
+        android:layout_width="180dp"
+        android:layout_height="150dp"
+        android:background="@drawable/blobroxo"
+        android:layout_marginRight="-59dp"
+        android:layout_marginTop="-159dp"
+        android:rotation="-29"
+        android:layout_gravity="end"
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-40dp"
+        android:fontFamily="@font/annie_use_your_telescope"
+        android:text="Lily Planning"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="28dp"
+        />
+
+    <FrameLayout
+        android:layout_width="303dp"
+        android:layout_height="411dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/retangulo"
+        android:backgroundTint="#E5E7FE">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:letterSpacing="0.3"
+            android:shadowColor="#BFB745"
+            android:shadowDx="2"
+            android:shadowDy="3"
+            android:shadowRadius="2"
+            android:text="Cadastro"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="70dp"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:letterSpacing="0.15"
+            android:shadowRadius="2"
+            android:text="Email:"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            />
+
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/edtradius"
+            android:hint="   Digite seu email..."
+            android:inputType="textEmailAddress"
+            android:padding="6dp"
+            android:textSize="15dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="150dp"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:letterSpacing="0.15"
+            android:shadowRadius="2"
+            android:text="Senha:"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            />
+
+        <EditText
+            android:id="@+id/edtSenha"
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="180dp"
+            android:background="@drawable/edtradius"
+            android:hint="   Digite sua senha..."
+            android:inputType="textPassword"
+            android:padding="6dp"
+            android:textSize="15dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="230dp"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:letterSpacing="0.15"
+            android:shadowRadius="2"
+            android:text="Nome de usuário:"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            />
+
+        <EditText
+            android:id="@+id/edtNomeUsuario"
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="260dp"
+            android:background="@drawable/edtradius"
+            android:hint="   Digite seu usuário..."
+            android:inputType="textPassword"
+            android:padding="6dp"
+            android:textSize="15dp"
+            />
+
+        <!-- ARRUMAR ESSA PARTE -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="306dp"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:letterSpacing="0.15"
+            android:shadowRadius="2"
+            android:text="Aluno"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            />
+
+        <CheckBox
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="310dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="330dp"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:letterSpacing="0.15"
+            android:shadowRadius="2"
+            android:text="Professor"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            />
+
+        <CheckBox
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="115dp"
+            android:layout_marginTop="332dp"
+            />
+
+        <Button
+            android:id="@+id/btnEntrar"
+            android:layout_width="180dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="355dp"
+            android:layout_marginLeft="18dp"
+            android:backgroundTint="#CAE89F"
+            android:drawableEnd="@drawable/arrow_right"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:letterSpacing="0.4"
+            android:text="Cadastrar"
+            android:textSize="12dp"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textAlignment="textStart"
+            app:cornerRadius="60dp"
+            />
+
+        <!--<CheckBox
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="310dp"
+            android:layout_marginLeft="20dp"
+            />-->
+
+        <!--<Button
+            android:id="@+id/btnEntrar"
+            android:layout_width="135dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="218dp"
+            android:layout_marginLeft="18dp"
+            android:backgroundTint="#CAE89F"
+            android:drawableEnd="@drawable/arrow_right"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:letterSpacing="0.4"
+            android:text="Entrar"
+            android:textSize="12dp"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textAlignment="textStart"
+            app:cornerRadius="60dp"
+            />-->
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-90dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.7"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="7dp"
+            android:background="@drawable/waveverde">
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-30dp"
+            android:background="@drawable/waveroxa">
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="100dp"
+            android:layout_height="85dp"
+            android:background="@drawable/icon"
+            android:layout_gravity="end"
+            android:layout_marginRight="-14dp"
+            android:layout_marginTop="100dp"
+            android:rotation="-130">
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+</LinearLayout>
