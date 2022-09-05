@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:lgravity="center_horizontal"
+    android:background="@drawable/patternplus"
+    tools:context=".Materias">
+
+    <FrameLayout
+        android:id="@+id/iconMenu"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="-15dp"
+        android:layout_marginTop="-20dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/blobicon"
+            />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/blobiconpattern"
+            />
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/logo"
+            />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="303dp"
+        android:layout_height="411dp"
+        android:layout_below="@+id/iconMenu"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="118dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="186dp"
+        android:background="@drawable/retangulo"
+        android:backgroundTint="#F1F2FE"
+        >
+
+        <CalendarView
+            android:id="@+id/cvCalendario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </FrameLayout>
+
+    <!-- MENU -->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF">
+
+    </FrameLayout>
+
+    <!-- #CBC2F1 -->
+
+</RelativeLayout>

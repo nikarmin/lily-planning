@@ -151,8 +151,6 @@
             android:textSize="15dp"
             />
 
-        <!-- ARRUMAR ESSA PARTE -->
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -163,14 +161,14 @@
             android:shadowRadius="2"
             android:text="Aluno"
             android:textColor="@color/black"
-            android:textSize="15dp"
+            android:textSize="12dp"
             />
 
         <CheckBox
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="310dp"
+            android:layout_marginLeft="68dp"
+            android:layout_marginTop="305dp"
             />
 
         <TextView
@@ -183,14 +181,14 @@
             android:shadowRadius="2"
             android:text="Professor"
             android:textColor="@color/black"
-            android:textSize="15dp"
+            android:textSize="12dp"
             />
 
         <CheckBox
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginLeft="115dp"
-            android:layout_marginTop="332dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="328dp"
             />
 
         <Button
@@ -241,7 +239,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="-90dp">
+        android:layout_marginBottom="-50dp">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -265,8 +263,9 @@
             android:background="@drawable/icon"
             android:layout_gravity="end"
             android:layout_marginRight="-14dp"
-            android:layout_marginTop="100dp"
-            android:rotation="-130">
+            android:layout_marginTop="60dp"
+            android:rotation="-130"
+            >
 
         </FrameLayout>
 
