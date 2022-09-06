@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CalenderViewCustom" parent="Theme.AppCompat">
+        <item name="colorAccent">@color/roxo</item>
+        <item name="android:textColorPrimary">#202020</item>
+    </style>
+
+</resources>
