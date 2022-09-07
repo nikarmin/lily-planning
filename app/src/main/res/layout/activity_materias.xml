@@ -55,13 +55,16 @@
         android:background="@drawable/retangulo"
         android:backgroundTint="#F1F2FE"
         >
-        <!-- theme -> estilizando o calendário -->
+
+
+
+        <!-- theme -> estilizando o calendário
         <CalendarView
             android:id="@+id/cvCalendario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/CalenderViewCustom"
-            />
+            />-->
 
     </FrameLayout>
 
@@ -72,6 +75,85 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF">
+
+        <!--<ImageButton
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/i_todolist" />
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/i_todolist"
+            /> -->
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal">
+
+                <ImageButton
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="25dp"
+                    android:background="@drawable/i_todolist"
+                    />
+
+                <ImageButton
+                    android:layout_width="31dp"
+                    android:layout_height="31dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/i_notebook"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <FrameLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/rounded"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+"
+                        android:textColor="@color/white"
+                        android:textSize="28dp"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        />
+
+                </FrameLayout>
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/i_uploads"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/i_profile"
+                    android:layout_gravity="center_vertical"
+                    />
+
+            </TableRow>
+        </TableLayout>
 
     </FrameLayout>
 
