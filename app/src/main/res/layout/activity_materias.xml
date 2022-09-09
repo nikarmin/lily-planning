@@ -53,8 +53,39 @@
         android:layout_marginEnd="54dp"
         android:layout_marginBottom="186dp"
         android:background="@drawable/retangulo"
-        android:backgroundTint="#F1F2FE"
-        >
+        android:backgroundTint="#F1F2FE">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/chilanka_regular"
+            android:text="Matérias"
+            android:textAlignment="center"
+            android:textSize="22dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:padding="10dp"
+                android:backgroundTint="#FB6D6A"
+                android:background="@drawable/rounded"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="15dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+        </FrameLayout>
+
 
 
 
