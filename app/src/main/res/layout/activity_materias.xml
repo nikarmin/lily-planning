@@ -56,37 +56,47 @@
         android:backgroundTint="#F1F2FE">
 
         <TextView
+            android:id="@+id/tvMaterias"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/chilanka_regular"
             android:text="Matérias"
             android:textAlignment="center"
+            android:textColor="#333333"
             android:textSize="22dp" />
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="45dp">
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:padding="10dp"
-                android:backgroundTint="#FB6D6A"
                 android:background="@drawable/rounded"
-                android:layout_marginTop="35dp"
-                android:layout_marginLeft="15dp"
+                android:backgroundTint="@color/purple_200"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
                 />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="HISTÓRIA FODA FODASE"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                />
 
-            </TextView>
+        </LinearLayout>
 
-        </FrameLayout>
-
-
+        <!-- <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000"
+            /> -->
 
 
         <!-- theme -> estilizando o calendário
@@ -103,7 +113,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="65dp"
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF">
 
@@ -141,12 +151,26 @@
                 <ImageButton
                     android:layout_width="31dp"
                     android:layout_height="31dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/i_notebook"
                     android:layout_gravity="center_vertical"
-                    />
+                    android:layout_margin="5dp"
+                    android:background="@drawable/i_notebook" />
 
-                <FrameLayout
+                <!-- ARRUMAR O BOTÃO TOP AQGUI -->
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/rounded"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="+"
+                    android:textSize="22dp"
+                    >
+
+
+                </Button>
+
+                <!--<FrameLayout
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:background="@drawable/rounded"
@@ -163,7 +187,7 @@
                         android:layout_gravity="center"
                         />
 
-                </FrameLayout>
+                </FrameLayout>-->
 
                 <ImageButton
                     android:layout_width="50dp"
