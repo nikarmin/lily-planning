@@ -82,13 +82,38 @@
                 />
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="HISTÓRIA FODA FODASE"
-                android:layout_weight="1"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:text="História" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="75dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/rounded"
+                android:backgroundTint="#EE6DF0"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:alpha="0.5"
                 />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:text="Artes" />
 
         </LinearLayout>
 
