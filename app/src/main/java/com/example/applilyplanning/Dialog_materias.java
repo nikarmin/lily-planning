@@ -9,8 +9,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-public class dialog_materias extends AppCompatActivity {
+public class Dialog_materias extends AppCompatActivity {
 
     ImageView wheelColor;
     View showColor;
@@ -32,13 +33,21 @@ public class dialog_materias extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN || motionEvent.getAction() == MotionEvent.ACTION_MOVE){
                     bitmap = wheelColor.getDrawingCache();
-                    int pixel = bitmap.getPixel((int)motionEvent.getX(), (int)motionEvent.getY());
 
-                    int r = Color.red(pixel);
-                    int g = Color.green(pixel);
-                    int b = Color.blue(pixel);
+                    try{
+                        if ((int)motionEvent.getX() >= 0 || (int)motionEvent.getY() >= 0){
+                            int pixel = bitmap.getPixel((int)motionEvent.getX(), (int)motionEvent.getY());
 
-                    showColor.setBackgroundColor(Color.rgb(r,g,b));
+                            int r = Color.red(pixel);
+                            int g = Color.green(pixel);
+                            int b = Color.blue(pixel);
+
+                            showColor.setBackgroundColor(Color.rgb(r,g,b));
+                        }
+                    }
+                    catch (Exception error){
+                        Toast.makeText(Dialog_materias.this, "Limite alcançado!", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 return true;
             }

@@ -8,8 +8,6 @@ import android.widget.CalendarView;
 
 public class Materias extends AppCompatActivity {
 
-    CalendarView calendario;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

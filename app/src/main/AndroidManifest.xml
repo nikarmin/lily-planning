@@ -14,7 +14,7 @@
         android:theme="@style/Theme.AppLilyPlanning"
         tools:targetApi="31">
         <activity
-            android:name=".dialog_materias"
+            android:name=".Dialog_materias"
             android:exported="false" />
         <activity
             android:name=".Materias"
