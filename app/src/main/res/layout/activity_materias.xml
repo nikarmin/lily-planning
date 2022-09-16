@@ -159,8 +159,9 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="94dp"
-                android:gravity="center_horizontal">
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                >
 
                 <ImageButton
                     android:layout_width="60dp"
@@ -188,8 +189,7 @@
                     android:background="@drawable/rounded"
                     android:text="+"
                     android:textColor="@color/white"
-                    android:textSize="22dp"
-                    />
+                    android:textSize="22dp" />
 
                 <!--<FrameLayout
                     android:layout_width="60dp"
