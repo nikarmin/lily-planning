@@ -67,10 +67,13 @@
             android:textSize="22dp" />
 
         <CalendarView
+            android:id="@+id/oneCalendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:weekDayTextAppearance="#000000"
+            android:theme="@style/CalendarViewCustom"
+            android:weekDayTextAppearance="@style/CalendarViewWeekCustomText"
+            android:dateTextAppearance="@style/CalendarViewDateCustomText"
             />
 
         <!-- <View
