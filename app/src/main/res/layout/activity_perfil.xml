@@ -1,0 +1,108 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".Perfil"
+    android:orientation="vertical"
+    android:background="#B7D48B">
+
+    <!--android:layout_width="300dp"-->
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/i_profile"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/tvNomeUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome do usuário"
+        android:fontFamily="@font/cabin_variablefont"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:layout_below="@+id/tvNomeUsuario"
+        android:fontFamily="@font/cabin_variablefont"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/tvProfAluno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Professor | Aluno"
+        android:layout_below="@+id/tvEmail"
+        android:fontFamily="@font/cabin_variablefont"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/btnUpdateSenha"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:text="Mudar senha"
+        android:layout_below="@+id/tvProfAluno"
+        android:fontFamily="@font/cabin_variablefont"
+        android:backgroundTint="#A5C377"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        />
+
+    <Button
+        android:id="@+id/btnAjuda"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:text="Ajuda"
+        android:layout_below="@+id/btnUpdateSenha"
+        android:fontFamily="@font/cabin_variablefont"
+        android:backgroundTint="#A5C377"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:textColor="@color/black"
+        />
+
+    <Button
+        android:id="@+id/btnTurmas"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:text="Turmas"
+        android:layout_below="@+id/btnAjuda"
+        android:fontFamily="@font/cabin_variablefont"
+        android:backgroundTint="#A5C377"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" @Lily Planning "
+        android:layout_below="@+id/btnTurmas"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:padding="15dp"
+        android:fontFamily="@font/cabin_variablefont"
+        android:background="#A5C377"
+        android:layout_marginTop="230dp"
+        />
+</LinearLayout>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="CalendarViewCustom">
+    <style name="CalendarViewCustom" parent="Theme.Material3.Light">
         <item name="colorAccent">@color/roxo</item>
         <item name="android:textColorPrimary">#202020</item>
+        <item name="colorControlActivated">@color/verdeClaro</item>
         <!-- ME MATE OPR FAVOR DIOS MIO QUE DECEPÇÃO QUE EU SOU PQP -->
     </style>
 
@@ -16,7 +17,6 @@
     <style name="CalendarViewDateCustomText">
         <item name="android:textColor">@color/black</item>
         <item name="fontFamily">@font/jost_regular</item>
-        <item name="backgroundColor">@color/verdeClaro</item>
     </style>
 
 </resources>

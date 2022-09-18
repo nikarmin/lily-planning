@@ -66,15 +66,58 @@
             android:textColor="#333333"
             android:textSize="22dp" />
 
-        <CalendarView
+        <TextView
+            android:id="@+id/tvAtualData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Segunda-feira"
+            android:fontFamily="@font/jost_regular"
+            />
+
+         <com.github.sundeepk.compactcalendarview.CompactCalendarView
+             android:id="@+id/compactcalendar_view"
+             android:layout_width="fill_parent"
+             android:layout_marginTop="70dp"
+             android:paddingRight="10dp"
+             android:paddingLeft="10dp"
+             android:layout_height="250dp"
+             app:compactCalendarTargetHeight="250dp"
+             app:compactCalendarTextSize="12sp"
+             app:compactCalendarBackgroundColor="#00000000"
+             app:compactCalendarTextColor="@color/black"
+             app:compactCalendarCurrentSelectedDayBackgroundColor="@color/verdeClaro"
+             app:compactCalendarMultiEventIndicatorColor="#fff"
+             />
+
+       <!-- <org.naishadhparmar.zcustomcalendar.CustomCalendar
+            android:id="@+id/calendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            app:month_year_format="full_month__with_year"
+            app:day_of_week_start_from="sunday"
+            /> -->
+
+        <!--<CalendarView
             android:id="@+id/oneCalendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:theme="@style/CalendarViewCustom"
             android:weekDayTextAppearance="@style/CalendarViewWeekCustomText"
             android:dateTextAppearance="@style/CalendarViewDateCustomText"
-            />
+            /> -->
+
+        <!--<com.applandeo.materialcalendarview.CalendarView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            app:headerColor="@color/black"
+
+            /> -->
 
         <!-- <View
             android:layout_width="match_parent"
