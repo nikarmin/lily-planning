@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="300dp"
     android:layout_height="match_parent"
     tools:context=".Perfil"
     android:orientation="vertical"
@@ -10,8 +10,8 @@
     <!--android:layout_width="300dp"-->
 
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginTop="60dp"
         android:src="@drawable/i_profile"
         android:layout_gravity="center"
@@ -57,7 +57,7 @@
 
     <Button
         android:id="@+id/btnUpdateSenha"
-        android:layout_width="250dp"
+        android:layout_width="240dp"
         android:layout_height="40dp"
         android:text="Mudar senha"
         android:layout_below="@+id/tvProfAluno"
@@ -69,7 +69,7 @@
 
     <Button
         android:id="@+id/btnAjuda"
-        android:layout_width="250dp"
+        android:layout_width="240dp"
         android:layout_height="40dp"
         android:text="Ajuda"
         android:layout_below="@+id/btnUpdateSenha"
@@ -82,7 +82,7 @@
 
     <Button
         android:id="@+id/btnTurmas"
-        android:layout_width="250dp"
+        android:layout_width="240dp"
         android:layout_height="40dp"
         android:text="Turmas"
         android:layout_below="@+id/btnAjuda"
