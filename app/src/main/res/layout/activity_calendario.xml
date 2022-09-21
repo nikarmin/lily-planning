@@ -74,6 +74,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
             android:text="Segunda-feira"
+            android:textColor="#232323"
             android:fontFamily="@font/jost_regular"
             />
 
@@ -87,7 +88,7 @@
              app:compactCalendarTargetHeight="250dp"
              app:compactCalendarTextSize="12sp"
              app:compactCalendarBackgroundColor="#00000000"
-             app:compactCalendarTextColor="@color/black"
+             app:compactCalendarCurrentDayBackgroundColor="@color/roxo"
              app:compactCalendarCurrentSelectedDayBackgroundColor="@color/verdeClaro"
              app:compactCalendarMultiEventIndicatorColor="#fff"
              />
