@@ -2,7 +2,9 @@ package com.example.applilyplanning;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -30,12 +32,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class MainActivity extends AppCompatActivity {
 
     TextView text;
     LocalDate date = LocalDate.now();
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,43 +57,23 @@ public class MainActivity extends AppCompatActivity {
         String dayName = dow.getDisplayName(TextStyle.NARROW, Locale.getDefault());
 
         text = findViewById(R.id.tvAtualData);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        final ActionBar actionBar = getSupportActionBar();
 
         String mes = dateFormat.getCalendar().getDisplayName(Calendar.MONTH, Calendar.LONG, local);
         mes = mes.substring(0, 1).toUpperCase() + mes.substring(1);
 
         String diaDaSemana = pesquisarDia();
 
+        actionBar.setTitle(null);
+        actionBar.setTitle(mes);
+
         text.setText(diaDaSemana + ", " + Calendar.DATE + " de " + mes + " de " + date.getYear());
 
-        Event ev1 = new Event(Color.GREEN, 1433701251000L, "Some extra data that I want to store.");
-        compactCalendarView.addEvent(ev1);
-
-        // Added event 2 GMT: Sun, 07 Jun 2015 19:10:51 GMT
-        Event ev2 = new Event(Color.GREEN, 1433704251000L);
-        compactCalendarView.addEvent(ev2);
-
-        // Query for events on Sun, 07 Jun 2015 GMT.
-        // Time is not relevant when querying for events, since events are returned by day.
-        // So you can pass in any arbitary DateTime and you will receive all events for that day.
-        List<Event> events = compactCalendarView.getEvents(1433701251000L); // can also take a Date object
-
-        // events has size 2 with the 2 events inserted previously
-        Log.d(TAG, "Events: " + events);
-
-        // define a listener to receive callbacks when certain events happen.
-        compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
-            @Override
-            public void onDayClick(Date dateClicked) {
-                List<Event> events = compactCalendarView.getEvents(dateClicked);
-                Log.d(TAG, "Day was clicked: " + dateClicked + " with events " + events);
-            }
-
-            @Override
-            public void onMonthScroll(Date firstDayOfNewMonth) {
-                Log.d(TAG, "Month was scrolled to: " + firstDayOfNewMonth);
-            }
-        });
-
+        compactCalendarView.setLocale(TimeZone.getDefault(), local);
+        compactCalendarView.setUseThreeLetterAbbreviation(true);
 
        /*LocalDate date = LocalDate.now();
         Locale local = new Locale("pt", "BR");
