@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     TextView text;
     LocalDate date = LocalDate.now();
     private Toolbar toolbar;
+    Calendar myCalendar;
+    private SimpleDateFormat dateFormatForMonth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,17 +65,32 @@ public class MainActivity extends AppCompatActivity {
         final ActionBar actionBar = getSupportActionBar();
 
         String mes = dateFormat.getCalendar().getDisplayName(Calendar.MONTH, Calendar.LONG, local);
-        mes = mes.substring(0, 1).toUpperCase() + mes.substring(1);
 
         String diaDaSemana = pesquisarDia();
 
         actionBar.setTitle(null);
-        actionBar.setTitle(mes);
+        actionBar.setTitle(mes.toUpperCase());
 
         text.setText(diaDaSemana + ", " + Calendar.DATE + " de " + mes + " de " + date.getYear());
 
+        String[] testString = { "Seg", "Ter", "Qua", "Quin", "Sex", "Sáb", "Dom" };
+
         compactCalendarView.setLocale(TimeZone.getDefault(), local);
         compactCalendarView.setUseThreeLetterAbbreviation(true);
+        compactCalendarView.setDayColumnNames(testString);
+        dateFormatForMonth = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
+
+        compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
+            @Override
+            public void onDayClick(Date dateClicked) {
+                Toast.makeText(MainActivity.this, "Date : " + dateClicked.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onMonthScroll(Date firstDayOfNewMonth) {
+                actionBar.setTitle(dateFormatForMonth.format(firstDayOfNewMonth).toUpperCase());
+            }
+        });
 
        /*LocalDate date = LocalDate.now();
         Locale local = new Locale("pt", "BR");

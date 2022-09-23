@@ -19,4 +19,8 @@
         <item name="fontFamily">@font/jost_regular</item>
     </style>
 
+    <style name="ToolBarFont" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="fontFamily">@font/jost_regular</item>
+    </style>
+
 </resources>
