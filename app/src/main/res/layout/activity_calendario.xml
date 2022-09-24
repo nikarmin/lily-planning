@@ -71,9 +71,10 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
             android:background="#00000000"
+            android:textAlignment="viewStart"
             app:titleTextAppearance="@font/jost_regular"
+            app:titleMarginStart="5dp"
             app:titleTextColor="@color/black"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             />
@@ -83,7 +84,7 @@
             android:id="@+id/tvAtualData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginBottom="10dp"
             android:text="Segunda-feira"
             android:textColor="#232323"
@@ -174,10 +175,10 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                >
+                android:gravity="center_horizontal">
 
                 <ImageButton
+                    android:id="@+id/ibtnTodoListPage"
                     android:layout_width="60dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="5dp"
@@ -203,7 +204,8 @@
                     android:background="@drawable/rounded"
                     android:text="+"
                     android:textColor="@color/white"
-                    android:textSize="22dp" />
+                    android:textSize="22dp"
+                    tools:ignore="OnClick" />
 
                 <!--<FrameLayout
                     android:layout_width="60dp"

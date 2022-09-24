@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/edtNewTask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:hint="Digite uma tarefa..."
+        />
+
+    <Button
+        android:id="@+id/btnNewTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtNewTask"
+        android:layout_alignParentEnd="true"
+        android:textSize="16sp"
+        android:text="Salvar"
+        android:textColor="@android:color/darker_gray"
+        android:textAllCaps="false"
+        android:background="@android:color/transparent"
+        />
+
+</RelativeLayout>

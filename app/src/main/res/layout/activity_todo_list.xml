@@ -13,7 +13,9 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginLeft="-15dp"
-        android:layout_marginTop="-20dp">
+        android:layout_marginTop="-20dp"
+        android:onClick="IrHome"
+        tools:ignore="OnClick">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -40,7 +42,7 @@
 
     </FrameLayout>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="303dp"
         android:layout_height="411dp"
         android:layout_below="@+id/iconMenu"
@@ -65,26 +67,20 @@
             android:textColor="#333333"
             android:textSize="22dp" />
 
-        <ListView
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_below="@+id/tvMaterias"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/list"
-            android:layout_weight="1"
-            android:layout_margin="5dp"/>
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:nestedScrollingEnabled="true"
+            />
 
         <!-- Colocar um xzinho do lado de cada linha  -->
 
-        <ImageButton
-            android:id="@+id/fab_image_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            app:tint="@android:color/white"
-            />
 
-
-    </FrameLayout>
+    </RelativeLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
