@@ -1,9 +1,12 @@
-const express = require('express');
+//import { PrismaClient } from '@prisma/client';
+import { Router } from 'express';
 
-const routes = express.Router();
+//const prisma = new PrismaClient();
 
-routes.get('/', (req, res) => {
-    return res.json({ projeto: 'lilyPlanning' });
+const router = Router();
+
+router.get('/teste', async (req, res) => {
+    res.send("GET REQUEST OK");
 })
 
-module.exports = routes;
+export { router }
