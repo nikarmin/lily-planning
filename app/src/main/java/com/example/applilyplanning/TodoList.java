@@ -26,9 +26,9 @@ public class TodoList extends AppCompatActivity {
 
         listaTarefas = new ArrayList<>();
 
-        taskRecyclerView = findViewById(R.id.recyclerView);
+        taskRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        taskAdapter = new ToDoAdaptador(this);
+        taskAdapter = new ToDoAdaptador(listaTarefas);
         taskRecyclerView.setAdapter(taskAdapter);
 
         ToDoModel task = new ToDoModel();
@@ -39,12 +39,10 @@ public class TodoList extends AppCompatActivity {
         //.setIdLista(1);
 
         listaTarefas.add(task);
-        listaTarefas.add(task);
-        listaTarefas.add(task);
-        listaTarefas.add(task);
-        listaTarefas.add(task);
 
-        taskAdapter.setTasks(listaTarefas);
+        taskAdapter.notifyDataSetChanged();
+
+        //taskAdapter.setTasks(listaTarefas);
     }
 
     public void IrHome(){

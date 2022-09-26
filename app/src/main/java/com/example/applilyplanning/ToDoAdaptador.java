@@ -1,10 +1,12 @@
 package com.example.applilyplanning;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,31 +20,32 @@ class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
     private List<ToDoModel> todoList;
     private TodoList activity;
 
-    public ToDoAdaptador(TodoList tdList){
-        this.activity = tdList;
+    public ToDoAdaptador(List<ToDoModel> tdList){
+        this.todoList = tdList;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_todo_list, parent, false);
+    public ToDoAdaptador.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.new_task, parent, false);
         return new ViewHolder(itemView);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        CheckBox task;
+        TextView task;
 
-        ViewHolder(View view){
+        public ViewHolder(View view){
             super(view);
-            task = (CheckBox) view.findViewById(R.id.chkToDo);
+            task = view.findViewById(R.id.chkToDo);
         }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ToDoAdaptador.ViewHolder holder, int position) {
-        final ToDoModel item = todoList.get(position);
+    public void onBindViewHolder(@NonNull ToDoAdaptador.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        //final ToDoModel item = todoList.get(position);
 
-        holder.task.setText("item.getNomeLista()");
+        holder.task.setText("");
+
         //holder.task.setText(item.getIdAnotacao());
         //holder.task.setText(item.getNomeLista());
        // holder.task.setChecked(toBoolean(item.getStatus()));
