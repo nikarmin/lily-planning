@@ -13,7 +13,7 @@ import com.example.applilyplanning.model.ToDoModel;
 
 import java.util.List;
 
-public class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
+class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
 
     private List<ToDoModel> todoList;
     private TodoList activity;
@@ -26,7 +26,6 @@ public class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_todo_list, parent, false);
-
         return new ViewHolder(itemView);
     }
 
@@ -35,13 +34,15 @@ public class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder
 
         ViewHolder(View view){
             super(view);
-            task = view.findViewById(R.id.chkToDo);
+            task = (CheckBox) view.findViewById(R.id.chkToDo);
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull ToDoAdaptador.ViewHolder holder, int position) {
         final ToDoModel item = todoList.get(position);
+
+        holder.task.setText("item.getNomeLista()");
         //holder.task.setText(item.getIdAnotacao());
         //holder.task.setText(item.getNomeLista());
        // holder.task.setChecked(toBoolean(item.getStatus()));

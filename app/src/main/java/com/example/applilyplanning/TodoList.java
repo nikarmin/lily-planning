@@ -32,11 +32,11 @@ public class TodoList extends AppCompatActivity {
         taskRecyclerView.setAdapter(taskAdapter);
 
         ToDoModel task = new ToDoModel();
-        task.setDataInicio("24/09/2022");
-        task.setDataEntrega("25/09/2022");
+        //task.setDataInicio("24/09/2022");
+        //task.setDataEntrega("25/09/2022");
         task.setNomeLista("Teste lista");
-        task.setStatus(0);
-        task.setIdLista(1);
+        //task.setStatus(0);
+        //.setIdLista(1);
 
         listaTarefas.add(task);
         listaTarefas.add(task);

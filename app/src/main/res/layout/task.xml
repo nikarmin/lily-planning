@@ -17,7 +17,7 @@
             android:id="@+id/chkToDo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tool:text="Exemplo foda"
+            android:text="Exemplo foda"
             android:paddingStart="8dp"
             android:buttonTint="@color/verdeClaro"
             />
