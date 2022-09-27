@@ -5,47 +5,50 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.applilyplanning.model.ToDoModel;
+import com.example.applilyplanning.model.ToDo;
 
 import java.util.List;
 
 class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
 
-    private List<ToDoModel> todoList;
+    private List<ToDo> todoList;
     private TodoList activity;
 
-    public ToDoAdaptador(List<ToDoModel> tdList){
+
+    public ToDoAdaptador(List<ToDo> tdList){
         this.todoList = tdList;
     }
 
     @NonNull
     @Override
     public ToDoAdaptador.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.new_task, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.task, parent, false);
         return new ViewHolder(itemView);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView task;
+        EditText edtNewTask;
+        CheckBox toDoCheckBox;
 
         public ViewHolder(View view){
             super(view);
-            task = view.findViewById(R.id.chkToDo);
+            //edtNewTask = view.findViewById(R.id.edtNewTask);
+            toDoCheckBox = view.findViewById(R.id.chkToDo);
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull ToDoAdaptador.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        //final ToDoModel item = todoList.get(position);
+        final ToDo toDoData = todoList.get(position);
 
-        holder.task.setText("");
-
+        holder.toDoCheckBox.setText(toDoData.getToDoLabel());
+        //final ToDo item = todoList.get(position);
+        ///holder.edtNewTask.setText(item.getNomeLista());
         //holder.task.setText(item.getIdAnotacao());
         //holder.task.setText(item.getNomeLista());
        // holder.task.setChecked(toBoolean(item.getStatus()));
@@ -55,7 +58,7 @@ class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
         return n != 0;
     }
 
-    public void setTasks(List<ToDoModel> lista){
+    public void setTasks(List<ToDo> lista){
         this.todoList = lista;
         notifyDataSetChanged();
     }

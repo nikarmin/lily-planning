@@ -6,28 +6,25 @@
     app:cardElevation="4dp"
     app:cardCornerRadius="8dp"
     android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical="8dp">
+    android:layout_marginVertical="8dp"
+    android:background="@color/white">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:background="@color/white">
 
-        <!--<CheckBox
+        <CheckBox
             android:id="@+id/chkToDo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Exemplo foda"
             android:paddingStart="8dp"
+            android:textColor="@color/black"
             android:buttonTint="@color/verdeClaro"
-            />-->
-
-        <TextView
-            android:id="@+id/chkToDo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:background="@color/white"
             />
-
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

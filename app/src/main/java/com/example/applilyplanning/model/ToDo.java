@@ -1,10 +1,20 @@
 package com.example.applilyplanning.model;
 
-import java.sql.Date;
+public class ToDo {
+    public String getToDoLabel() {
+        return toDoLabel;
+    }
 
-public class ToDoModel {
+    public void setToDoLabel(String toDoLabel) {
+        this.toDoLabel = toDoLabel;
+    }
 
-    private String dataInicio, dataEntrega;
+    private String toDoLabel;
+
+    public ToDo(String toDoLabel) {
+        this.toDoLabel = toDoLabel;
+    }
+   /* private String dataInicio, dataEntrega;
 
     public String getDataInicio() {
         return dataInicio;
@@ -44,7 +54,7 @@ public class ToDoModel {
 
     public void setStatus(int status) {
         this.status = status;
-    }
+    }*/
 
     public String getNomeLista() {
         return nomeLista;
@@ -54,7 +64,7 @@ public class ToDoModel {
         this.nomeLista = nomeLista;
     }
 
-    private int idLista, idAnotacao, status;
+    //private int idLista, idAnotacao, status;
     private String nomeLista;
 
     /*

@@ -1,6 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/white"
+    android:background="@color/white">
 
     <EditText
         android:id="@+id/edtNewTask"
@@ -9,6 +11,7 @@
         android:background="@null"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:hint="Digite uma tarefa..."
+        android:textColor="@color/black"
         />
 
     <Button
@@ -21,7 +24,7 @@
         android:text="Salvar"
         android:textColor="@android:color/darker_gray"
         android:textAllCaps="false"
-        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/holo_blue_dark"
         />
 
 </RelativeLayout>
