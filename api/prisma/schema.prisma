@@ -1,17 +1,99 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "sqlserver"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlserver"
-  url      = env("DATABASE_URL")
+  provider          = "sqlserver"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+model Aluno {
+  id_aluno         Int               @id @default(autoincrement())
+  nome_aluno       String
+  email_aluno      String            @unique
+  senha_aluno      String
+  calendario_aluno CalendarioAluno[]
+}
+
+model Professor {
+  id_professor         Int                   @id @default(autoincrement())
+  nome_professor       String
+  email_professor      String                @unique
+  senha_professor      String
+  calendario_professor CalendarioProfessor[]
+}
+
+model Materia {
+  id_materia   Int     @id @default(autoincrement())
+  nome_materia String
+  cor_etiqueta String?
+  notas        Notas[]
+}
+
+model Anotacao {
+  id_anotacao          Int                   @id @default(autoincrement())
+  anotacao             String
+  to_do_lista          ToDoList[]
+  calendario_aluno     CalendarioAluno[]
+  calendario_professor CalendarioProfessor[]
+}
+
+model ToDoList {
+  id_todo_list Int      @id @default(autoincrement())
+  data_inicio  DateTime
+  data_entrega DateTime
+  nome_lista   String
+  anotacao     Anotacao @relation(fields: [fk_anotacao], references: [id_anotacao])
+  fk_anotacao  Int
+}
+
+model Upload {
+  id_upload Int    @id @default(autoincrement())
+  url_foto  String
+}
+
+model Turma {
+  id_turma    Int          @id @default(autoincrement())
+  nome_turma  String
+  qtd_alunos  Int
+  aluno_turma AlunoTurma[]
+}
+
+model AlunoTurma {
+  id_aluno_turma Int     @id @default(autoincrement())
+  ra_aluno       String
+  turma          Turma   @relation(fields: [fk_turma], references: [id_turma])
+  fk_turma       Int
+  notas          Notas[]
+}
+
+model Notas {
+  id_notas       Int        @id @default(autoincrement())
+  nota           Float
+  bimestre       String
+  materia        Materia    @relation(fields: [fk_materia], references: [id_materia])
+  fk_materia     Int
+  aluno_turma    AlunoTurma @relation(fields: [fk_aluno_turma], references: [id_aluno_turma])
+  fk_aluno_turma Int
+}
+
+model CalendarioAluno {
+  id_calendario_aluno Int      @id @default(autoincrement())
+  aluno               Aluno    @relation(fields: [fk_aluno], references: [id_aluno])
+  fk_aluno            Int
+  anotacao            Anotacao @relation(fields: [fk_anotacao], references: [id_anotacao])
+  fk_anotacao         Int
+  data_inicio         DateTime
+  data_entrega        DateTime
+}
+
+model CalendarioProfessor {
+  id_calendario_professor Int       @id @default(autoincrement())
+  professor               Professor @relation(fields: [fk_professor], references: [id_professor])
+  fk_professor            Int
+  anotacao                Anotacao  @relation(fields: [fk_anotacao], references: [id_anotacao])
+  fk_anotacao             Int
+  data_inicio             DateTime
+  data_entrega            DateTime
 }

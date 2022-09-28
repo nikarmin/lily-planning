@@ -1,32 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="CalendarViewCustom" parent="Theme.Material3.Light">
-        <item name="colorAccent">@color/roxo</item>
-        <item name="android:textColorPrimary">#202020</item>
-        <item name="colorControlActivated">@color/verdeClaro</item>
-        <!-- ME MATE OPR FAVOR DIOS MIO QUE DECEPÇÃO QUE EU SOU PQP -->
-    </style>
-
-    <style name="CalendarViewWeekCustomText">
-        <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">@font/jost_regular</item>
-        <item name="android:textSize">16dp</item>
-    </style>
-
-    <style name="CalendarViewDateCustomText">
-        <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">@font/jost_regular</item>
-    </style>
-
-    <style name="MyTheme.MyActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="ToolBarFont" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="fontFamily">@font/jost_regular</item>
-        <item name="android:textSize">18dp</item>
-        <item name="titleTextStyle">@style/MyTheme.MyActionBar.TitleTextStyle</item>
+    <style name="Fade">
+        <item name="android:windowEnterAnimation">@anim/fadein</item>
+        <item name="android:windowExitAnimation">@anim/fadeout</item>
     </style>
 
 </resources>

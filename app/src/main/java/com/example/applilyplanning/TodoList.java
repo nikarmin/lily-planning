@@ -10,6 +10,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.transition.Explode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -36,40 +37,19 @@ public class TodoList extends AppCompatActivity {
 
     private List<ToDo> listaTarefas;
 
-    public class StartGameDialogFragment extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the Builder class for convenient dialog construction
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage("eai mano brown ")
-                    .setPositiveButton("opa", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // START THE GAME!
-                        }
-                    })
-                    .setNegativeButton("sai fora", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // User cancelled the dialog
-                        }
-                    });
-            // Create the AlertDialog object and return it
-            return builder.create();
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_todo_list);
 
+        //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+        setContentView(R.layout.activity_todo_list);
+        //getWindow().getAttributes().windowAnimations = R.style.Fade;
         listaDeTarefas = new ArrayList<ToDo>();
 
         ArrayList<String> tarefasAnteriores = new ArrayList<String>(); // Temporário
         tarefasAnteriores.add("Fazer chicão");
         tarefasAnteriores.add("Fazer API de práticas");
         tarefasAnteriores.add("Estudar Português");
-
-
 
         AppCompatButton button = findViewById(R.id.btnAdicionar);
         button.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +70,10 @@ public class TodoList extends AppCompatActivity {
                         //Toast.makeText(TodoList.this, edtNewTask.getText(), Toast.LENGTH_SHORT).show();
                         tarefasAnteriores.add(edtNewTask.getText().toString());
                         dialog.dismiss();
+
+                        listaDeTarefas.add(new ToDo(tarefasAnteriores.get(tarefasAnteriores.size() - 1)));
                     }
+
                 });
             }
         });
@@ -98,7 +81,6 @@ public class TodoList extends AppCompatActivity {
         for (String toDo : tarefasAnteriores) {
             listaDeTarefas.add(new ToDo(toDo));
         }
-
         taskAdapter = new ToDoAdaptador(listaDeTarefas);
         taskRecyclerView = findViewById(R.id.recyclerView);
         taskRecyclerView.setAdapter(taskAdapter);

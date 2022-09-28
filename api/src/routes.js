@@ -1,12 +1,34 @@
 //import { PrismaClient } from '@prisma/client';
-import { Router } from 'express';
+const { Router } = require('express')
+const alunoController = require('./controllers/alunoController')
+const professorController = require('./controllers/professorController')
 
 //const prisma = new PrismaClient();
 
-const router = Router();
+const router = Router()
 
-router.get('/teste', async (req, res) => {
-    res.send("GET REQUEST OK");
+router.get('/', async (req, res) => {
+  res.send('get request')
 })
 
-export { router }
+// alunos
+
+router.get('/alunos', alunoController.getAll)
+
+router.get('/alunos/:id', alunoController.getById)
+
+router.post('/alunos', alunoController.create)
+
+router.post('/alunos/auth', alunoController.auth)
+
+// professores
+
+router.get('/professores', professorController.getAll)
+
+router.get('/professores/:id', professorController.getById)
+
+router.post('/professores', professorController.create)
+
+router.post('/professores/auth', professorController.auth)
+
+module.exports = { router }
