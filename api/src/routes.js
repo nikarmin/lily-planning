@@ -14,21 +14,15 @@ router.get('/', async (req, res) => {
 // alunos
 
 router.get('/alunos', alunoController.getAll)
-
 router.get('/alunos/:id', alunoController.getById)
-
 router.post('/alunos', alunoController.create)
-
 router.post('/alunos/auth', alunoController.auth)
 
 // professores
 
 router.get('/professores', professorController.getAll)
-
 router.get('/professores/:id', professorController.getById)
-
 router.post('/professores', professorController.create)
-
 router.post('/professores/auth', professorController.auth)
 
 module.exports = { router }

@@ -2,15 +2,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:backgroundTint="@color/white"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:padding="8dp">
 
     <EditText
         android:id="@+id/edtNewTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@null"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:textSize="18dp"
+        android:fontFamily="@font/jost_regular"
         android:hint="Digite uma tarefa..."
+        android:textColorHint="#63000000"
+        android:backgroundTint="@color/white"
         android:textColor="@color/black"
         />
 
@@ -20,11 +25,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/edtNewTask"
         android:layout_alignParentEnd="true"
+        android:layout_marginRight="5dp"
         android:textSize="16sp"
         android:text="Salvar"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@color/white"
         android:textAllCaps="false"
-        android:backgroundTint="@android:color/holo_blue_dark"
+        android:backgroundTint="@color/verdeClaro"
         />
 
 </RelativeLayout>

@@ -30,11 +30,8 @@ public class TodoList extends AppCompatActivity {
     Button btnNewTask;
 
     List<ToDo> listaDeTarefas;
-
     AlertDialog.Builder builder;
-
     AlertDialog dialog;
-
     private List<ToDo> listaTarefas;
 
     @Override
@@ -46,6 +43,9 @@ public class TodoList extends AppCompatActivity {
         //getWindow().getAttributes().windowAnimations = R.style.Fade;
         listaDeTarefas = new ArrayList<ToDo>();
 
+        LayoutInflater inflater = this.getLayoutInflater();
+        View titleView = inflater.inflate(R.layout.alert_task, null);
+
         ArrayList<String> tarefasAnteriores = new ArrayList<String>(); // Temporário
         tarefasAnteriores.add("Fazer chicão");
         tarefasAnteriores.add("Fazer API de práticas");
@@ -55,9 +55,8 @@ public class TodoList extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                builder = new AlertDialog.Builder(TodoList.this);
-                //builder.setTitle("Alterar usuário");
-                builder.setCancelable(false);
+                builder = new AlertDialog.Builder(TodoList.this).setCustomTitle(titleView);
+                builder.setCancelable(true);
                 View v = LayoutInflater.from(TodoList.this).inflate(R.layout.new_task, null, false);
                 builder.setView(v);
                 dialog = builder.create();
