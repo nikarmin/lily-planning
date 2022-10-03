@@ -4,6 +4,19 @@ const { prisma } = require('../database/prismaClient')
 const { hash, genSalt, compare } = require('bcrypt')
 const { sign } = require('jsonwebtoken')
 
+const validateEmail = (email) => {
+  return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    )
+}
+
+/*function validateEmail(email) {
+  var re = /\S+@\S+\.\S+/
+  return re.test(email)
+}*/
+
 module.exports = {
   async getAll(req, res) {
     return res.json(
@@ -37,18 +50,21 @@ module.exports = {
   async create(req, res) {
     const { nome_aluno, senha_aluno, email_aluno } = req.body
 
-    const aluno = await prisma.aluno.create({
-      data: {
-        email_aluno,
-        nome_aluno,
-        senha_aluno: await hash(senha_aluno, await genSalt()),
-      },
-      select: {
-        id_aluno: true,
-      },
-    })
-
-    return res.status(201).json({ id: aluno.id_aluno })
+    if (validateEmail(email_aluno)) {
+      const aluno = await prisma.aluno.create({
+        data: {
+          email_aluno,
+          nome_aluno,
+          senha_aluno: await hash(senha_aluno, await genSalt()),
+        },
+        select: {
+          id_aluno: true,
+        },
+      })
+      return res.status(201).json({ id: aluno.id_aluno })
+    } else {
+      return res.status(400).json({ message: 'Informações incorretas!' })
+    }
   },
 
   async auth(req, res) {
@@ -71,7 +87,18 @@ module.exports = {
 
       return res.json({ token })
     }
-
     return res.status(401).json({ message: 'Bad credentials' })
+  },
+
+  async delete(req, res) {
+    const { id } = req.params
+    return res.json(
+      await prisma.aluno.delete({
+        where: { id_aluno: Number(id) },
+        select: {
+          nome_aluno: true,
+        },
+      })
+    )
   },
 }
