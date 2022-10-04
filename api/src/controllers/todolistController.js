@@ -11,6 +11,7 @@ module.exports = {
           data_inicio: true,
           data_entrega: true,
           nome_lista: true,
+          fk_anotacao: true,
         },
       })
     )
@@ -33,14 +34,14 @@ module.exports = {
   },
 
   async create(req, res) {
-    const { data_inicio, data_entrega, nome_lista, anotacao } = req.body
+    const { data_inicio, data_entrega, nome_lista, fk_anotacao } = req.body
 
     const todolist = await prisma.toDoList.create({
       data: {
         data_inicio,
         data_entrega,
         nome_lista,
-        anotacao,
+        fk_anotacao,
       },
       select: {
         id_todo_list: true,

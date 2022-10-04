@@ -41,8 +41,8 @@ model Anotacao {
 
 model ToDoList {
   id_todo_list Int      @id @default(autoincrement())
-  data_inicio  DateTime
-  data_entrega DateTime
+  data_inicio  DateTime @db.Date
+  data_entrega DateTime @db.Date
   nome_lista   String
   anotacao     Anotacao @relation(fields: [fk_anotacao], references: [id_anotacao])
   fk_anotacao  Int
