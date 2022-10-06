@@ -98,6 +98,23 @@ module.exports = {
     return res.status(401).json({ message: 'Bad credentials' })
   },
 
+  async update(req, res) {
+    const { id } = req.params
+    const { email_professor, senha_professor } = req.body
+
+    const updateProfessor = await prisma.professor.update({
+      where: { id_professor: Number(id) },
+      data: {
+        email_professor: email_professor,
+        senha_professor: await hash(senha_professor, await genSalt()),
+      },
+      select: {
+        id_professor: true,
+      },
+    })
+    return res.status(201).json({ id: updateProfessor.id_professor })
+  },
+
   async delete(req, res) {
     const { id } = req.params
     return res.json(

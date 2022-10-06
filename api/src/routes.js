@@ -18,6 +18,7 @@ router.get('/alunos', alunoController.getAll)
 router.get('/alunos/:id', alunoController.getById)
 router.post('/alunos', alunoController.create)
 router.post('/alunos/auth', alunoController.auth)
+router.put('/alunos/:id', alunoController.update)
 router.delete('/alunos/:id', alunoController.delete)
 
 // professores
@@ -25,11 +26,14 @@ router.get('/professores', professorController.getAll)
 router.get('/professores/:id', professorController.getById)
 router.post('/professores', professorController.create)
 router.post('/professores/auth', professorController.auth)
+router.put('/professores/:id', professorController.update)
 router.delete('/professores/:id', professorController.delete)
 
 // todolist
 router.get('/tarefas', todolistController.getAll)
+router.get('/tarefas/:id', todolistController.getById)
 router.post('/tarefas', todolistController.create)
+router.delete('/tarefas/:id', todolistController.delete)
 
 // anotacao
 router.get('/anotacoes', anotacaoController.getAll)

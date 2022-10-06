@@ -89,7 +89,7 @@ module.exports = {
     }
     return res.status(401).json({ message: 'Bad credentials' })
   },
-/*
+  /*
   const { id } = req.params
 
   const { anotacao } = req.body
@@ -104,21 +104,20 @@ module.exports = {
     },*/
 
   async update(req, res) {
-
     const { id } = req.params
     const { email_aluno, senha_aluno } = req.body
 
     const updateAluno = await prisma.aluno.update({
       where: { id_aluno: Number(id) },
-        data: {
-          email_aluno: email_aluno,
-          senha_aluno: senha_aluno,
-        },
-        select: {
-          id_aluno: true,
-        }
+      data: {
+        email_aluno: email_aluno,
+        senha_aluno: await hash(senha_aluno, await genSalt()),
+      },
+      select: {
+        id_aluno: true,
+      },
     })
-    return res.status(201).json({ id: updateAluno.id_aluno });
+    return res.status(201).json({ id: updateAluno.id_aluno })
   },
 
   async delete(req, res) {
