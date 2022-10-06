@@ -165,11 +165,11 @@
             />
 
         <CheckBox
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:id="@+id/chkAluno"
+            android:layout_width="16dp"
+            android:layout_height="18dp"
             android:layout_marginLeft="68dp"
-            android:layout_marginTop="305dp"
-            />
+            android:layout_marginTop="305dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -185,6 +185,7 @@
             />
 
         <CheckBox
+            android:id="@+id/chkProfessor"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginLeft="100dp"
