@@ -24,8 +24,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity
+{
     ImageButton todo;
     AppCompatButton btn;
     EditText email, senha, nome;
@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
     // OXI PQ????????????????? VVVVVVVVV CANALHASSSS
     //@SuppressLint("MissingInflatedId")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
@@ -46,37 +47,41 @@ public class MainActivity extends AppCompatActivity {
 
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if (email != null && senha != null && nome != null && (chkAluno.isActivated() || chkAluno.isActivated())){
+            public void onClick(View view)
+            {
+                //if (email != null && senha != null && nome != null && (chkAluno.isActivated() || chkAluno.isActivated())){
                     Aluno aluno = new Aluno(nome.getText().toString(), email.getText().toString(), senha.getText().toString());
+
                     Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
                     Call<Aluno> call = service.incluirAluno(aluno);
 
                     call.enqueue(new Callback<Aluno>() {
                         @Override
-                        public void onResponse(Call<Aluno> call, Response<Aluno> response) {
-                            if (response.isSuccessful()){
+                        public void onResponse(Call<Aluno> call2, Response<Aluno> response) {
+                            if (response.isSuccessful())
+                            {
                                 Aluno alunoResponse = response.body();
 
                                 alunoResponse.getNome_aluno();
                                 alunoResponse.getEmail_aluno();
                                 alunoResponse.getSenha_aluno();
 
-                                Gson gson = new GsonBuilder().create();
-
-                                String jsonResponse = gson.toJson(alunoResponse);
+                            }
+                            else {
+                                Toast.makeText(MainActivity.this, "Erro na inclusão!", Toast.LENGTH_LONG).show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Aluno> call, Throwable t) {
-                            Toast.makeText(MainActivity.this, "Deu errado!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Falha na Conexão", Toast.LENGTH_SHORT).show();
                         }
                     });
-                }
+
+
+                //}
             }
         });
-
 
         /*todo = (ImageButton) findViewById(R.id.ibtnTodoListPage);
 
@@ -94,4 +99,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
     }
+
 }

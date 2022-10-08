@@ -83,7 +83,7 @@
             android:shadowRadius="2"
             android:text="Email:"
             android:textColor="@color/black"
-            android:textSize="15dp"
+            android:textSize="12dp"
             />
 
         <EditText
@@ -95,8 +95,9 @@
             android:background="@drawable/edtradius"
             android:hint="   Digite seu email..."
             android:inputType="textEmailAddress"
+            android:textColor="#7E7E7E"
             android:padding="6dp"
-            android:textSize="15dp"
+            android:textSize="12dp"
             />
 
         <TextView
@@ -120,9 +121,10 @@
             android:layout_marginTop="180dp"
             android:background="@drawable/edtradius"
             android:hint="   Digite sua senha..."
+            android:textColor="#7E7E7E"
             android:inputType="textPassword"
             android:padding="6dp"
-            android:textSize="15dp"
+            android:textSize="12dp"
             />
 
         <TextView
@@ -146,9 +148,9 @@
             android:layout_marginTop="260dp"
             android:background="@drawable/edtradius"
             android:hint="   Digite seu usuário..."
-            android:inputType="textPassword"
             android:padding="6dp"
-            android:textSize="15dp"
+            android:textColor="#7E7E7E"
+            android:textSize="12dp"
             />
 
         <TextView

@@ -3,9 +3,9 @@ package com.example.applilyplanning.database;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitConfig {
-
-    private static final String BASE_URL = "http://177.220.18.15:3030/";
+public class RetrofitConfig
+{
+    private static final String BASE_URL = "https://177.220.18.15:3030";
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofitInstance(){
