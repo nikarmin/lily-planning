@@ -18,6 +18,11 @@ public class Aluno implements Serializable {
         this.email_aluno = email;
     }
 
+    public Aluno (String email, String senha){
+        this.senha_aluno = senha;
+        this.email_aluno = email;
+    }
+
     public String getNome_aluno() {
         return nome_aluno;
     }

@@ -96,6 +96,7 @@
             android:hint="   Digite sua senha..."
             android:padding="6dp"
             android:textColor="#7E7E7E"
+            android:inputType="textPassword"
             android:textSize="12dp"
             />
 
@@ -148,7 +149,6 @@
             android:background="@drawable/edtradius"
             android:hint="   Digite seu email..."
             android:textColor="#7E7E7E"
-            android:inputType="textPassword"
             android:padding="6dp"
             android:textSize="12dp"
             />

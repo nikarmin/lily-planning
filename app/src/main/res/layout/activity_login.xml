@@ -51,40 +51,38 @@
 
     <FrameLayout
         android:layout_width="303dp"
-        android:layout_height="270dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="309dp"
         android:layout_gravity="center"
+        android:layout_marginTop="30dp"
         android:background="@drawable/retangulo"
         android:backgroundTint="#E5E7FE">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/be_vietnam_pro"
+            android:letterSpacing="0.3"
             android:shadowColor="#BFB745"
             android:shadowDx="2"
             android:shadowDy="3"
             android:shadowRadius="2"
             android:text="Login"
-            android:letterSpacing="0.3"
             android:textColor="@color/black"
-            android:textSize="22dp"
-            />
+            android:textSize="22dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
             android:layout_marginLeft="18dp"
+            android:layout_marginTop="70dp"
             android:fontFamily="@font/be_vietnam_pro"
+            android:letterSpacing="0.15"
             android:shadowRadius="2"
             android:text="Email:"
-            android:letterSpacing="0.15"
             android:textColor="@color/black"
-            android:textSize="15dp"
-            />
+            android:textSize="15dp" />
 
         <EditText
             android:id="@+id/edtEmail"
@@ -93,24 +91,22 @@
             android:layout_marginLeft="18dp"
             android:layout_marginTop="100dp"
             android:background="@drawable/edtradius"
-            android:padding="6dp"
             android:hint="   Digite seu email..."
-            android:textSize="15dp"
             android:inputType="textEmailAddress"
-        />
+            android:padding="6dp"
+            android:textSize="15dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
             android:layout_marginLeft="18dp"
+            android:layout_marginTop="150dp"
             android:fontFamily="@font/be_vietnam_pro"
+            android:letterSpacing="0.15"
             android:shadowRadius="2"
             android:text="Senha:"
-            android:letterSpacing="0.15"
             android:textColor="@color/black"
-            android:textSize="15dp"
-            />
+            android:textSize="15dp" />
 
         <EditText
             android:id="@+id/edtSenha"
@@ -119,29 +115,45 @@
             android:layout_marginLeft="18dp"
             android:layout_marginTop="180dp"
             android:background="@drawable/edtradius"
-            android:padding="6dp"
             android:hint="   Digite sua senha..."
-            android:textSize="15dp"
             android:inputType="textPassword"
+            android:padding="6dp"
+            android:textSize="15dp" />
+
+        <CheckBox
+            android:id="@+id/chkAluno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="210dp"
+            android:layout_marginLeft="18dp"
+            android:text="Aluno"
+            />
+
+        <CheckBox
+            android:id="@+id/chkProfessor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="210dp"
+            android:layout_marginLeft="100dp"
+            android:text="Professor"
             />
 
         <Button
             android:id="@+id/btnEntrar"
             android:layout_width="135dp"
             android:layout_height="45dp"
-            android:layout_marginTop="218dp"
             android:layout_marginLeft="18dp"
+            android:layout_marginTop="250dp"
             android:backgroundTint="#CAE89F"
             android:drawableEnd="@drawable/arrow_right"
             android:fontFamily="@font/be_vietnam_pro"
             android:letterSpacing="0.4"
             android:text="Entrar"
-            android:textSize="12dp"
+            android:textAlignment="textStart"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textAlignment="textStart"
-            app:cornerRadius="60dp"
-            />
+            android:textSize="12dp"
+            app:cornerRadius="60dp" />
 
     </FrameLayout>
 

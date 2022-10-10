@@ -6,17 +6,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.applilyplanning.database.RetrofitConfig;
 import com.example.applilyplanning.model.Aluno;
+import com.example.applilyplanning.model.Professor;
+
+import java.util.Calendar;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Login extends AppCompatActivity {
 
     EditText email, senha;
     Button entrar;
+    CheckBox chkAluno, chkProfessor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,24 +34,111 @@ public class Login extends AppCompatActivity {
         email = findViewById(R.id.edtEmail);
         senha = findViewById(R.id.edtSenha);
         entrar = findViewById(R.id.btnEntrar);
+        chkAluno = findViewById(R.id.chkAluno);
+        chkProfessor = findViewById(R.id.chkProfessor);
 
         Intent intent = getIntent();
         Bundle params = intent.getExtras();
 
         String user = params.getString("key_user");
 
+        if (user.equals("Aluno"))
+            chkAluno.setChecked(true);
+        else
+            chkProfessor.setChecked(true);
+        /*String emailUser = params.getString("email");
+        String senhaUser = params.getString("senha");*/
+
+        chkAluno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chkProfessor.setChecked(false);
+            }
+        });
+
+        chkProfessor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chkAluno.setChecked(false);
+            }
+        });
+
         entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (user == "Professor"){
-
-                }
-
-                if (user == "Aluno"){
+                if (user.equals("Professor")){
                     if (!(email.getText() == null) || !(senha.getText() == null))
                     {
+                        chkProfessor.setChecked(true);
+                        Professor professor = new Professor(email.getText().toString(), senha.getText().toString());
                         Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
-                        Call<Aluno> call = service.incluirAluno(aluno);
+                        Call<Professor> call = service.verificarProfessor(professor);
+
+                        call.enqueue(new Callback<Professor>() {
+                            @Override
+                            public void onResponse(Call<Professor> call, Response<Professor> response) {
+                                if (response.isSuccessful()){
+                                    Professor professorResponse = response.body();
+
+                                    professorResponse.getEmail_professor();
+                                    professorResponse.getSenha_professor();
+
+                                    startActivity(new Intent(Login.this, Calendario.class));
+                                }
+                                else {
+                                    Toast.makeText(Login.this, "Erro na autenticação!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Professor> call, Throwable t) {
+                                Toast.makeText(Login.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+
+                else if (user.equals("Aluno")){
+                    if (!(email.getText() == null) || !(senha.getText() == null))
+                    {
+                        chkAluno.setChecked(true);
+                        Aluno aluno = new Aluno(email.getText().toString(), senha.getText().toString());
+                        Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
+                        Call<Aluno> call = service.verificarAluno(aluno);
+
+                        call.enqueue(new Callback<Aluno>() {
+                            @Override
+                            public void onResponse(Call<Aluno> call, Response<Aluno> response) {
+                                if (response.isSuccessful()){
+                                    Aluno alunoResponse = response.body();
+
+                                    alunoResponse.getEmail_aluno();
+                                    alunoResponse.getSenha_aluno();
+
+                                    startActivity(new Intent(Login.this, Calendario.class));
+                                }
+                                else {
+                                    Toast.makeText(Login.this, "Erro na autenticação!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Aluno> call, Throwable t) {
+                                Toast.makeText(Login.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+
+                else {
+                    if (!(email.getText() == null) && !(senha.getText() == null) && chkAluno.isChecked())
+                    {
+                        Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
+                        Call<Aluno> call = service.selecionarAluno(email.getText().toString());
+
+                    }
+                    else{
+
                     }
                 }
             }

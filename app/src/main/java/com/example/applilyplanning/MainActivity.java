@@ -86,7 +86,9 @@ public class MainActivity extends AppCompatActivity
                                 Intent intent = new Intent(MainActivity.this, Login.class);
                                 Bundle bundle = new Bundle();
 
-                                bundle.putString("key_user", chkAluno.getText().toString());
+                                bundle.putString("key_user", "Aluno");
+                                /*bundle.putString("email", alunoResponse.getEmail_aluno());
+                                bundle.putString("senha", alunoResponse.getSenha_aluno());*/
 
                                 intent.putExtras(bundle);
 
@@ -123,7 +125,7 @@ public class MainActivity extends AppCompatActivity
                                 Intent intent = new Intent(MainActivity.this, Login.class);
                                 Bundle bundle = new Bundle();
 
-                                bundle.putString("key_user", chkProfessor.getText().toString());
+                                bundle.putString("key_user", "Professor");
 
                                 intent.putExtras(bundle);
 

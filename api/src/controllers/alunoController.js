@@ -31,7 +31,7 @@ module.exports = {
     )
   },
 
-  async getById(req, res) {
+  async getByEmail(req, res) {
     const { email } = req.params
 
     return res.json(

@@ -19,6 +19,11 @@ public class Professor implements Serializable {
         this.email_professor = email;
     }
 
+    public Professor (String email, String senha){
+        this.senha_professor = senha;
+        this.email_professor = email;
+    }
+
     public String getNome_professor() {
         return nome_professor;
     }

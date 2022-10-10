@@ -17,11 +17,14 @@ public interface Service {
     @GET("/alunos")
     Call<List<Aluno>> getAluno();
 
-    @GET("/alunos/{id}")
-    Call<Aluno> selecionarAluno(@Path("nome") String id);
+    @GET("/alunos/{email}")
+    Call<Aluno> selecionarAluno(@Path("email") String email);
 
     @POST("/alunos")
     Call<Aluno> incluirAluno(@Body Aluno aluno);
+
+    @POST("/alunos/auth")
+    Call<Aluno> verificarAluno(@Body Aluno aluno);
 
     @PUT("/alunos/{id}")
     Call<Aluno> alterarAluno(@Path("id") String id, @Body Aluno aluno);
@@ -37,6 +40,9 @@ public interface Service {
 
     @POST("/professores")
     Call<Professor> incluirProfessor(@Body Professor professor);
+
+    @POST("/professores/auth")
+    Call<Professor> verificarProfessor(@Body Professor professor);
 
     @PUT("/professores/{id}")
     Call<Professor> alterarProfessor(@Path("id") String id, @Body Professor professor);
