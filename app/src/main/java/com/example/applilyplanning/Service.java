@@ -1,6 +1,7 @@
 package com.example.applilyplanning;
 
 import com.example.applilyplanning.model.Aluno;
+import com.example.applilyplanning.model.Professor;
 
 import java.util.List;
 
@@ -14,17 +15,32 @@ import retrofit2.http.Path;
 
 public interface Service {
     @GET("/alunos")
-    Call<List<Aluno>> getAluno();           // retorna uma lista de cachorro
+    Call<List<Aluno>> getAluno();
 
     @GET("/alunos/{id}")
-    Call<Aluno> selecionarAluno(@Path("nome") String id);        // retorna uma UNIDADE de cachorro, pelo NOME <<<<<<<<<<
+    Call<Aluno> selecionarAluno(@Path("nome") String id);
 
     @POST("/alunos")
-    Call<Aluno> incluirAluno(@Body Aluno aluno);            // incluir cachorro
+    Call<Aluno> incluirAluno(@Body Aluno aluno);
 
     @PUT("/alunos/{id}")
-    Call<Aluno> alterarAluno(@Path("id") String id, @Body Aluno aluno);          // alterar UMA UNIDADE DE CACHORRO
+    Call<Aluno> alterarAluno(@Path("id") String id, @Body Aluno aluno);
 
     @DELETE("/alunos")
-    Call<Aluno> excluirAluno(@Path("id") String id);            // deletar UMA UNIDADE DE CACHORRO
+    Call<Aluno> excluirAluno(@Path("id") String id);
+
+    @GET("/professores")
+    Call<List<Professor>> getProfessor();
+
+    @GET("/professores/{id}")
+    Call<Professor> selecionarProfessor(@Path("nome") String id);
+
+    @POST("/professores")
+    Call<Professor> incluirProfessor(@Body Professor professor);
+
+    @PUT("/professores/{id}")
+    Call<Professor> alterarProfessor(@Path("id") String id, @Body Professor professor);
+
+    @DELETE("/professores")
+    Call<Professor> excluirAProfessor(@Path("id") String id);
 }

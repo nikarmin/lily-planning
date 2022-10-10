@@ -81,19 +81,45 @@
             android:fontFamily="@font/be_vietnam_pro"
             android:letterSpacing="0.15"
             android:shadowRadius="2"
-            android:text="Email:"
+            android:text="Nome de usuário:"
             android:textColor="@color/black"
-            android:textSize="12dp"
+            android:textSize="15dp"
             />
 
         <EditText
-            android:id="@+id/edtEmail"
+            android:id="@+id/edtSenha"
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="260dp"
+            android:background="@drawable/edtradius"
+            android:hint="   Digite sua senha..."
+            android:padding="6dp"
+            android:textColor="#7E7E7E"
+            android:textSize="12dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="230dp"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:letterSpacing="0.15"
+            android:shadowRadius="2"
+            android:text="Senha:"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            />
+
+        <EditText
+            android:id="@+id/edtNomeUsuario"
             android:layout_width="225dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
             android:layout_marginTop="100dp"
             android:background="@drawable/edtradius"
-            android:hint="   Digite seu email..."
+            android:hint="   Digite seu nome..."
             android:inputType="textEmailAddress"
             android:textColor="#7E7E7E"
             android:padding="6dp"
@@ -108,48 +134,22 @@
             android:fontFamily="@font/be_vietnam_pro"
             android:letterSpacing="0.15"
             android:shadowRadius="2"
-            android:text="Senha:"
+            android:text="Email:"
             android:textColor="@color/black"
             android:textSize="15dp"
             />
 
         <EditText
-            android:id="@+id/edtSenha"
+            android:id="@+id/edtEmail"
             android:layout_width="225dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
             android:layout_marginTop="180dp"
             android:background="@drawable/edtradius"
-            android:hint="   Digite sua senha..."
+            android:hint="   Digite seu email..."
             android:textColor="#7E7E7E"
             android:inputType="textPassword"
             android:padding="6dp"
-            android:textSize="12dp"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="230dp"
-            android:fontFamily="@font/be_vietnam_pro"
-            android:letterSpacing="0.15"
-            android:shadowRadius="2"
-            android:text="Nome de usuário:"
-            android:textColor="@color/black"
-            android:textSize="15dp"
-            />
-
-        <EditText
-            android:id="@+id/edtNomeUsuario"
-            android:layout_width="225dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="260dp"
-            android:background="@drawable/edtradius"
-            android:hint="   Digite seu usuário..."
-            android:padding="6dp"
-            android:textColor="#7E7E7E"
             android:textSize="12dp"
             />
 

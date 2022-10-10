@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.applilyplanning.database.RetrofitConfig;
 import com.example.applilyplanning.model.Aluno;
+import com.example.applilyplanning.model.Professor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -44,12 +45,28 @@ public class MainActivity extends AppCompatActivity
         senha = findViewById(R.id.edtSenha);
         nome = findViewById(R.id.edtNomeUsuario);
         btnCadastrar = findViewById(R.id.btnEntrar);
+        chkProfessor = findViewById(R.id.chkProfessor);
+        chkAluno = findViewById(R.id.chkAluno);
+
+        chkAluno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chkProfessor.setChecked(false);
+            }
+        });
+
+        chkProfessor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chkAluno.setChecked(false);
+            }
+        });
 
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                //if (email != null && senha != null && nome != null && (chkAluno.isActivated() || chkAluno.isActivated())){
+                if (email != null && senha != null && nome != null && chkAluno.isChecked()){
                     Aluno aluno = new Aluno(nome.getText().toString(), email.getText().toString(), senha.getText().toString());
 
                     Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
@@ -57,7 +74,7 @@ public class MainActivity extends AppCompatActivity
 
                     call.enqueue(new Callback<Aluno>() {
                         @Override
-                        public void onResponse(Call<Aluno> call2, Response<Aluno> response) {
+                        public void onResponse(Call<Aluno> call, Response<Aluno> response) {
                             if (response.isSuccessful())
                             {
                                 Aluno alunoResponse = response.body();
@@ -66,6 +83,14 @@ public class MainActivity extends AppCompatActivity
                                 alunoResponse.getEmail_aluno();
                                 alunoResponse.getSenha_aluno();
 
+                                Intent intent = new Intent(MainActivity.this, Login.class);
+                                Bundle bundle = new Bundle();
+
+                                bundle.putString("key_user", chkAluno.getText().toString());
+
+                                intent.putExtras(bundle);
+
+                                startActivity(intent);
                             }
                             else {
                                 Toast.makeText(MainActivity.this, "Erro na inclusão!", Toast.LENGTH_LONG).show();
@@ -74,12 +99,50 @@ public class MainActivity extends AppCompatActivity
 
                         @Override
                         public void onFailure(Call<Aluno> call, Throwable t) {
-                            Toast.makeText(MainActivity.this, "Falha na Conexão", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
+                }
+                else if (email != null && senha != null && nome != null && chkProfessor.isChecked()){
+                    Professor professor = new Professor(nome.getText().toString(), email.getText().toString(), senha.getText().toString());
 
+                    Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
+                    Call<Professor> call = service.incluirProfessor(professor);
 
-                //}
+                    call.enqueue(new Callback<Professor>() {
+                        @Override
+                        public void onResponse(Call<Professor> call, Response<Professor> response) {
+                            if (response.isSuccessful())
+                            {
+                                Professor professorResponse = response.body();
+
+                                professorResponse.getNome_professor();
+                                professorResponse.getEmail_professor();
+                                professorResponse.getSenha_professor();
+
+                                Intent intent = new Intent(MainActivity.this, Login.class);
+                                Bundle bundle = new Bundle();
+
+                                bundle.putString("key_user", chkProfessor.getText().toString());
+
+                                intent.putExtras(bundle);
+
+                                startActivity(intent);
+                            }
+                            else {
+                                Toast.makeText(MainActivity.this, "Erro na inclusão!", Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Professor> call, Throwable t) {
+                            Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "Não deixe os campos em branco!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

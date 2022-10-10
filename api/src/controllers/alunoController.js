@@ -32,11 +32,11 @@ module.exports = {
   },
 
   async getById(req, res) {
-    const { id } = req.params
+    const { email } = req.params
 
     return res.json(
       await prisma.aluno.findUnique({
-        where: { id_aluno: Number(id) },
+        where: { email_aluno: email },
         select: {
           id_aluno: true,
           nome_aluno: true,
