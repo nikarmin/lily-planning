@@ -51,7 +51,7 @@
 
     <FrameLayout
         android:layout_width="303dp"
-        android:layout_height="309dp"
+        android:layout_height="250dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:background="@drawable/retangulo"
@@ -76,18 +76,31 @@
             android:id="@+id/btnEntrar"
             android:layout_width="135dp"
             android:layout_height="45dp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="250dp"
+            android:layout_marginTop="90dp"
             android:backgroundTint="#CAE89F"
-            android:drawableEnd="@drawable/arrow_right"
             android:fontFamily="@font/be_vietnam_pro"
             android:letterSpacing="0.4"
-            android:text="Entrar"
-            android:textAlignment="textStart"
+            android:text="ENTRAR"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="12dp"
-            app:cornerRadius="60dp" />
+            app:cornerRadius="60dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:id="@+id/btnCadastrar"
+            android:layout_width="180dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="160dp"
+            android:backgroundTint="#CAE89F"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:letterSpacing="0.4"
+            android:text="CADASTRAR"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="12dp"
+            app:cornerRadius="60dp"
+            android:layout_gravity="center_horizontal"/>
 
     </FrameLayout>
 

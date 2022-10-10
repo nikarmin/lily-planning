@@ -27,122 +27,28 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
 {
-    ImageButton todo;
-    AppCompatButton btn;
-    EditText email, senha, nome;
-    CheckBox chkProfessor, chkAluno;
-    Button btnCadastrar;
+    Button btnCadastrar, btnEntrar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro);
+        setContentView(R.layout.activity_main);
 
-        email = findViewById(R.id.edtEmail);
-        senha = findViewById(R.id.edtSenha);
-        nome = findViewById(R.id.edtNomeUsuario);
-        btnCadastrar = findViewById(R.id.btnEntrar);
-        chkProfessor = findViewById(R.id.chkProfessor);
-        chkAluno = findViewById(R.id.chkAluno);
-
-        chkAluno.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chkProfessor.setChecked(false);
-            }
-        });
-
-        chkProfessor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chkAluno.setChecked(false);
-            }
-        });
+        btnCadastrar = findViewById(R.id.btnCadastrar);
+        btnEntrar = findViewById(R.id.btnEntrar);
 
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
-                if (email != null && senha != null && nome != null && chkAluno.isChecked()){
-                    Aluno aluno = new Aluno(nome.getText().toString(), email.getText().toString(), senha.getText().toString());
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Cadastro.class));
+            }
+        });
 
-                    Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
-                    Call<Aluno> call = service.incluirAluno(aluno);
-
-                    call.enqueue(new Callback<Aluno>() {
-                        @Override
-                        public void onResponse(Call<Aluno> call, Response<Aluno> response) {
-                            if (response.isSuccessful())
-                            {
-                                Aluno alunoResponse = response.body();
-
-                                alunoResponse.getNome_aluno();
-                                alunoResponse.getEmail_aluno();
-                                alunoResponse.getSenha_aluno();
-
-                                Intent intent = new Intent(MainActivity.this, Login.class);
-                                Bundle bundle = new Bundle();
-
-                                bundle.putString("key_user", "Aluno");
-
-                                intent.putExtras(bundle);
-
-                                startActivity(intent);
-                            }
-                            else {
-                                Toast.makeText(MainActivity.this, "Erro na inclusão!", Toast.LENGTH_LONG).show();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Aluno> call, Throwable t) {
-                            Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-                else if (email != null && senha != null && nome != null && chkProfessor.isChecked()){
-                    Professor professor = new Professor(nome.getText().toString(), email.getText().toString(), senha.getText().toString());
-
-                    Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
-                    Call<Professor> call = service.incluirProfessor(professor);
-
-                    call.enqueue(new Callback<Professor>() {
-                        @Override
-                        public void onResponse(Call<Professor> call, Response<Professor> response) {
-                            if (response.isSuccessful())
-                            {
-                                Professor professorResponse = response.body();
-
-                                professorResponse.getNome_professor();
-                                professorResponse.getEmail_professor();
-                                professorResponse.getSenha_professor();
-
-                                Intent intent = new Intent(MainActivity.this, Login.class);
-                                Bundle bundle = new Bundle();
-
-                                bundle.putString("key_user", "Professor");
-
-                                intent.putExtras(bundle);
-
-                                startActivity(intent);
-                            }
-                            else {
-                                Toast.makeText(MainActivity.this, "Erro na inclusão!", Toast.LENGTH_LONG).show();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Professor> call, Throwable t) {
-                            Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-                else {
-                    Toast.makeText(MainActivity.this, "Não deixe os campos em branco!", Toast.LENGTH_SHORT).show();
-                }
+        btnEntrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Login.class));
             }
         });
     }
-
 }
