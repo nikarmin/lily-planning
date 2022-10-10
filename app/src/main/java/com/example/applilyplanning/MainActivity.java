@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity
     CheckBox chkProfessor, chkAluno;
     Button btnCadastrar;
 
-    // OXI PQ????????????????? VVVVVVVVV CANALHASSSS
-    //@SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -87,8 +85,6 @@ public class MainActivity extends AppCompatActivity
                                 Bundle bundle = new Bundle();
 
                                 bundle.putString("key_user", "Aluno");
-                                /*bundle.putString("email", alunoResponse.getEmail_aluno());
-                                bundle.putString("senha", alunoResponse.getSenha_aluno());*/
 
                                 intent.putExtras(bundle);
 
@@ -147,22 +143,6 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
-
-        /*todo = (ImageButton) findViewById(R.id.ibtnTodoListPage);
-
-        todo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    Intent intent = new Intent(MainActivity.this, TodoList.class);
-
-                    startActivity(intent);
-                }
-                catch (Exception error){
-
-                }
-            }
-        });*/
     }
 
 }

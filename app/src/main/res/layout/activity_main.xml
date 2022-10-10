@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/pattern_white"
+    tools:context=".Main">
+
+    <FrameLayout
+        android:layout_width="100dp"
+        android:layout_height="85dp"
+        android:layout_marginLeft="-15dp"
+        android:layout_marginTop="-10dp"
+        android:background="@drawable/icon"
+        android:rotation="-29"
+        />
+
+    <FrameLayout
+        android:layout_width="180dp"
+        android:layout_height="150dp"
+        android:background="@drawable/blobverde"
+        android:layout_marginRight="-55dp"
+        android:layout_marginTop="-105dp"
+        android:rotation="-29"
+        android:layout_gravity="end"
+        />
+
+    <FrameLayout
+        android:layout_width="180dp"
+        android:layout_height="150dp"
+        android:background="@drawable/blobroxo"
+        android:layout_marginRight="-59dp"
+        android:layout_marginTop="-159dp"
+        android:rotation="-29"
+        android:layout_gravity="end"
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/annie_use_your_telescope"
+        android:text="Lily Planning"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="28dp"
+        />
+
+    <FrameLayout
+        android:layout_width="303dp"
+        android:layout_height="309dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/retangulo"
+        android:backgroundTint="#E5E7FE">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:letterSpacing="0.3"
+            android:shadowColor="#BFB745"
+            android:shadowDx="2"
+            android:shadowDy="3"
+            android:shadowRadius="2"
+            android:text="Bem-vindo(a)"
+            android:textColor="@color/black"
+            android:textSize="22dp" />
+
+        <Button
+            android:id="@+id/btnEntrar"
+            android:layout_width="135dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="250dp"
+            android:backgroundTint="#CAE89F"
+            android:drawableEnd="@drawable/arrow_right"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:letterSpacing="0.4"
+            android:text="Entrar"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="12dp"
+            app:cornerRadius="60dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-90dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.7"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="7dp"
+            android:background="@drawable/waveverde">
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-30dp"
+            android:background="@drawable/waveroxa">
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="100dp"
+            android:layout_height="85dp"
+            android:background="@drawable/icon"
+            android:layout_gravity="end"
+            android:layout_marginRight="-14dp"
+            android:layout_marginTop="100dp"
+            android:rotation="-130">
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+</LinearLayout>
