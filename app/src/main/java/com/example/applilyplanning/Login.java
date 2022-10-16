@@ -40,12 +40,16 @@ public class Login extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle params = intent.getExtras();
 
-        String user = params.getString("key_user");
+        String user = "";
 
-        if (user.equals("Aluno"))
-            chkAluno.setChecked(true);
-        else
-            chkProfessor.setChecked(true);
+        if (params != null){
+            user = params.getString("key_user");
+
+            if (user.equals("Aluno"))
+                chkAluno.setChecked(true);
+            else
+                chkProfessor.setChecked(true);
+        }
         /*String emailUser = params.getString("email");
         String senhaUser = params.getString("senha");*/
 
@@ -63,10 +67,11 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        String finalUser = user;
         entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (user.equals("Professor")){
+                if (finalUser.equals("Professor")){
                     if (!(email.getText() == null) || !(senha.getText() == null))
                     {
                         chkProfessor.setChecked(true);
@@ -86,7 +91,7 @@ public class Login extends AppCompatActivity {
                                     startActivity(new Intent(Login.this, Calendario.class));
                                 }
                                 else {
-                                    Toast.makeText(Login.this, "Erro na autenticação!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Login.this, "Verifique suas credenciais!", Toast.LENGTH_SHORT).show();
                                 }
                             }
 
@@ -98,7 +103,7 @@ public class Login extends AppCompatActivity {
                     }
                 }
 
-                else if (user.equals("Aluno")){
+                else if (finalUser.equals("Aluno")){
                     if (!(email.getText() == null) || !(senha.getText() == null))
                     {
                         chkAluno.setChecked(true);
@@ -118,7 +123,7 @@ public class Login extends AppCompatActivity {
                                     startActivity(new Intent(Login.this, Calendario.class));
                                 }
                                 else {
-                                    Toast.makeText(Login.this, "Erro na autenticação!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Login.this, "Verifique suas credenciais!", Toast.LENGTH_SHORT).show();
                                 }
                             }
 
@@ -134,11 +139,65 @@ public class Login extends AppCompatActivity {
                     if (!(email.getText() == null) && !(senha.getText() == null) && chkAluno.isChecked())
                     {
                         Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
-                        Call<Aluno> call = service.selecionarAluno(email.getText().toString());
+                        Aluno aluno = new Aluno(email.getText().toString(), senha.getText().toString());
+                        Call<Aluno> call = service.verificarAluno(aluno);
 
+                        call.enqueue(new Callback<Aluno>() {
+                            @Override
+                            public void onResponse(Call<Aluno> call, Response<Aluno> response) {
+                                if (response.isSuccessful()){
+                                    Aluno alunoResponse = response.body();
+
+                                    alunoResponse.getEmail_aluno();
+                                    alunoResponse.getSenha_aluno();
+
+                                    startActivity(new Intent(Login.this, Calendario.class));
+                                }
+                                else {
+                                    Toast.makeText(Login.this, "Verifique suas credenciais!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Aluno> call, Throwable t) {
+                                Toast.makeText(Login.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                     else{
+                        Toast.makeText(Login.this, "Digite em todos os campos!", Toast.LENGTH_SHORT).show();
+                    }
 
+                    if (!(email.getText() == null) && !(senha.getText() == null) && chkProfessor.isChecked())
+                    {
+                        Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
+                        Professor professor = new Professor(email.getText().toString(), senha.getText().toString());
+                        Call<Professor> call = service.verificarProfessor(professor);
+
+                        call.enqueue(new Callback<Professor>() {
+                            @Override
+                            public void onResponse(Call<Professor> call, Response<Professor> response) {
+                                if (response.isSuccessful()){
+                                    Professor professorResponse = response.body();
+
+                                    professorResponse.getEmail_professor();
+                                    professorResponse.getSenha_professor();
+
+                                    startActivity(new Intent(Login.this, Calendario.class));
+                                }
+                                else {
+                                    Toast.makeText(Login.this, "Verifique suas credenciais!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Professor> call, Throwable t) {
+                                Toast.makeText(Login.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                    else{
+                        Toast.makeText(Login.this, "Digite em todos os campos!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

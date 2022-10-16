@@ -91,7 +91,7 @@ public class Cadastro extends AppCompatActivity
                                 startActivity(intent);
                             }
                             else {
-                                Toast.makeText(Cadastro.this, "Erro na inclusão!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Cadastro.this, "Não foi possível cadastrar!", Toast.LENGTH_LONG).show();
                             }
                         }
 
