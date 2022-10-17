@@ -50,6 +50,9 @@ public class TodoList extends AppCompatActivity {
         tarefasAnteriores.add("Fazer chicão");
         tarefasAnteriores.add("Fazer API de práticas");
         tarefasAnteriores.add("Estudar Português");
+        tarefasAnteriores.add("socorro");
+        tarefasAnteriores.add("Eaasasdasidhasuidgaus");
+        tarefasAnteriores.add("asdasdasdasdasdasd");
 
         AppCompatButton button = findViewById(R.id.btnAdicionar);
         button.setOnClickListener(new View.OnClickListener() {

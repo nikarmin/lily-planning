@@ -93,6 +93,8 @@
             android:background="@drawable/edtradius"
             android:hint="   Digite seu email..."
             android:inputType="textEmailAddress"
+            android:textColorHint="#959494"
+            android:textColor="#959494"
             android:padding="6dp"
             android:textSize="15dp"/>
 
@@ -116,6 +118,8 @@
             android:layout_marginTop="180dp"
             android:background="@drawable/edtradius"
             android:hint="   Digite sua senha..."
+            android:textColorHint="#959494"
+            android:textColor="#959494"
             android:inputType="textPassword"
             android:padding="6dp"
             android:textSize="15dp" />
@@ -127,6 +131,7 @@
             android:layout_marginTop="210dp"
             android:layout_marginLeft="18dp"
             android:text="Aluno"
+            android:textColor="@color/black"
             />
 
         <CheckBox
@@ -136,6 +141,7 @@
             android:layout_marginTop="210dp"
             android:layout_marginLeft="100dp"
             android:text="Professor"
+            android:textColor="@color/black"
             />
 
         <Button

@@ -4,7 +4,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,7 @@ public class Calendario extends AppCompatActivity {
     LocalDate date = LocalDate.now();
     private Toolbar toolbar;
     Calendar myCalendar;
+    ImageButton ibtnTodoListPage;
     private SimpleDateFormat dateFormatForMonth;
 
     @Override
@@ -34,6 +38,15 @@ public class Calendario extends AppCompatActivity {
         setContentView(R.layout.activity_calendario);
 
         final CompactCalendarView compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
+
+        ibtnTodoListPage = findViewById(R.id.ibtnTodoListPage);
+
+        ibtnTodoListPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Calendario.this, TodoList.class));
+            }
+        });
 
         //"EEE, MMM d, ''yy"
 
