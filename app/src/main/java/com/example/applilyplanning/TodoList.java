@@ -19,10 +19,17 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.applilyplanning.database.RetrofitConfig;
+import com.example.applilyplanning.model.Anotacao;
+import com.example.applilyplanning.model.Professor;
 import com.example.applilyplanning.model.ToDo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TodoList extends AppCompatActivity {
 
@@ -40,9 +47,7 @@ public class TodoList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         setContentView(R.layout.activity_todo_list);
-        //getWindow().getAttributes().windowAnimations = R.style.Fade;
         listaDeTarefas = new ArrayList<ToDo>();
 
         LayoutInflater inflater = this.getLayoutInflater();
@@ -52,23 +57,18 @@ public class TodoList extends AppCompatActivity {
         tarefasAnteriores.add("Fazer chicão");
         tarefasAnteriores.add("Fazer API de práticas");
         tarefasAnteriores.add("Estudar Português");
-        tarefasAnteriores.add("socorro");
-        tarefasAnteriores.add("Eaasasdasidhasuidgaus");
-        tarefasAnteriores.add("asdasdasdasdasdasd");
 
         AppCompatButton button = findViewById(R.id.btnAdicionar);
+
+        builder = new AlertDialog.Builder(TodoList.this).setCustomTitle(titleView);
+        builder.setCancelable(true);
+        View v = LayoutInflater.from(TodoList.this).inflate(R.layout.new_task, null, false);
+        builder.setView(v);
+        dialog = builder.create();
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                builder = new AlertDialog.Builder(TodoList.this).setCustomTitle(titleView);
-                builder.setCancelable(true);
-                View v = LayoutInflater.from(TodoList.this).inflate(R.layout.new_task, null, false);
-                builder.setView(v);
-                dialog = builder.create();
-
-               /* if(layout.getParent() != null)
-                    ((ViewGroup)v.getParent()).removeView(v);*/
-
                 dialog.show();
 
                 btnNewTask = v.findViewById(R.id.btnNewTask);
@@ -81,15 +81,35 @@ public class TodoList extends AppCompatActivity {
                         dialog.dismiss();
 
                         listaDeTarefas.add(new ToDo(tarefasAnteriores.get(tarefasAnteriores.size() - 1)));
+
+                        edtNewTask.setText("");
                     }
 
                 });
             }
         });
 
-        for (String toDo : tarefasAnteriores) {
+        //Anotacao anotacao = new Anotacao(edtNewTask.getText().toString());
+        Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
+        Call<List<Anotacao>> call = service.getAnotacao();
+
+        call.enqueue(new Callback<List<Anotacao>>() {
+            @Override
+            public void onResponse(Call<List<Anotacao>> call, Response<List<Anotacao>> response) {
+                /*for (String toDo : call.) {
+                    listaDeTarefas.add(new ToDo(toDo));
+                }*/
+            }
+
+            @Override
+            public void onFailure(Call<List<Anotacao>> call, Throwable t) {
+                Toast.makeText(TodoList.this, "talda depressao", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        /*for (String toDo : tarefasAnteriores) {
             listaDeTarefas.add(new ToDo(toDo));
-        }
+        }*/
         taskAdapter = new ToDoAdaptador(listaDeTarefas);
         taskRecyclerView = findViewById(R.id.recyclerView);
         taskRecyclerView.setAdapter(taskAdapter);

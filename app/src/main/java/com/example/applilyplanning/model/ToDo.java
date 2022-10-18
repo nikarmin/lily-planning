@@ -1,6 +1,17 @@
 package com.example.applilyplanning.model;
 
+import java.util.Date;
+
 public class ToDo {
+    private String toDoLabel;
+    private Date dataInicio, dataEntrega;
+    private int idLista, fkAnotacao;
+    private String nomeLista;
+
+    public ToDo(String toDoLabel) {
+        this.toDoLabel = toDoLabel;
+    }
+
     public String getToDoLabel() {
         return toDoLabel;
     }
@@ -9,26 +20,19 @@ public class ToDo {
         this.toDoLabel = toDoLabel;
     }
 
-    private String toDoLabel;
-
-    public ToDo(String toDoLabel) {
-        this.toDoLabel = toDoLabel;
-    }
-   /* private String dataInicio, dataEntrega;
-
-    public String getDataInicio() {
+    public Date getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(String dataInicio) {
+    public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public String getDataEntrega() {
+    public Date getDataEntrega() {
         return dataEntrega;
     }
 
-    public void setDataEntrega(String dataEntrega) {
+    public void setDataEntrega(Date dataEntrega) {
         this.dataEntrega = dataEntrega;
     }
 
@@ -40,21 +44,13 @@ public class ToDo {
         this.idLista = idLista;
     }
 
-    public int getIdAnotacao() {
-        return idAnotacao;
+    public int getFkAnotacao() {
+        return fkAnotacao;
     }
 
-    public void setIdAnotacao(int idAnotacao) {
-        this.idAnotacao = idAnotacao;
+    public void setFkAnotacao(int fkAnotacao) {
+        this.fkAnotacao = fkAnotacao;
     }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }*/
 
     public String getNomeLista() {
         return nomeLista;
@@ -63,16 +59,4 @@ public class ToDo {
     public void setNomeLista(String nomeLista) {
         this.nomeLista = nomeLista;
     }
-
-    //private int idLista, idAnotacao, status;
-    private String nomeLista;
-
-    /*
-    *
-    idLista int primary key not null,
-	dataInicio date not null,
-	dataEntrega date not null,
-	nomeLista varchar(20) not null,
-	foreign key (idAnotacao) references Tabela.Anotacao (idAnotacao)
-    * */
 }
