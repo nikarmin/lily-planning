@@ -48,6 +48,22 @@ module.exports = {
     )
   },
 
+  async getByEmail(req, res) {
+    const { email } = req.params
+
+    return res.json(
+      await prisma.professor.findUnique({
+        where: { email_professor: email },
+        select: {
+          id_professor: true,
+          nome_professor: true,
+          email_professor: true,
+          calendario_professor: true,
+        },
+      })
+    )
+  },
+
   async create(req, res) {
     const { nome_professor, senha_professor, email_professor } = req.body
 

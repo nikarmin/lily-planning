@@ -23,7 +23,7 @@ router.delete('/alunos/:id', alunoController.delete)
 
 // professores
 router.get('/professores', professorController.getAll)
-router.get('/professores/:id', professorController.getById)
+router.get('/professores/:email', professorController.getByEmail)
 router.post('/professores', professorController.create)
 router.post('/professores/auth', professorController.auth)
 router.put('/professores/:id', professorController.update)

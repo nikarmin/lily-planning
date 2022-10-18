@@ -54,6 +54,7 @@ public class Calendario extends AppCompatActivity {
         Locale.setDefault(local);
         DateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, ''yy", local);
         DayOfWeek dow = date.getDayOfWeek();
+        Date now = new Date();
         String dayName = dow.getDisplayName(TextStyle.NARROW, Locale.getDefault());
 
         text = findViewById(R.id.tvAtualData);
@@ -69,7 +70,7 @@ public class Calendario extends AppCompatActivity {
         actionBar.setTitle(null);
         actionBar.setTitle(mes.toUpperCase());
 
-        text.setText(diaDaSemana + ", " + Calendar.DATE + " de " + mes + " de " + date.getYear());
+        text.setText(diaDaSemana + ", " + now.getDate()+ " de " + mes + " de " + date.getYear());
 
         String[] testString = { "Seg", "Ter", "Qua", "Quin", "Sex", "Sáb", "Dom" };
 

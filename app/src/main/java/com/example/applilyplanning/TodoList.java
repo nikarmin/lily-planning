@@ -13,8 +13,10 @@ import android.os.Bundle;
 import android.transition.Explode;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.applilyplanning.model.ToDo;
@@ -63,7 +65,12 @@ public class TodoList extends AppCompatActivity {
                 View v = LayoutInflater.from(TodoList.this).inflate(R.layout.new_task, null, false);
                 builder.setView(v);
                 dialog = builder.create();
+
+               /* if(layout.getParent() != null)
+                    ((ViewGroup)v.getParent()).removeView(v);*/
+
                 dialog.show();
+
                 btnNewTask = v.findViewById(R.id.btnNewTask);
                 btnNewTask.setOnClickListener(new View.OnClickListener() {
                     @Override

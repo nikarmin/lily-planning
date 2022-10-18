@@ -18,7 +18,7 @@ public interface Service {
     Call<List<Aluno>> getAluno();
 
     @GET("/alunos/{email}")
-    Call<Aluno> selecionarAluno(@Path("email") String email);
+    Call<Aluno> selecionarAluno(@Path("email_aluno") String email);
 
     @POST("/alunos")
     Call<Aluno> incluirAluno(@Body Aluno aluno);
@@ -35,8 +35,8 @@ public interface Service {
     @GET("/professores")
     Call<List<Professor>> getProfessor();
 
-    @GET("/professores/{id}")
-    Call<Professor> selecionarProfessor(@Path("nome") String id);
+    @GET("/professores/{email}")
+    Call<Professor> selecionarProfessor(@Path("email_professor") String id);
 
     @POST("/professores")
     Call<Professor> incluirProfessor(@Body Professor professor);
