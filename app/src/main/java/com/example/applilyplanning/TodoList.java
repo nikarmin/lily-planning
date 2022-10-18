@@ -96,9 +96,9 @@ public class TodoList extends AppCompatActivity {
         call.enqueue(new Callback<List<Anotacao>>() {
             @Override
             public void onResponse(Call<List<Anotacao>> call, Response<List<Anotacao>> response) {
-                /*for (String toDo : call.) {
-                    listaDeTarefas.add(new ToDo(toDo));
-                }*/
+                taskAdapter = new ToDoAdaptador(response.body());
+                taskRecyclerView = findViewById(R.id.recyclerView);
+                taskRecyclerView.setAdapter(taskAdapter);
             }
 
             @Override
@@ -110,9 +110,9 @@ public class TodoList extends AppCompatActivity {
         /*for (String toDo : tarefasAnteriores) {
             listaDeTarefas.add(new ToDo(toDo));
         }*/
-        taskAdapter = new ToDoAdaptador(listaDeTarefas);
+        /*taskAdapter = new ToDoAdaptador(listaDeTarefas);
         taskRecyclerView = findViewById(R.id.recyclerView);
-        taskRecyclerView.setAdapter(taskAdapter);
+        taskRecyclerView.setAdapter(taskAdapter);*/
 
         /*
         listaTarefas = new ArrayList<>();

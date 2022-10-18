@@ -10,18 +10,21 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.applilyplanning.model.Anotacao;
 import com.example.applilyplanning.model.ToDo;
 
+import java.nio.channels.spi.AbstractInterruptibleChannel;
 import java.util.List;
 
 class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
 
-    private List<ToDo> todoList;
+    //private List<ToDo> todoList;
+    private List<Anotacao> todoList;
     private TodoList activity;
 
 
-    public ToDoAdaptador(List<ToDo> tdList){
-        this.todoList = tdList;
+    public ToDoAdaptador(/*List<ToDo> tdList*/ List<Anotacao> todoList){
+        this.todoList = todoList;
     }
 
     @NonNull
@@ -44,9 +47,12 @@ class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ToDoAdaptador.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        final ToDo toDoData = todoList.get(position);
+        //final ToDo toDoData = todoList.get(position);
 
-        holder.toDoCheckBox.setText(toDoData.getToDoLabel());
+        final Anotacao toDoData = todoList.get(position);
+
+        holder.toDoCheckBox.setText(toDoData.getAnotacao());
+        //holder.toDoCheckBox.setText(toDoData.getToDoLabel());
         //final ToDo item = todoList.get(position);
         ///holder.edtNewTask.setText(item.getNomeLista());
         //holder.task.setText(item.getIdAnotacao());
@@ -58,7 +64,7 @@ class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
         return n != 0;
     }
 
-    public void setTasks(List<ToDo> lista){
+    public void setTasks(/*List<ToDo> lista*/ List<Anotacao> lista){
         this.todoList = lista;
         notifyDataSetChanged();
     }
