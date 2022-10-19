@@ -9,11 +9,12 @@ datasource db {
 }
 
 model Aluno {
-  id_aluno         Int               @id @default(autoincrement())
-  nome_aluno       String
-  email_aluno      String            @unique
-  senha_aluno      String
-  calendario_aluno CalendarioAluno[]
+  id_aluno    Int        @id @default(autoincrement())
+  nome_aluno  String
+  email_aluno String     @unique
+  senha_aluno String
+  //calendario_aluno CalendarioAluno[]
+  anotacao    Anotacao[]
 }
 
 model Professor {
@@ -37,6 +38,8 @@ model Anotacao {
   to_do_lista          ToDoList[]
   calendario_aluno     CalendarioAluno[]
   calendario_professor CalendarioProfessor[]
+  aluno                Aluno                 @relation(fields: [fk_aluno], references: [id_aluno])
+  fk_aluno             Int
 }
 
 model ToDoList {
@@ -62,7 +65,7 @@ model Turma {
 
 model AlunoTurma {
   id_aluno_turma Int     @id @default(autoincrement())
-  ra_aluno       String
+  ra_aluno       String  @unique
   turma          Turma   @relation(fields: [fk_turma], references: [id_turma])
   fk_turma       Int
   notas          Notas[]
@@ -71,7 +74,7 @@ model AlunoTurma {
 model Notas {
   id_notas       Int        @id @default(autoincrement())
   nota           Float
-  bimestre       String
+  bimestre       Int
   materia        Materia    @relation(fields: [fk_materia], references: [id_materia])
   fk_materia     Int
   aluno_turma    AlunoTurma @relation(fields: [fk_aluno_turma], references: [id_aluno_turma])
@@ -80,7 +83,7 @@ model Notas {
 
 model CalendarioAluno {
   id_calendario_aluno Int      @id @default(autoincrement())
-  aluno               Aluno    @relation(fields: [fk_aluno], references: [id_aluno])
+  //aluno               Aluno    @relation(fields: [fk_aluno], references: [id_aluno])
   fk_aluno            Int
   anotacao            Anotacao @relation(fields: [fk_anotacao], references: [id_anotacao])
   fk_anotacao         Int

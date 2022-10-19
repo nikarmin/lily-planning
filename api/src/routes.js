@@ -1,9 +1,13 @@
 //import { PrismaClient } from '@prisma/client';
 const { Router } = require('express')
 const alunoController = require('./controllers/alunoController')
+const aluno_turmaController = require('./controllers/aluno_turmaController')
 const anotacaoController = require('./controllers/anotacaoController')
+const materiaController = require('./controllers/materiaController')
+const notaController = require('./controllers/notaController')
 const professorController = require('./controllers/professorController')
 const todolistController = require('./controllers/todolistController')
+const turmaController = require('./controllers/turmaController')
 
 //const prisma = new PrismaClient();
 
@@ -41,5 +45,37 @@ router.get('/anotacoes/:id', anotacaoController.getById)
 router.post('/anotacoes', anotacaoController.create)
 router.delete('/anotacoes/:id', anotacaoController.delete)
 router.put('/anotacoes/:id', anotacaoController.update)
+
+// materia
+
+router.get('/materias', materiaController.getAll)
+router.get('/materias/:id', materiaController.getById)
+router.post('/materias', materiaController.create)
+router.delete('/materias/:id', materiaController.delete)
+router.put('/materias/:id', materiaController.update)
+
+// nota
+
+router.get('/notas', notaController.getAll)
+router.get('/notas/:id', notaController.getById)
+router.post('/notas', notaController.create)
+router.delete('/notas/:id', notaController.delete)
+router.put('/notas/:id', notaController.update)
+
+// turma
+
+router.get('/turmas', turmaController.getAll)
+router.get('/turmas/:id', turmaController.getById)
+router.post('/turmas', turmaController.create)
+router.delete('/turmas/:id', turmaController.delete)
+router.put('/turmas/:id', turmaController.update)
+
+// alunoTurma
+
+router.get('/alunosturmas', aluno_turmaController.getAll)
+router.get('/alunosturmas/:id', aluno_turmaController.getById)
+router.post('/alunosturmas', aluno_turmaController.create)
+router.delete('/alunosturmas/:id', aluno_turmaController.delete)
+router.put('/alunosturmas/:id', aluno_turmaController.update)
 
 module.exports = { router }

@@ -43,6 +43,7 @@ public class Dialog_materias extends AppCompatActivity {
                             int b = Color.blue(pixel);
 
                             showColor.setBackgroundColor(Color.rgb(r,g,b));
+                            //Integer.toHexString(Color.rgb(r,g,b));
                         }
                     }
                     catch (Exception error){
