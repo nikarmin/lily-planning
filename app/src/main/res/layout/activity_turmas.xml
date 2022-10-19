@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@drawable/patternplus">
+    <!--tools:context=".TodoList"-->
+
+    <FrameLayout
+        android:id="@+id/iconMenu"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="-15dp"
+        android:layout_marginTop="-20dp"
+        android:onClick="IrHome"
+        tools:ignore="OnClick">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/blobicon"
+            />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/blobiconpattern"
+            />
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/logo"
+            />
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="303dp"
+        android:layout_height="411dp"
+        android:layout_below="@+id/iconMenu"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="119dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="186dp"
+        android:background="@drawable/retangulo"
+        android:backgroundTint="#F1F2FE">
+
+        <TextView
+            android:id="@+id/tvTurmas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/chilanka_regular"
+            android:paddingTop="18dp"
+            android:paddingBottom="20dp"
+            android:text="Turmas"
+            android:textAlignment="center"
+            android:textColor="#333333"
+            android:textSize="22dp" />
+
+
+        <FrameLayout
+            android:id="@+id/btn1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTurmas"
+            android:padding="2dp">
+
+            <Button
+                android:id="@+id/ibTurmaA"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="0dp"
+                android:backgroundTint="#E5E7FE"
+                android:fontFamily="@font/be_vietnam_pro"
+                android:paddingBottom="20dp"
+                android:shadowRadius="12"
+                android:stateListAnimator="@null"
+                android:text="Turma A"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tvnumA"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:text="23 alunos" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/btn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn1"
+            android:padding="2dp">
+
+            <Button
+                android:id="@+id/ibTurmaB"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="15dp"
+                android:backgroundTint="#E5E7FE"
+                android:fontFamily="@font/be_vietnam_pro"
+                android:paddingBottom="20dp"
+                android:shadowRadius="12"
+                android:stateListAnimator="@null"
+                android:text="Turma B"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tvnumB"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:text="18 alunos" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/btn3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn2"
+            android:padding="2dp">
+
+            <Button
+                android:id="@+id/ibTurmaC"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="15dp"
+                android:backgroundTint="#E5E7FE"
+                android:fontFamily="@font/be_vietnam_pro"
+                android:paddingBottom="20dp"
+                android:shadowRadius="12"
+                android:stateListAnimator="@null"
+                android:text="Turma C"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tvnumC"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:text="30 alunos" />
+
+        </FrameLayout>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                >
+
+                <ImageButton
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/i_todolist" />
+
+                <ImageButton
+                    android:layout_width="31dp"
+                    android:layout_height="31dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/i_notebook" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnAdicionar"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:background="@drawable/rounded"
+                    android:text="+"
+                    android:textColor="@color/white"
+                    android:textSize="22dp" />
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/i_uploads" />
+
+                <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/i_profile" />
+
+            </TableRow>
+        </TableLayout>
+
+    </FrameLayout>
+
+
+</RelativeLayout>
