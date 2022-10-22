@@ -20,7 +20,10 @@ public interface Service {
     @GET("/alunos")
     Call<List<Aluno>> getAluno();
 
-    @GET("/alunos/{email}")
+    @GET("/alunos/{id_aluno}")
+    Call<Aluno> selecionarAlunoId(@Path("id_aluno") Integer id);
+
+    @GET("/alunos/{email_aluno}")
     Call<Aluno> selecionarAluno(@Path("email_aluno") String email);
 
     @POST("/alunos")
@@ -59,6 +62,9 @@ public interface Service {
 
     @GET("/anotacoes")
     Call<List<Anotacao>> getAnotacao();
+
+    @GET("/anotacoes/{fk_aluno}")
+    Call<List<Anotacao>> selecionarAnotacaoFk(@Path("fk_aluno") Integer id);
 
     @GET("/anotacoes/{id}")
     Call<Anotacao> selecionarAnotacao(@Path("id") String id);

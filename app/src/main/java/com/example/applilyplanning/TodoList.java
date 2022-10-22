@@ -2,6 +2,7 @@ package com.example.applilyplanning;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,11 +16,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.applilyplanning.database.RetrofitConfig;
+import com.example.applilyplanning.model.Aluno;
 import com.example.applilyplanning.model.Anotacao;
 import com.example.applilyplanning.model.Professor;
 import com.example.applilyplanning.model.ToDo;
@@ -37,6 +40,7 @@ public class TodoList extends AppCompatActivity {
     private ToDoAdaptador taskAdapter;
     EditText edtNewTask;
     Button btnNewTask;
+    CheckBox anotacao;
 
     List<ToDo> listaDeTarefas;
     AlertDialog.Builder builder;
@@ -64,6 +68,7 @@ public class TodoList extends AppCompatActivity {
         builder.setCancelable(true);
         View v = LayoutInflater.from(TodoList.this).inflate(R.layout.new_task, null, false);
         builder.setView(v);
+        
         dialog = builder.create();
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -89,9 +94,48 @@ public class TodoList extends AppCompatActivity {
             }
         });
 
+        Intent intent = getIntent();
+        Bundle params = intent.getExtras();
+
+        String aluno = params.getString("email_aluno");
+
         //Anotacao anotacao = new Anotacao(edtNewTask.getText().toString());
         Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
-        Call<List<Anotacao>> call = service.getAnotacao();
+        Call<Aluno> call = service.selecionarAluno(params.getString("email_aluno"));
+
+        call.enqueue(new Callback<Aluno>() {
+            @Override
+            public void onResponse(Call<Aluno> call, Response<Aluno> response) {
+                if (response.isSuccessful()){
+                    Aluno aln = response.body();
+
+                    Call<List<Anotacao>> callAnot = service.selecionarAnotacaoFk(aln.getId_aluno());
+                    callAnot.enqueue(new Callback<List<Anotacao>>() {
+                        @Override
+                        public void onResponse(Call<List<Anotacao>> call, Response<List<Anotacao>> response) {
+                            taskAdapter = new ToDoAdaptador(response.body());
+                            taskRecyclerView = findViewById(R.id.recyclerView);
+                            taskRecyclerView.setAdapter(taskAdapter);
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Anotacao>> call, Throwable t) {
+                            Toast.makeText(TodoList.this, "talda depressao", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                else
+                    Toast.makeText(TodoList.this, "deu errado", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Aluno> call, Throwable t) {
+                Toast.makeText(TodoList.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        /*Call<List<Anotacao>> call = service.selecionarAnotacaoFk();
 
         call.enqueue(new Callback<List<Anotacao>>() {
             @Override
@@ -105,7 +149,7 @@ public class TodoList extends AppCompatActivity {
             public void onFailure(Call<List<Anotacao>> call, Throwable t) {
                 Toast.makeText(TodoList.this, "talda depressao", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
         /*for (String toDo : tarefasAnteriores) {
             listaDeTarefas.add(new ToDo(toDo));

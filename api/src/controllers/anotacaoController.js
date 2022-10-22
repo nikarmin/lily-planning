@@ -10,6 +10,22 @@ module.exports = {
         select: {
           id_anotacao: true,
           anotacao: true,
+          fk_aluno: true,
+        },
+      })
+    )
+  },
+
+  async getByFk(req, res) {
+    const { id } = req.params
+
+    return res.json(
+      await prisma.anotacao.findMany({
+        where: { fk_aluno: Number(id) },
+        select: {
+          id_anotacao: true,
+          anotacao: true,
+          fk_aluno: true,
         },
       })
     )
@@ -24,17 +40,19 @@ module.exports = {
         select: {
           id_anotacao: true,
           anotacao: true,
+          fk_aluno: true,
         },
       })
     )
   },
 
   async create(req, res) {
-    const { anotacao } = req.body
+    const { anotacao, fk_aluno } = req.body
 
     const nota = await prisma.anotacao.create({
       data: {
         anotacao,
+        fk_aluno,
       },
       select: {
         id_anotacao: true,

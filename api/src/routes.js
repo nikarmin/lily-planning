@@ -41,7 +41,7 @@ router.delete('/tarefas/:id', todolistController.delete)
 
 // anotacao
 router.get('/anotacoes', anotacaoController.getAll)
-router.get('/anotacoes/:id', anotacaoController.getById)
+router.get('/anotacoes/:id', anotacaoController.getByFk)
 router.post('/anotacoes', anotacaoController.create)
 router.delete('/anotacoes/:id', anotacaoController.delete)
 router.put('/anotacoes/:id', anotacaoController.update)

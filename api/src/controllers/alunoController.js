@@ -25,7 +25,7 @@ module.exports = {
           id_aluno: true,
           nome_aluno: true,
           email_aluno: true,
-          calendario_aluno: true,
+          //calendario_aluno: true,
         },
       })
     )
@@ -41,7 +41,7 @@ module.exports = {
           id_aluno: true,
           nome_aluno: true,
           email_aluno: true,
-          calendario_aluno: true,
+          //calendario_aluno: true,
         },
       })
     )

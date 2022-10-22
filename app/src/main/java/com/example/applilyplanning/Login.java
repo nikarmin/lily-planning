@@ -156,10 +156,19 @@ public class Login extends AppCompatActivity {
                                     if (response.isSuccessful()){
                                         Aluno alunoResponse = response.body();
 
+                                        response.body();
+
                                         alunoResponse.getEmail_aluno();
                                         alunoResponse.getSenha_aluno();
 
-                                        startActivity(new Intent(Login.this, Calendario.class));
+                                        Bundle params = new Bundle();
+                                        Intent intent = new Intent(Login.this, TodoList.class);
+                                        //params.putInt("email_aluno", response.body().getId_aluno());
+                                        params.putString("email_aluno", email.getText().toString());
+                                        intent.putExtras(params);
+
+
+                                        startActivity(intent);
                                     }
                                     else {
                                         Toast.makeText(Login.this, "Verifique suas credenciais!", Toast.LENGTH_SHORT).show();

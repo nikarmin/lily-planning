@@ -12,6 +12,17 @@ public class Aluno implements Serializable {
     @SerializedName("senha_aluno")
     private String senha_aluno;
 
+    public Integer getId_aluno() {
+        return id_aluno;
+    }
+
+    public void setId_aluno(Integer id_aluno) {
+        this.id_aluno = id_aluno;
+    }
+
+    @SerializedName("id_aluno")
+    private Integer id_aluno;
+
     public Aluno (String nome, String email, String senha){
         this.nome_aluno = nome;
         this.senha_aluno = senha;
