@@ -68,7 +68,7 @@ public class TodoList extends AppCompatActivity {
         builder.setCancelable(true);
         View v = LayoutInflater.from(TodoList.this).inflate(R.layout.new_task, null, false);
         builder.setView(v);
-        
+
         dialog = builder.create();
 
         button.setOnClickListener(new View.OnClickListener() {
