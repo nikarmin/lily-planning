@@ -135,6 +135,12 @@ public class TodoList extends AppCompatActivity {
             }
         });
 
+        /*taskAdapter.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClick(int position, Anotacao anotationData) {
+                Call<Anotacao> call = service.excluirAnotacao(anotationData.getIdAnotacao());
+            }
+        });*/
 
         /*Call<List<Anotacao>> call = service.selecionarAnotacaoFk();
 

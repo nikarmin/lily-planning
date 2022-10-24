@@ -29,7 +29,7 @@ class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
     //private List<ToDo> todoList;
     private List<Anotacao> todoList;
     private TodoList activity;
-
+    ItemClickListener itemClickListener;
 
     public ToDoAdaptador(/*List<ToDo> tdList*/ List<Anotacao> todoList){
         this.todoList = todoList;
@@ -90,6 +90,10 @@ class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
         //holder.task.setText(item.getIdAnotacao());
         //holder.task.setText(item.getNomeLista());
        // holder.task.setChecked(toBoolean(item.getStatus()));
+    }
+
+    public void setItemClickListener(ItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 
     private boolean toBoolean(int n){
