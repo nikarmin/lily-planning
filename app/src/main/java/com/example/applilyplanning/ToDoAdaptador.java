@@ -5,16 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.applilyplanning.database.RetrofitConfig;
 import com.example.applilyplanning.model.Anotacao;
+import com.example.applilyplanning.model.Professor;
 import com.example.applilyplanning.model.ToDo;
 
 import java.nio.channels.spi.AbstractInterruptibleChannel;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
 
@@ -52,6 +60,30 @@ class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
         final Anotacao toDoData = todoList.get(position);
 
         holder.toDoCheckBox.setText(toDoData.getAnotacao());
+
+        /*holder.toDoCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Anotacao anotacao = new Anotacao(toDoData.getAnotacao());
+                Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
+                Call<Anotacao> call = service.excluirAnotacao(anotacao.getIdAnotacao());
+
+                call.enqueue(new Callback<Anotacao>() {
+                    @Override
+                    public void onResponse(Call<Anotacao> call, Response<Anotacao> response) {
+                        if (response.isSuccessful()){
+                            todoList.remove(position);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Anotacao> call, Throwable t) {
+                        //Toast.makeText(TodoList.CONTEXT_RESTRICTED, "uiuiu", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });*/
+
         //holder.toDoCheckBox.setText(toDoData.getToDoLabel());
         //final ToDo item = todoList.get(position);
         ///holder.edtNewTask.setText(item.getNomeLista());

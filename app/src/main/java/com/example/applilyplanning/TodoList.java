@@ -94,6 +94,7 @@ public class TodoList extends AppCompatActivity {
             }
         });
 
+
         Intent intent = getIntent();
         Bundle params = intent.getExtras();
 
