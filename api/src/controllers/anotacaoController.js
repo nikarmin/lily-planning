@@ -63,11 +63,11 @@ module.exports = {
   },
 
   async delete(req, res) {
-    const { id } = req.params
+    const { id_anotacao } = req.params
 
     return res.json(
       await prisma.anotacao.delete({
-        where: { id_anotacao: Number(id) },
+        where: { id_anotacao: Number(id_anotacao) },
         select: {
           anotacao: true,
         },

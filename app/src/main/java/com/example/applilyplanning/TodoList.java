@@ -26,6 +26,7 @@ import com.example.applilyplanning.model.Aluno;
 import com.example.applilyplanning.model.Anotacao;
 import com.example.applilyplanning.model.Professor;
 import com.example.applilyplanning.model.ToDo;
+import com.example.applilyplanning.model.Token;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,10 +58,10 @@ public class TodoList extends AppCompatActivity {
         LayoutInflater inflater = this.getLayoutInflater();
         View titleView = inflater.inflate(R.layout.alert_task, null);
 
-        ArrayList<String> tarefasAnteriores = new ArrayList<String>(); // Temporário
-        tarefasAnteriores.add("Fazer chicão");
-        tarefasAnteriores.add("Fazer API de práticas");
-        tarefasAnteriores.add("Estudar Português");
+//        ArrayList<String> tarefasAnteriores = new ArrayList<String>(); // Temporário
+//        tarefasAnteriores.add("Fazer chicão");
+//        tarefasAnteriores.add("Fazer API de práticas");
+//        tarefasAnteriores.add("Estudar Português");
 
         AppCompatButton button = findViewById(R.id.btnAdicionar);
 
@@ -71,76 +72,130 @@ public class TodoList extends AppCompatActivity {
 
         dialog = builder.create();
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.show();
-
-                btnNewTask = v.findViewById(R.id.btnNewTask);
-                btnNewTask.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        edtNewTask = v.findViewById(R.id.edtNewTask);
-                        //Toast.makeText(TodoList.this, edtNewTask.getText(), Toast.LENGTH_SHORT).show();
-                        tarefasAnteriores.add(edtNewTask.getText().toString());
-                        dialog.dismiss();
-
-                        listaDeTarefas.add(new ToDo(tarefasAnteriores.get(tarefasAnteriores.size() - 1)));
-
-                        edtNewTask.setText("");
-                    }
-
-                });
-            }
-        });
-
-
         Intent intent = getIntent();
         Bundle params = intent.getExtras();
 
-        String aluno = params.getString("email_aluno");
+        //String aluno = params.getString("email_aluno");
+        // Aluno alunoRecebido = (Aluno) getIntent().getSerializableExtra("aluno");
 
-        //Anotacao anotacao = new Anotacao(edtNewTask.getText().toString());
-        Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
-        Call<Aluno> call = service.selecionarAluno(params.getString("email_aluno"));
+        if (params != null) {
+            String tokenRecebido = params.getString("token");
+            Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
+            /*final Aluno[] alunoResponse = {null};
+            final int[] idAluno = {0};*/
+            /*Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
 
-        call.enqueue(new Callback<Aluno>() {
-            @Override
-            public void onResponse(Call<Aluno> call, Response<Aluno> response) {
-                if (response.isSuccessful()){
-                    Aluno aln = response.body();
+            Call<Aluno> call2 = service.selecionarAlunoId(Integer.parseInt(tokenRecebido));
+            //final Integer[] idAluno = {0};
 
-                    Call<List<Anotacao>> callAnot = service.selecionarAnotacaoFk(aln.getId_aluno());
-                    callAnot.enqueue(new Callback<List<Anotacao>>() {
+            final Aluno[] alunoLegal = new Aluno[1];
+
+            call2.enqueue(new Callback<Aluno>() {
+                @Override
+                public void onResponse(Call<Aluno> call, Response<Aluno> response) {
+                    if (response.isSuccessful())
+                    {
+                        Aluno alunoResponse = response.body();
+
+                        alunoLegal[0] = new Aluno(alunoResponse.getNome_aluno(), alunoResponse.getSenha_aluno(), alunoResponse.getEmail_aluno(), alunoResponse.getId_aluno());
+
+                        //idAluno[0] = alunoResponse.getId_aluno();
+
+                        //alunoResponse.getId_aluno();
+//                        alunoResponse[0] = response.body();
+//                        idAluno[0] = alunoResponse[0].getId_aluno();
+                        Toast.makeText(TodoList.this, /*idAluno[0]*/ /*alunoLegal[0].getId_aluno().toString(), Toast.LENGTH_LONG).show();*/
+                 /*   }
+                }
+
+                @Override
+                public void onFailure(Call<Aluno> call, Throwable t) {
+                    Toast.makeText(TodoList.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });*/
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.show();
+
+                    btnNewTask = v.findViewById(R.id.btnNewTask);
+
+                    btnNewTask.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onResponse(Call<List<Anotacao>> call, Response<List<Anotacao>> response) {
-                            taskAdapter = new ToDoAdaptador(response.body());
-                            taskRecyclerView = findViewById(R.id.recyclerView);
-                            taskRecyclerView.setAdapter(taskAdapter);
+                        public void onClick(View view) {
+                            edtNewTask = v.findViewById(R.id.edtNewTask);
+
+
+
+
+                            Toast.makeText(TodoList.this, tokenRecebido, Toast.LENGTH_SHORT).show();
+
+                            int idUau = Integer.parseInt(tokenRecebido);
+                            Anotacao anotacao = new Anotacao(edtNewTask.getText().toString(), idUau);
+                            Call<Anotacao> call = service.incluirAnotacao(anotacao);
+
+                            call.enqueue(new Callback<Anotacao>() {
+                                @Override
+                                public void onResponse(Call<Anotacao> call, Response<Anotacao> response) {
+                                    if (response.isSuccessful()){
+                                        Toast.makeText(TodoList.this, "Anotação incluída!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Anotacao> call, Throwable t) {
+                                    Toast.makeText(TodoList.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                            //tarefasAnteriores.add(edtNewTask.getText().toString());
+                            dialog.dismiss();
+
+                            //listaDeTarefas.add(new ToDo(tarefasAnteriores.get(tarefasAnteriores.size() - 1)));
+
+                            edtNewTask.setText("");
                         }
 
-                        @Override
-                        public void onFailure(Call<List<Anotacao>> call, Throwable t) {
-                            Toast.makeText(TodoList.this, "talda depressao", Toast.LENGTH_SHORT).show();
-                        }
                     });
                 }
-                else
-                    Toast.makeText(TodoList.this, "deu errado", Toast.LENGTH_SHORT).show();
-            }
+            });
 
-            @Override
-            public void onFailure(Call<Aluno> call, Throwable t) {
-                Toast.makeText(TodoList.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+           // Anotacao anotacao = new Anotacao(edtNewTask.getText().toString());
+  /*          Call<Aluno> call = service.selecionarAluno(alunoLegal[0].getId_aluno());
 
-        /*taskAdapter.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onItemClick(int position, Anotacao anotationData) {
-                Call<Anotacao> call = service.excluirAnotacao(anotationData.getIdAnotacao());
-            }
-        });*/
+            call.enqueue(new Callback<Aluno>() {
+                @Override
+                public void onResponse(Call<Aluno> call, Response<Aluno> response) {
+                    if (response.isSuccessful()){
+                        Aluno aln = response.body();
+*/
+                        Call<List<Anotacao>> callAnot = service.selecionarAnotacaoFk(tokenRecebido);
+                        callAnot.enqueue(new Callback<List<Anotacao>>() {
+                            @Override
+                            public void onResponse(Call<List<Anotacao>> call, Response<List<Anotacao>> response) {
+                                taskAdapter = new ToDoAdaptador(response.body());
+                                taskRecyclerView = findViewById(R.id.recyclerView);
+                                taskRecyclerView.setAdapter(taskAdapter);
+                            }
+
+                            @Override
+                            public void onFailure(Call<List<Anotacao>> call, Throwable t) {
+                                Toast.makeText(TodoList.this, "talda depressao", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                 /*   }
+                    else
+                        Toast.makeText(TodoList.this, "deu errado", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<Aluno> call, Throwable t) {
+                    Toast.makeText(TodoList.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });*/
+
+        }
 
         /*Call<List<Anotacao>> call = service.selecionarAnotacaoFk();
 

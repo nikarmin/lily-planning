@@ -20,6 +20,7 @@ router.get('/', async (req, res) => {
 // alunos
 router.get('/alunos', alunoController.getAll)
 router.get('/alunos/:email', alunoController.getByEmail)
+router.get('/alunos/token/:token', alunoController.getByToken)
 router.post('/alunos', alunoController.create)
 router.post('/alunos/auth', alunoController.auth)
 router.put('/alunos/:id', alunoController.update)

@@ -3,6 +3,7 @@ package com.example.applilyplanning;
 import com.example.applilyplanning.model.Aluno;
 import com.example.applilyplanning.model.Anotacao;
 import com.example.applilyplanning.model.Professor;
+import com.example.applilyplanning.model.Token;
 
 import java.util.List;
 
@@ -25,6 +26,9 @@ public interface Service {
 
     @GET("/alunos/{email_aluno}")
     Call<Aluno> selecionarAluno(@Path("email_aluno") String email);
+
+    @GET("/alunos/token/{token}")
+    Call<Aluno> selecionarAlunoPorToken(@Path("token") String token);
 
     @POST("/alunos")
     Call<Aluno> incluirAluno(@Body Aluno aluno);
@@ -64,17 +68,17 @@ public interface Service {
     Call<List<Anotacao>> getAnotacao();
 
     @GET("/anotacoes/{fk_aluno}")
-    Call<List<Anotacao>> selecionarAnotacaoFk(@Path("fk_aluno") Integer id);
+    Call<List<Anotacao>> selecionarAnotacaoFk(@Path("fk_aluno") String id);
 
-    @GET("/anotacoes/{id}")
-    Call<Anotacao> selecionarAnotacao(@Path("id") String id);
+    @GET("/anotacoes/{id_anotacao}")
+    Call<Anotacao> selecionarAnotacao(@Path("id_anotacao") String id);
 
     @POST("/anotacoes")
     Call<Anotacao> incluirAnotacao(@Body Anotacao anotacao);
 
-    @PUT("/anotacoes/{id}")
-    Call<Anotacao> alterarAnotacao(@Path("id") String id, @Body Anotacao anotacao);
+    @PUT("/anotacoes/{id_anotacao}")
+    Call<Anotacao> alterarAnotacao(@Path("id_anotacao") String id, @Body Anotacao anotacao);
 
-    @DELETE("/anotacoes")
-    Call<Anotacao> excluirAnotacao(@Path("id") Integer id);
+    @DELETE("/anotacoes/{id_anotacao}")
+    Call<Anotacao> excluirAnotacao(@Path("id_anotacao") Integer id);
 }

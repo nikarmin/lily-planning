@@ -2,7 +2,7 @@ require('dotenv/config')
 const { create } = require('domain')
 const { prisma } = require('../database/prismaClient')
 const { hash, genSalt, compare } = require('bcrypt')
-const { sign } = require('jsonwebtoken')
+const { sign, verify } = require('jsonwebtoken')
 
 const validateEmail = (email) => {
   return String(email)
@@ -47,6 +47,23 @@ module.exports = {
     )
   },
 
+  async getByToken(req, res) {
+    const { token } = req.params
+
+    console.log('recebendo request com token ' + token)
+
+    const resposta = await prisma.aluno.findUnique({
+      where: {
+        id_aluno: verify(token, process.env.SESSION_SECRET).id_aluno,
+      },
+    })
+
+    console.log('retornando')
+    console.log(resposta)
+
+    return res.json(resposta)
+  },
+
   async create(req, res) {
     const { nome_aluno, senha_aluno, email_aluno } = req.body
 
@@ -85,7 +102,7 @@ module.exports = {
         }
       )
 
-      return res.json({ token })
+      return res.json({ id_aluno: aluno.id_aluno })
     }
     return res.status(401).json({ message: 'Bad credentials' })
   },
