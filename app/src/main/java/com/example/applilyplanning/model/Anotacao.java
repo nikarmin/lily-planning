@@ -31,7 +31,7 @@ public class Anotacao implements Serializable {
     }
 
     public int getFkAluno() {
-        return fkAluno;
+        return this.fkAluno;
     }
 
     public void setFkAluno(int fkAluno) {

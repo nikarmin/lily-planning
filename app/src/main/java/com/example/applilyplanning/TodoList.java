@@ -126,11 +126,15 @@ public class TodoList extends AppCompatActivity {
                         public void onClick(View view) {
                             edtNewTask = v.findViewById(R.id.edtNewTask);
 
-                            Toast.makeText(TodoList.this, tokenRecebido, Toast.LENGTH_SHORT).show();
+
 
                             int idUau = Integer.parseInt(tokenRecebido);
+
                             Anotacao anotacao = new Anotacao(edtNewTask.getText().toString(), idUau);
                             Call<Anotacao> call = service.incluirAnotacao(anotacao);
+                            anotacao.setFkAluno(idUau);
+
+                            Toast.makeText(TodoList.this, anotacao.getFkAluno(), Toast.LENGTH_SHORT).show();
 
                             call.enqueue(new Callback<Anotacao>() {
                                 @Override
