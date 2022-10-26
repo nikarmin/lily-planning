@@ -92,25 +92,26 @@ module.exports = {
       where: { email_professor },
     })
 
-    const authenticated = await compare(
-      senha_professor,
-      professor.senha_professor
-    )
-
-    if (authenticated) {
-      const token = sign(
-        {
-          id_professor: professor.id_professor,
-        },
-        process.env.SESSION_SECRET,
-        {
-          expiresIn: 86400, // 3 dias
-        }
+    if (professor != null) {
+      const authenticated = await compare(
+        senha_professor,
+        professor.senha_professor
       )
-
-      return res.json({ token })
+  
+      if (authenticated) {
+        const token = sign(
+          {
+            id_professor: professor.id_professor,
+          },
+          process.env.SESSION_SECRET,
+          {
+            expiresIn: 86400, // 3 dias
+          }
+        )
+  
+        return res.json({ token })
+      }
     }
-
     return res.status(401).json({ message: 'Bad credentials' })
   },
 

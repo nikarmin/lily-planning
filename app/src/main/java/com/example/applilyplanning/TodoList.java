@@ -126,9 +126,6 @@ public class TodoList extends AppCompatActivity {
                         public void onClick(View view) {
                             edtNewTask = v.findViewById(R.id.edtNewTask);
 
-
-
-
                             Toast.makeText(TodoList.this, tokenRecebido, Toast.LENGTH_SHORT).show();
 
                             int idUau = Integer.parseInt(tokenRecebido);

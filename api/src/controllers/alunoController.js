@@ -89,20 +89,22 @@ module.exports = {
 
     const aluno = await prisma.aluno.findUnique({ where: { email_aluno } })
 
-    const authenticated = await compare(senha_aluno, aluno.senha_aluno)
+    if (aluno != null){
+      const authenticated = await compare(senha_aluno, aluno.senha_aluno)
 
-    if (authenticated) {
-      const token = sign(
-        {
-          id_aluno: aluno.id_aluno,
-        },
-        process.env.SESSION_SECRET,
-        {
-          expiresIn: 86400, // 3 dias
-        }
-      )
-
-      return res.json({ id_aluno: aluno.id_aluno })
+      if (authenticated) {
+        const token = sign(
+          {
+            id_aluno: aluno.id_aluno,
+          },
+          process.env.SESSION_SECRET,
+          {
+            expiresIn: 86400, // 3 dias
+          }
+        )
+  
+        return res.json({ id_aluno: aluno.id_aluno })
+      }
     }
     return res.status(401).json({ message: 'Bad credentials' })
   },

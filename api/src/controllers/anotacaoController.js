@@ -48,7 +48,7 @@ module.exports = {
 
   async create(req, res) {
     const { anotacao, fk_aluno } = req.body
-
+    
     const nota = await prisma.anotacao.create({
       data: {
         anotacao,

@@ -1,5 +1,7 @@
 package com.example.applilyplanning.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class ToDo {

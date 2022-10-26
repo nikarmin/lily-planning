@@ -5,8 +5,11 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class Anotacao implements Serializable {
+    @SerializedName("id_anotacao")
     private int idAnotacao;
+    @SerializedName("fk_anotacao")
     private int fkAluno;
+    @SerializedName("anotacao")
     private String anotacao;
 
     public Anotacao(int idAnotacao, String anotacao) {
