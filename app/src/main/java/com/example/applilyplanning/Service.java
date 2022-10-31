@@ -68,7 +68,7 @@ public interface Service {
     Call<List<Anotacao>> getAnotacao();
 
     @GET("/anotacoes/{fk_aluno}")
-    Call<List<Anotacao>> selecionarAnotacaoFk(@Path("fk_aluno") String id);
+    Call<List<Anotacao>> selecionarAnotacaoFk(@Path("fk_aluno") Integer id);
 
     @GET("/anotacoes/{id_anotacao}")
     Call<Anotacao> selecionarAnotacao(@Path("id_anotacao") String id);

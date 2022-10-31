@@ -7,8 +7,8 @@ import java.io.Serializable;
 public class Anotacao implements Serializable {
     @SerializedName("id_anotacao")
     private int idAnotacao;
-    @SerializedName("fk_anotacao")
-    private int fkAluno;
+    @SerializedName("fk_aluno")
+    private int fk_aluno;
     @SerializedName("anotacao")
     private String anotacao;
 
@@ -19,7 +19,7 @@ public class Anotacao implements Serializable {
 
     public Anotacao(String anotacao, int fkAluno) {
         this.anotacao = anotacao;
-        this.fkAluno = fkAluno;
+        this.fk_aluno = fkAluno;
     }
 
     public int getIdAnotacao() {
@@ -31,11 +31,11 @@ public class Anotacao implements Serializable {
     }
 
     public int getFkAluno() {
-        return fkAluno;
+        return fk_aluno;
     }
 
     public void setFkAluno(int fkAluno) {
-        this.fkAluno = fkAluno;
+        this.fk_aluno = fkAluno;
     }
 
     public String getAnotacao() {

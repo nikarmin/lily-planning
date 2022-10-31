@@ -75,11 +75,13 @@ public class TodoList extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle params = intent.getExtras();
 
+        Integer tokenRecebido = params.getInt("token");
+
         //String aluno = params.getString("email_aluno");
         // Aluno alunoRecebido = (Aluno) getIntent().getSerializableExtra("aluno");
 
         if (params != null) {
-            String tokenRecebido = params.getString("token");
+            //String tokenRecebido = params.getString("token");
             Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
             /*final Aluno[] alunoResponse = {null};
             final int[] idAluno = {0};*/
@@ -126,15 +128,10 @@ public class TodoList extends AppCompatActivity {
                         public void onClick(View view) {
                             edtNewTask = v.findViewById(R.id.edtNewTask);
 
+                            String anotation = edtNewTask.getText().toString();
 
-
-                            int idUau = Integer.parseInt(tokenRecebido);
-
-                            Anotacao anotacao = new Anotacao(edtNewTask.getText().toString(), idUau);
-                            anotacao.setFkAluno(idUau);
+                            Anotacao anotacao = new Anotacao(anotation, tokenRecebido);
                             Call<Anotacao> call = service.incluirAnotacao(anotacao);
-
-                            Toast.makeText(TodoList.this, anotacao.getFkAluno(), Toast.LENGTH_SHORT).show();
 
                             call.enqueue(new Callback<Anotacao>() {
                                 @Override
@@ -162,8 +159,9 @@ public class TodoList extends AppCompatActivity {
                 }
             });
 
-           // Anotacao anotacao = new Anotacao(edtNewTask.getText().toString());
-  /*          Call<Aluno> call = service.selecionarAluno(alunoLegal[0].getId_aluno());
+//           edtNewTask = v.findViewById(R.id.edtNewTask);
+//           Anotacao anotacao = new Anotacao(edtNewTask.getText().toString(), Integer.parseInt(tokenRecebido));
+/*           Call<Aluno> call = service.selecionarAluno(tokenRecebido);
 
             call.enqueue(new Callback<Aluno>() {
                 @Override
@@ -185,18 +183,18 @@ public class TodoList extends AppCompatActivity {
                                 Toast.makeText(TodoList.this, "talda depressao", Toast.LENGTH_SHORT).show();
                             }
                         });
-                 /*   }
+                   }
                     else
                         Toast.makeText(TodoList.this, "deu errado", Toast.LENGTH_SHORT).show();
-                }
+/*                }
 
                 @Override
                 public void onFailure(Call<Aluno> call, Throwable t) {
                     Toast.makeText(TodoList.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-            });*/
+            });
 
-        }
+        }*/
 
         /*Call<List<Anotacao>> call = service.selecionarAnotacaoFk();
 
