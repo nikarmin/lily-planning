@@ -47,5 +47,4 @@ public class Professor implements Serializable {
     public void setSenha_professor(String senha_professor) {
         this.senha_professor = senha_professor;
     }
-
 }

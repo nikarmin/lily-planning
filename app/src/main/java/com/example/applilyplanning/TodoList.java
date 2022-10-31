@@ -131,8 +131,8 @@ public class TodoList extends AppCompatActivity {
                             int idUau = Integer.parseInt(tokenRecebido);
 
                             Anotacao anotacao = new Anotacao(edtNewTask.getText().toString(), idUau);
-                            Call<Anotacao> call = service.incluirAnotacao(anotacao);
                             anotacao.setFkAluno(idUau);
+                            Call<Anotacao> call = service.incluirAnotacao(anotacao);
 
                             Toast.makeText(TodoList.this, anotacao.getFkAluno(), Toast.LENGTH_SHORT).show();
 
