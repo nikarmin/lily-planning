@@ -11,12 +11,14 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.transition.Explode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -68,6 +70,7 @@ public class TodoList extends AppCompatActivity {
         builder = new AlertDialog.Builder(TodoList.this).setCustomTitle(titleView);
         builder.setCancelable(true);
         View v = LayoutInflater.from(TodoList.this).inflate(R.layout.new_task, null, false);
+        //View v2 = LayoutInflater.from(TodoList.this).inflate(R.layout.task, null, false);
         builder.setView(v);
 
         dialog = builder.create();
@@ -80,46 +83,29 @@ public class TodoList extends AppCompatActivity {
         //String aluno = params.getString("email_aluno");
         // Aluno alunoRecebido = (Aluno) getIntent().getSerializableExtra("aluno");
 
-        if (params != null) {
-            //String tokenRecebido = params.getString("token");
+        if (params != null)
+        {
             Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
-            /*final Aluno[] alunoResponse = {null};
-            final int[] idAluno = {0};*/
-            /*Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
-
-            Call<Aluno> call2 = service.selecionarAlunoId(Integer.parseInt(tokenRecebido));
-            //final Integer[] idAluno = {0};
-
-            final Aluno[] alunoLegal = new Aluno[1];
-
-            call2.enqueue(new Callback<Aluno>() {
-                @Override
-                public void onResponse(Call<Aluno> call, Response<Aluno> response) {
-                    if (response.isSuccessful())
-                    {
-                        Aluno alunoResponse = response.body();
-
-                        alunoLegal[0] = new Aluno(alunoResponse.getNome_aluno(), alunoResponse.getSenha_aluno(), alunoResponse.getEmail_aluno(), alunoResponse.getId_aluno());
-
-                        //idAluno[0] = alunoResponse.getId_aluno();
-
-                        //alunoResponse.getId_aluno();
-//                        alunoResponse[0] = response.body();
-//                        idAluno[0] = alunoResponse[0].getId_aluno();
-                        Toast.makeText(TodoList.this, /*idAluno[0]*/ /*alunoLegal[0].getId_aluno().toString(), Toast.LENGTH_LONG).show();*/
-                 /*   }
-                }
-
-                @Override
-                public void onFailure(Call<Aluno> call, Throwable t) {
-                    Toast.makeText(TodoList.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });*/
 
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     dialog.show();
+
+                    /*anotacao = v2.findViewById(R.id.chkToDo);
+
+                    anotacao.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run()
+                                {
+
+                                }
+                            }, 5000); // 5 segundos
+                        }
+                    });*/
 
                     btnNewTask = v.findViewById(R.id.btnNewTask);
 
@@ -147,99 +133,36 @@ public class TodoList extends AppCompatActivity {
                                 }
                             });
 
-                            //tarefasAnteriores.add(edtNewTask.getText().toString());
                             dialog.dismiss();
-
-                            //listaDeTarefas.add(new ToDo(tarefasAnteriores.get(tarefasAnteriores.size() - 1)));
-
-                            edtNewTask.setText("");
                         }
 
                     });
                 }
             });
 
-//           edtNewTask = v.findViewById(R.id.edtNewTask);
-//           Anotacao anotacao = new Anotacao(edtNewTask.getText().toString(), Integer.parseInt(tokenRecebido));
-/*           Call<Aluno> call = service.selecionarAluno(tokenRecebido);
+            Call<List<Anotacao>> callAnot = service.selecionarAnotacaoFk(tokenRecebido);
+            callAnot.enqueue(new Callback<List<Anotacao>>()
+                {
+                    @Override
+                    public void onResponse(Call<List<Anotacao>> call, Response<List<Anotacao>> response)
+                    {
+                      taskAdapter = new ToDoAdaptador(response.body());
+                      taskRecyclerView = findViewById(R.id.recyclerView);
+                      taskRecyclerView.setAdapter(taskAdapter);
+                    }
 
-            call.enqueue(new Callback<Aluno>() {
-                @Override
-                public void onResponse(Call<Aluno> call, Response<Aluno> response) {
-                    if (response.isSuccessful()){
-                        Aluno aln = response.body();
-*/
-                        Call<List<Anotacao>> callAnot = service.selecionarAnotacaoFk(tokenRecebido);
-                        callAnot.enqueue(new Callback<List<Anotacao>>() {
-                            @Override
-                            public void onResponse(Call<List<Anotacao>> call, Response<List<Anotacao>> response) {
-                                taskAdapter = new ToDoAdaptador(response.body());
-                                taskRecyclerView = findViewById(R.id.recyclerView);
-                                taskRecyclerView.setAdapter(taskAdapter);
-                            }
+                    @Override
+                    public void onFailure(Call<List<Anotacao>> call, Throwable t)
+                    {
+                      Toast.makeText(TodoList.this, "talda depressao", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        }
+         else
+             Toast.makeText(TodoList.this, "deu errado", Toast.LENGTH_SHORT).show();
 
-                            @Override
-                            public void onFailure(Call<List<Anotacao>> call, Throwable t) {
-                                Toast.makeText(TodoList.this, "talda depressao", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                   }
-                    else
-                        Toast.makeText(TodoList.this, "deu errado", Toast.LENGTH_SHORT).show();
-/*                }
 
-                @Override
-                public void onFailure(Call<Aluno> call, Throwable t) {
-                    Toast.makeText(TodoList.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
 
-        }*/
-
-        /*Call<List<Anotacao>> call = service.selecionarAnotacaoFk();
-
-        call.enqueue(new Callback<List<Anotacao>>() {
-            @Override
-            public void onResponse(Call<List<Anotacao>> call, Response<List<Anotacao>> response) {
-                taskAdapter = new ToDoAdaptador(response.body());
-                taskRecyclerView = findViewById(R.id.recyclerView);
-                taskRecyclerView.setAdapter(taskAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<List<Anotacao>> call, Throwable t) {
-                Toast.makeText(TodoList.this, "talda depressao", Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
-        /*for (String toDo : tarefasAnteriores) {
-            listaDeTarefas.add(new ToDo(toDo));
-        }*/
-        /*taskAdapter = new ToDoAdaptador(listaDeTarefas);
-        taskRecyclerView = findViewById(R.id.recyclerView);
-        taskRecyclerView.setAdapter(taskAdapter);*/
-
-        /*
-        listaTarefas = new ArrayList<>();
-
-        taskRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        taskAdapter = new ToDoAdaptador(listaTarefas);
-        taskRecyclerView.setAdapter(taskAdapter);
-
-        ToDoModel task = new ToDoModel();
-        //task.setDataInicio("24/09/2022");
-        //task.setDataEntrega("25/09/2022");
-        task.setNomeLista("Teste lista");
-        //task.setStatus(0);
-        //task.setIdLista(1);
-
-        listaTarefas.add(task);
-
-        taskAdapter.setTasks(listaTarefas);
-        taskAdapter.notifyDataSetChanged();
-
-         */
     }
 
     public void IrHome(){

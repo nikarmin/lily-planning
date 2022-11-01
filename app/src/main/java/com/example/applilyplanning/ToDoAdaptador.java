@@ -1,6 +1,7 @@
 package com.example.applilyplanning;
 
 import android.annotation.SuppressLint;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,74 +63,50 @@ class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
 
         holder.toDoCheckBox.setText(toDoData.getAnotacao());
 
+        /*if (holder.toDoCheckBox.isChecked())
+        {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    retirarTarefa(toDoData);
+                    todoList.remove(position);
+                    notifyDataSetChanged();
+                    //holder.toDoCheckBox.setChecked(false);
+                }
+            }, 2000);
+        }*/
+
         holder.toDoCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                retirarTarefa(toDoData);
-                todoList.remove(position);
-                notifyDataSetChanged();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        retirarTarefa(toDoData);
+                        todoList.remove(position);
+                        notifyDataSetChanged();
+                        //holder.toDoCheckBox.setChecked(false);
+                    }
+                }, 2000);
             }
         });
-
-        /*if (holder.toDoCheckBox.isChecked()){
-            retirarTarefa(toDoData);
-            todoList.remove(position);
-            notifyDataSetChanged();
-        }*/
-        
-        /*holder.toDoCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                todoList.remove(position);
-                notifyDataSetChanged();
-            }
-        });*/
-
-        /*holder.toDoCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Anotacao anotacao = new Anotacao(toDoData.getAnotacao());
-                Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
-                Call<Anotacao> call = service.excluirAnotacao(anotacao.getIdAnotacao());
-
-                call.enqueue(new Callback<Anotacao>() {
-                    @Override
-                    public void onResponse(Call<Anotacao> call, Response<Anotacao> response) {
-                        if (response.isSuccessful()){
-                            todoList.remove(position);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Anotacao> call, Throwable t) {
-                        //Toast.makeText(TodoList.CONTEXT_RESTRICTED, "uiuiu", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });*/
-
-        //holder.toDoCheckBox.setText(toDoData.getToDoLabel());
-        //final ToDo item = todoList.get(position);
-        ///holder.edtNewTask.setText(item.getNomeLista());
-        //holder.task.setText(item.getIdAnotacao());
-        //holder.task.setText(item.getNomeLista());
-       // holder.task.setChecked(toBoolean(item.getStatus()));
     }
 
     public void retirarTarefa(Anotacao anotacao){
         Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
-        Call<Anotacao> call = service.excluirAnotacao(anotacao.getIdAnotacao());
+        Integer idAnotacao = anotacao.getIdAnotacao();
+        Call<Anotacao> call = service.excluirAnotacao(idAnotacao);
         
         call.enqueue(new Callback<Anotacao>() {
             @Override
             public void onResponse(Call<Anotacao> call, Response<Anotacao> response) {
                 if (response.isSuccessful())
-                    Toast.makeText(activity, "Anotação excluída!", Toast.LENGTH_SHORT).show();
+                    System.out.printf("Anotação excluída!");
             }
 
             @Override
             public void onFailure(Call<Anotacao> call, Throwable t) {
-                Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                System.out.printf(t.getMessage());
             }
         });
     }

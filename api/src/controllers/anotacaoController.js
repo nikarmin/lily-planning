@@ -1,5 +1,6 @@
 require('dotenv/config')
 const { create } = require('domain')
+const { Int } = require('mssql')
 const { json } = require('stream/consumers')
 const { prisma } = require('../database/prismaClient')
 
@@ -63,11 +64,11 @@ module.exports = {
   },
 
   async delete(req, res) {
-    const { id_anotacao } = req.params
+    const { id } = req.params
 
     return res.json(
       await prisma.anotacao.delete({
-        where: { id_anotacao: Number(id_anotacao) },
+        where: { id_anotacao: Number(id) },
         select: {
           anotacao: true,
         },

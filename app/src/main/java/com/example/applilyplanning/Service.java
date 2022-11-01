@@ -80,5 +80,5 @@ public interface Service {
     Call<Anotacao> alterarAnotacao(@Path("id_anotacao") String id, @Body Anotacao anotacao);
 
     @DELETE("/anotacoes/{id_anotacao}")
-    Call<Anotacao> excluirAnotacao(@Path("id_anotacao") Integer id);
+    Call<Anotacao> excluirAnotacao(@Path("id_anotacao") Integer id_anotacao);
 }
