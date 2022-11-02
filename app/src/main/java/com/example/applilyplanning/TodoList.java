@@ -7,6 +7,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,8 +20,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.applilyplanning.database.RetrofitConfig;
@@ -30,7 +34,11 @@ import com.example.applilyplanning.model.Professor;
 import com.example.applilyplanning.model.ToDo;
 import com.example.applilyplanning.model.Token;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -43,6 +51,8 @@ public class TodoList extends AppCompatActivity {
     private ToDoAdaptador taskAdapter;
     EditText edtNewTask;
     Button btnNewTask;
+    ImageButton btnDatePicker;
+    TextView selectedDateTV;
     CheckBox anotacao;
 
     List<ToDo> listaDeTarefas;
@@ -59,11 +69,6 @@ public class TodoList extends AppCompatActivity {
 
         LayoutInflater inflater = this.getLayoutInflater();
         View titleView = inflater.inflate(R.layout.alert_task, null);
-
-//        ArrayList<String> tarefasAnteriores = new ArrayList<String>(); // Temporário
-//        tarefasAnteriores.add("Fazer chicão");
-//        tarefasAnteriores.add("Fazer API de práticas");
-//        tarefasAnteriores.add("Estudar Português");
 
         AppCompatButton button = findViewById(R.id.btnAdicionar);
 
@@ -92,6 +97,8 @@ public class TodoList extends AppCompatActivity {
                 public void onClick(View view) {
                     dialog.show();
 
+                    // EXCLUIR NOTIFICAÇÃO
+
                     /*anotacao = v2.findViewById(R.id.chkToDo);
 
                     anotacao.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -106,6 +113,56 @@ public class TodoList extends AppCompatActivity {
                             }, 5000); // 5 segundos
                         }
                     });*/
+
+                    btnDatePicker = v.findViewById(R.id.idBtnPickDate);
+                    selectedDateTV = v.findViewById(R.id.idTVSelectedDate);
+
+                    btnDatePicker.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+
+                            Date d = new Date();
+                            try {
+                                d = sdf.parse(String.valueOf(d));
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                            Toast.makeText(TodoList.this, d.toString(), Toast.LENGTH_SHORT).show();
+
+                            // on below line we are getting
+                            // the instance of our calendar.
+                            final Calendar c = Calendar.getInstance();
+
+                            // on below line we are getting
+                            // our day, month and year.
+                            int year = c.get(Calendar.YEAR);
+                            int month = c.get(Calendar.MONTH);
+                            int day = c.get(Calendar.DAY_OF_MONTH);
+
+                            // on below line we are creating a variable for date picker dialog.
+                            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                                    // on below line we are passing context.
+                                    TodoList.this,new DatePickerDialog.OnDateSetListener() {
+                                        @Override
+                                        public void onDateSet(DatePicker view, int year,
+                                                              int monthOfYear, int dayOfMonth) {
+                                            // on below line we are setting date to our text view.
+                                            selectedDateTV.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+
+                                        }
+                                    },
+                                    // on below line we are passing year,
+                                    // month and day for selected date in our date picker.
+                                    year, month, day);
+                            // at last we are calling show to
+                            // display our date picker dialog.
+                            datePickerDialog.show();
+                        }
+                    });
+
 
                     btnNewTask = v.findViewById(R.id.btnNewTask);
 
@@ -160,8 +217,6 @@ public class TodoList extends AppCompatActivity {
         }
          else
              Toast.makeText(TodoList.this, "deu errado", Toast.LENGTH_SHORT).show();
-
-
 
     }
 

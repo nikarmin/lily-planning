@@ -87,7 +87,7 @@ class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
                         notifyDataSetChanged();
                         //holder.toDoCheckBox.setChecked(false);
                     }
-                }, 2000);
+                }, 500);
             }
         });
     }

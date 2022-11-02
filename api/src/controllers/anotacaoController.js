@@ -11,6 +11,8 @@ module.exports = {
         select: {
           id_anotacao: true,
           anotacao: true,
+          data_inicio: true,
+          data_entrega: true,
           fk_aluno: true,
         },
       })
@@ -48,11 +50,13 @@ module.exports = {
   },
 
   async create(req, res) {
-    const { anotacao, fk_aluno } = req.body
+    const { anotacao, data_inicio, data_entrega, fk_aluno } = req.body
 
     const nota = await prisma.anotacao.create({
       data: {
         anotacao,
+        data_inicio,  //erro
+        data_entrega,
         fk_aluno,
       },
       select: {

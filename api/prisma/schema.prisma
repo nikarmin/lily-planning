@@ -36,21 +36,22 @@ model Materia {
 model Anotacao {
   id_anotacao          Int                   @id @default(autoincrement())
   anotacao             String
-  to_do_lista          ToDoList[]
+  data_inicio  DateTime @db.Date             @default(now())
+  data_entrega DateTime @db.Date
   calendario_aluno     CalendarioAluno[]
   calendario_professor CalendarioProfessor[]
   aluno                Aluno                 @relation(fields: [fk_aluno], references: [id_aluno])
   fk_aluno             Int
 }
 
-model ToDoList {
-  id_todo_list Int      @id @default(autoincrement())
-  data_inicio  DateTime @db.Date
-  data_entrega DateTime @db.Date
-  nome_lista   String
-  anotacao     Anotacao @relation(fields: [fk_anotacao], references: [id_anotacao])
-  fk_anotacao  Int
-}
+// model ToDoList {
+//   id_todo_list Int      @id @default(autoincrement())
+//   data_inicio  DateTime @db.Date
+//   data_entrega DateTime @db.Date
+//   nome_lista   String
+//   anotacao     Anotacao @relation(fields: [fk_anotacao], references: [id_anotacao])
+//   fk_anotacao  Int
+// }
 
 model Upload {
   id_upload Int    @id @default(autoincrement())

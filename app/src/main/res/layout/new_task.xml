@@ -19,11 +19,53 @@
         android:textColor="@color/black"
         />
 
+    <!--on below line we are creating a text view-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtNewTask"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/jost_regular"
+        android:padding="5dp"
+        android:text="Data de entrega:"
+        android:textColor="#63000000"
+        android:textSize="18dp"/>
+
+
+    <!--on below line we are creating
+        a button for date picker-->
+    <TextView
+        android:id="@+id/idTVSelectedDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtNewTask"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/jost_regular"
+        android:padding="5dp"
+        android:text=""
+        android:textColor="#63000000"
+        android:textSize="18dp" />
+
+    <ImageButton
+        android:id="@+id/idBtnPickDate"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/idTVSelectedDate"
+        android:backgroundTint="@color/verdeClaro"
+        android:background="@drawable/rounded"
+        android:src="@drawable/calendar"
+        android:textAllCaps="false" />
+
     <Button
         android:id="@+id/btnNewTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edtNewTask"
+        android:layout_below="@id/idBtnPickDate"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="5dp"
         android:textSize="16sp"
