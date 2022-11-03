@@ -55,7 +55,7 @@ module.exports = {
     const nota = await prisma.anotacao.create({
       data: {
         anotacao,
-        data_inicio,  //erro
+        data_inicio, //erro
         data_entrega,
         fk_aluno,
       },

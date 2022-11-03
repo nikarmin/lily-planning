@@ -151,6 +151,9 @@ public class TodoList extends AppCompatActivity {
                                                               int monthOfYear, int dayOfMonth) {
                                             // on below line we are setting date to our text view.
                                             selectedDateTV.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                            
+//                                            string textinho = selectedDateTV.getText();
+//                                            selectedDateTV.setText(textinho + );
 
                                         }
                                     },

@@ -71,7 +71,7 @@ class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
                     retirarTarefa(toDoData);
                     todoList.remove(position);
                     notifyDataSetChanged();
-                    //holder.toDoCheckBox.setChecked(false);
+                    holder.toDoCheckBox.setChecked(false);
                 }
             }, 2000);
         }*/
@@ -83,11 +83,12 @@ class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
                     @Override
                     public void run() {
                         retirarTarefa(toDoData);
-                        todoList.remove(position);
                         notifyDataSetChanged();
+                        todoList.remove(position);
                         //holder.toDoCheckBox.setChecked(false);
                     }
                 }, 500);
+
             }
         });
     }

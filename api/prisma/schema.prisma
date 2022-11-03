@@ -18,10 +18,10 @@ model Aluno {
 }
 
 model Professor {
-  id_professor         Int                   @id @default(autoincrement())
-  nome_professor       String
-  email_professor      String                @unique
-  senha_professor      String
+  id_professor    Int    @id @default(autoincrement())
+  nome_professor  String
+  email_professor String @unique
+  senha_professor String
   //calendario_professor CalendarioProfessor[]
   //anotacao    Anotacao[]
 }
@@ -36,8 +36,8 @@ model Materia {
 model Anotacao {
   id_anotacao          Int                   @id @default(autoincrement())
   anotacao             String
-  data_inicio  DateTime @db.Date             @default(now())
-  data_entrega DateTime @db.Date
+  data_inicio          DateTime              @default(now()) @db.Date
+  data_entrega         DateTime              @db.Date
   calendario_aluno     CalendarioAluno[]
   calendario_professor CalendarioProfessor[]
   aluno                Aluno                 @relation(fields: [fk_aluno], references: [id_aluno])
@@ -94,10 +94,10 @@ model CalendarioAluno {
 }
 
 model CalendarioProfessor {
-  id_calendario_professor Int       @id @default(autoincrement())
+  id_calendario_professor Int      @id @default(autoincrement())
   //professor               Professor @relation(fields: [fk_professor], references: [id_professor])
   //fk_professor            Int
-  anotacao                Anotacao  @relation(fields: [fk_anotacao], references: [id_anotacao])
+  anotacao                Anotacao @relation(fields: [fk_anotacao], references: [id_anotacao])
   fk_anotacao             Int
   data_inicio             DateTime
   data_entrega            DateTime
