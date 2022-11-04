@@ -81,20 +81,25 @@ public class Materias extends AppCompatActivity {
                 dialog.show();
 
                 btnNewSubject = v.findViewById(R.id.btnNewSubject);
+
                 btnNewSubject.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view){
+                    public void onClick(View view)
+                    {
                         edtNewSubjectColor = v.findViewById(R.id.edtNewSubjectColor);
                         edtNewSubjectName = v.findViewById(R.id.edtNewSubjectName);
+                        
+                        if (!edtNewSubjectColor.getText().equals("") && !edtNewSubjectName.getText().equals(""))
+                        {
+                            Materia mat = new Materia(edtNewSubjectName.getText().toString(), edtNewSubjectColor.getText().toString());
+                            //listaMateriasTemporarias.add(mat);
+                            listaMaterias.add(mat);
+                            dialog.dismiss();
 
-                        Materia mat = new Materia(edtNewSubjectName.getText().toString(), edtNewSubjectColor.getText().toString());
-                        //listaMateriasTemporarias.add(mat);
-                        listaMaterias.add(mat);
-                        dialog.dismiss();
-
-                        edtNewSubjectName.setText("");
-                        edtNewSubjectColor.setText("");
-                        //AtualizarLista(listaMateriasTemporarias);
+                            edtNewSubjectName.setText("");
+                            edtNewSubjectColor.setText("");
+                            //AtualizarLista(listaMateriasTemporarias);
+                        }
                     }
                 });
             }

@@ -5,6 +5,17 @@
     android:background="@color/white"
     android:padding="8dp">
 
+    <TextView
+        android:id="@+id/tvNomeMateria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nome da matéria:"
+        android:layout_marginLeft="5dp"
+        android:textSize="19dp"
+        android:fontFamily="@font/jost_regular"
+        android:textColor="#95000000"
+        />
+
     <EditText
         android:id="@+id/edtNewSubjectName"
         android:layout_width="match_parent"
@@ -12,11 +23,24 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
         android:textSize="19dp"
+        android:layout_below="@+id/tvNomeMateria"
         android:fontFamily="@font/jost_regular"
         android:hint="Digite o nome da matéria..."
         android:textColorHint="#63000000"
         android:backgroundTint="@color/white"
         android:textColor="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/tvCor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Código da cor:"
+        android:layout_below="@id/edtNewSubjectName"
+        android:layout_marginLeft="5dp"
+        android:textSize="19dp"
+        android:fontFamily="@font/jost_regular"
+        android:textColor="#95000000"
         />
 
     <EditText
@@ -25,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
-        android:layout_below="@id/edtNewSubjectName"
+        android:layout_below="@id/tvCor"
         android:textSize="19dp"
         android:fontFamily="@font/jost_regular"
         android:hint="Digite o código da cor..."

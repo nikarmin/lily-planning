@@ -158,18 +158,10 @@ public class Login extends AppCompatActivity {
                                     if (response.isSuccessful()){
                                         Aluno aluno = response.body();
 
-                                        //alunoResponse.getEmail_aluno();
-                                        //alunoResponse.getSenha_aluno();
                                         aluno.getId_aluno();
-
-                                        Toast.makeText(Login.this, aluno.getId_aluno().toString(), Toast.LENGTH_SHORT).show();
 
                                         Bundle params = new Bundle();
                                         Intent intent = new Intent(Login.this, Calendario.class);
-                                        //params.putInt("email_aluno", response.body().getId_aluno());
-                                        //params.putString("email_aluno", email.getText().toString());
-                                        //intent.putExtra("aluno", (Parcelable) aluno);
-                                        //params.p("aluno", aluno);
 
                                         params.putInt("token", aluno.getId_aluno());
 

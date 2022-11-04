@@ -34,12 +34,15 @@ import com.example.applilyplanning.model.Professor;
 import com.example.applilyplanning.model.ToDo;
 import com.example.applilyplanning.model.Token;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -111,23 +114,6 @@ public class TodoList extends AppCompatActivity {
                 public void onClick(View view) {
                     dialog.show();
 
-                    // EXCLUIR NOTIFICAÇÃO
-
-                    /*anotacao = v2.findViewById(R.id.chkToDo);
-
-                    anotacao.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run()
-                                {
-
-                                }
-                            }, 5000); // 5 segundos
-                        }
-                    });*/
-
                     btnDatePicker = v.findViewById(R.id.idBtnPickDate);
                     selectedDateTV = v.findViewById(R.id.idTVSelectedDate);
 
@@ -165,7 +151,40 @@ public class TodoList extends AppCompatActivity {
                                                               int monthOfYear, int dayOfMonth) {
                                             // on below line we are setting date to our text view.
                                             selectedDateTV.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                                            
+
+                                            Calendar calendar = Calendar.getInstance();
+                                            calendar.set(year, month, day);
+                                            final DateFormat df = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy", Locale.ENGLISH);
+                                            Date date = null;
+                                            try {
+                                                date = df.parse(calendar.getTime().toString());
+                                            } catch (ParseException e) {
+                                                e.printStackTrace();
+                                            }
+                                            final Timestamp ts = new Timestamp(date.getTime());
+                                            String tempo = ts.toString();
+                                            char[] tempoCaracteres = tempo.toCharArray();
+
+                                            for (int x = 0; x < tempoCaracteres.length; x++)
+                                            {
+                                                if (x == 10)
+                                                    tempoCaracteres[x] = 'T';
+                                                if (x == 23)
+                                                    tempoCaracteres[x] = 'Z';
+                                            }
+
+                                            tempo = String.valueOf(tempoCaracteres);
+
+//                                            for (int x = 0; x < tempo.length(); x++)
+//                                            {
+//                                                if (x == 10)
+//                                                    tempo.char
+//                                            }
+
+//                                            System.err.println(ts);
+//                                            Toast.makeText(TodoList.this, "tempo: " + ts, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(TodoList.this, tempo, Toast.LENGTH_SHORT).show();
+
 //                                            string textinho = selectedDateTV.getText();
 //                                            selectedDateTV.setText(textinho + );
 

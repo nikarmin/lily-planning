@@ -49,7 +49,8 @@ public class MateriaAdaptador extends RecyclerView.Adapter<MateriaAdaptador.View
         final Materia item = materiaList.get(position);
 
         holder.subject.setText(item.getNomeMateria());
-        holder.color.setBackgroundColor(Color.parseColor(item.getCorMateria()));
+        int myColor = Integer.parseInt(item.getCorMateria().replaceFirst("^#",""), 16);
+        holder.color.setBackgroundColor(myColor);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -3,6 +3,7 @@ package com.example.applilyplanning.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Anotacao implements Serializable {
     @SerializedName("id_anotacao")
@@ -11,6 +12,10 @@ public class Anotacao implements Serializable {
     private int fk_aluno;
     @SerializedName("anotacao")
     private String anotacao;
+    @SerializedName("data_inicio")
+    private Date dataInicio;
+    @SerializedName("data_entrega")
+    private Date dataEntrega;
 
     public Anotacao(int idAnotacao, String anotacao) {
         this.idAnotacao = idAnotacao;
@@ -19,7 +24,12 @@ public class Anotacao implements Serializable {
 
     public Anotacao(String anotacao, int fkAluno) {
         this.anotacao = anotacao;
-        this.fk_aluno = fkAluno;
+    }
+
+    public Anotacao(String anotacao, int fkAluno, Date inicio, Date entrega) {
+        this.anotacao = anotacao;
+        this.dataInicio = inicio;
+        this.dataEntrega = entrega;
     }
 
     public int getIdAnotacao() {

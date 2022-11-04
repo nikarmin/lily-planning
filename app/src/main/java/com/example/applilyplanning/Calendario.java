@@ -104,6 +104,11 @@ public class Calendario extends AppCompatActivity {
         compactCalendarView.setDayColumnNames(testString);
         dateFormatForMonth = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
 
+//        O que a gente viu no stackoverflow sobre setar data no calendarView
+//        https://stackoverflow.com/questions/22583122/how-to-set-focus-on-a-specific-date-in-calendarview-knowing-date-is-dd-mm-yyyy
+//        String selectedDate = "30/09/2016";
+//        mCalendarView.setDate(new SimpleDateFormat("dd/MM/yyyy").parse(selectedDate).getTime(), true, true);
+
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {

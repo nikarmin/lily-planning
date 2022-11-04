@@ -33,8 +33,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:text="Adicionar matéria"
+            android:padding="15dp"
             android:backgroundTint="@color/verdeClaro"
-            android:text="+"
+            android:textAllCaps="false"
+            android:textSize="18dp"
             tools:layout_editor_absoluteX="159dp"
             tools:layout_editor_absoluteY="290dp" />
 
