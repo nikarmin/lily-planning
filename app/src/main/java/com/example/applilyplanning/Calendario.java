@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.applilyplanning.model.Materia;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 
 import java.text.DateFormat;
@@ -29,7 +30,7 @@ public class Calendario extends AppCompatActivity {
     LocalDate date = LocalDate.now();
     private Toolbar toolbar;
     Calendar myCalendar;
-    ImageButton ibtnTodoListPage;
+    ImageButton ibtnTodoListPage, ibtnMaterias;
     private SimpleDateFormat dateFormatForMonth;
 
     @Override
@@ -40,11 +41,25 @@ public class Calendario extends AppCompatActivity {
         final CompactCalendarView compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
 
         ibtnTodoListPage = findViewById(R.id.ibtnTodoListPage);
+        ibtnMaterias = findViewById(R.id.ibtnMaterias);
 
         Intent intent = getIntent();
         Bundle params = intent.getExtras();
 
         Integer tokenRecebido = params.getInt("token");
+
+        ibtnMaterias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Calendario.this, Materias.class);
+                Bundle params = new Bundle();
+
+                params.putInt("token", tokenRecebido);
+                intent.putExtras(params);
+
+                startActivity(intent);
+            }
+        });
 
         ibtnTodoListPage.setOnClickListener(new View.OnClickListener() {
             @Override

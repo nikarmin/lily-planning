@@ -187,6 +187,7 @@
                     android:background="@drawable/i_todolist" />
 
                 <ImageButton
+                    android:id="@+id/ibtnMaterias"
                     android:layout_width="31dp"
                     android:layout_height="31dp"
                     android:layout_gravity="center_vertical"

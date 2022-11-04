@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/white"
+    android:background="@color/white"
+    android:padding="8dp">
+
+    <EditText
+        android:id="@+id/edtNewSubjectName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:textSize="19dp"
+        android:fontFamily="@font/jost_regular"
+        android:hint="Digite o nome da matéria..."
+        android:textColorHint="#63000000"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
+        />
+
+    <EditText
+        android:id="@+id/edtNewSubjectColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/edtNewSubjectName"
+        android:textSize="19dp"
+        android:fontFamily="@font/jost_regular"
+        android:hint="Digite o código da cor..."
+        android:textColorHint="#63000000"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
+        />
+
+    <Button
+        android:id="@+id/btnNewSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtNewSubjectColor"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="5dp"
+        android:textSize="16sp"
+        android:text="Salvar"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/verdeClaro"
+        />
+
+</RelativeLayout>

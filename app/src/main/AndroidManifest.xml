@@ -28,7 +28,7 @@
             android:name=".Service"
             android:enabled="true"
             android:exported="true"
-            tools:ignore="Instantiatable"></service>
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name=".TodoList"

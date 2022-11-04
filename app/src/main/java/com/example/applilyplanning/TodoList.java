@@ -51,7 +51,7 @@ public class TodoList extends AppCompatActivity {
     private ToDoAdaptador taskAdapter;
     EditText edtNewTask;
     Button btnNewTask;
-    ImageButton btnDatePicker;
+    ImageButton btnDatePicker, ibtnMateria;
     TextView selectedDateTV;
     CheckBox anotacao;
 
@@ -69,6 +69,25 @@ public class TodoList extends AppCompatActivity {
 
         LayoutInflater inflater = this.getLayoutInflater();
         View titleView = inflater.inflate(R.layout.alert_task, null);
+        ibtnMateria = findViewById(R.id.ibtnMaterias);
+
+        Intent intent = getIntent();
+        Bundle params = intent.getExtras();
+
+        Integer tokenRecebido = params.getInt("token");
+
+        ibtnMateria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TodoList.this, Materias.class);
+                Bundle params = new Bundle();
+
+                params.putInt("token", tokenRecebido);
+                intent.putExtras(params);
+
+                startActivity(intent);
+            }
+        });
 
         AppCompatButton button = findViewById(R.id.btnAdicionar);
 
@@ -79,11 +98,6 @@ public class TodoList extends AppCompatActivity {
         builder.setView(v);
 
         dialog = builder.create();
-
-        Intent intent = getIntent();
-        Bundle params = intent.getExtras();
-
-        Integer tokenRecebido = params.getInt("token");
 
         //String aluno = params.getString("email_aluno");
         // Aluno alunoRecebido = (Aluno) getIntent().getSerializableExtra("aluno");
