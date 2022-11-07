@@ -62,6 +62,7 @@ public class TodoList extends AppCompatActivity {
     AlertDialog.Builder builder;
     AlertDialog dialog;
     private List<ToDo> listaTarefas;
+    String tempoEntrega, tempoAtual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,9 +103,6 @@ public class TodoList extends AppCompatActivity {
 
         dialog = builder.create();
 
-        //String aluno = params.getString("email_aluno");
-        // Aluno alunoRecebido = (Aluno) getIntent().getSerializableExtra("aluno");
-
         if (params != null)
         {
             Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
@@ -132,17 +130,12 @@ public class TodoList extends AppCompatActivity {
 
                             Toast.makeText(TodoList.this, d.toString(), Toast.LENGTH_SHORT).show();
 
-                            // on below line we are getting
-                            // the instance of our calendar.
                             final Calendar c = Calendar.getInstance();
 
-                            // on below line we are getting
-                            // our day, month and year.
                             int year = c.get(Calendar.YEAR);
                             int month = c.get(Calendar.MONTH);
                             int day = c.get(Calendar.DAY_OF_MONTH);
 
-                            // on below line we are creating a variable for date picker dialog.
                             DatePickerDialog datePickerDialog = new DatePickerDialog(
                                     // on below line we are passing context.
                                     TodoList.this,new DatePickerDialog.OnDateSetListener() {
@@ -162,71 +155,98 @@ public class TodoList extends AppCompatActivity {
                                                 e.printStackTrace();
                                             }
                                             final Timestamp ts = new Timestamp(date.getTime());
-                                            String tempo = ts.toString();
-                                            char[] tempoCaracteres = tempo.toCharArray();
+                                            final Timestamp tsAtual = new Timestamp(calendar.getTime().getTime());
 
-                                            for (int x = 0; x < tempoCaracteres.length; x++)
+                                            tempoEntrega = ts.toString();
+                                            tempoAtual  = tsAtual.toString();
+
+                                            char[] tempoAtualCaracteres = tempoAtual.toCharArray();
+
+                                            if (tempoEntrega.length() != 23){
+
+                                                while (tempoEntrega.length() != 23){
+                                                    tempoEntrega += 0;
+                                                }
+                                            }
+                                            char[] tempoEntregaCaracteres = tempoEntrega.toCharArray();
+
+                                            for (int x = 0; x <= tempoEntregaCaracteres.length; x++)
                                             {
                                                 if (x == 10)
-                                                    tempoCaracteres[x] = 'T';
-                                                if (x == 23)
-                                                    tempoCaracteres[x] = 'Z';
+                                                    tempoEntregaCaracteres[x] = 'T';
+
+                                                if (x == 22)
+                                                    tempoEntregaCaracteres[x] = 'Z';
                                             }
 
-                                            tempo = String.valueOf(tempoCaracteres);
+                                            for (int x = 0; x <= tempoAtualCaracteres.length; x++)
+                                            {
+                                                if (x == 10)
+                                                    tempoAtualCaracteres[x] = 'T';
 
-//                                            for (int x = 0; x < tempo.length(); x++)
-//                                            {
-//                                                if (x == 10)
-//                                                    tempo.char
-//                                            }
+                                                if (x == 22)
+                                                    tempoAtualCaracteres[x] = 'Z';
 
-//                                            System.err.println(ts);
-//                                            Toast.makeText(TodoList.this, "tempo: " + ts, Toast.LENGTH_SHORT).show();
-                                            Toast.makeText(TodoList.this, tempo, Toast.LENGTH_SHORT).show();
+                                            }
 
-//                                            string textinho = selectedDateTV.getText();
-//                                            selectedDateTV.setText(textinho + );
+                                            tempoEntrega = String.valueOf(tempoEntregaCaracteres);
+                                            tempoAtual = String.valueOf(tempoAtualCaracteres);
 
+                                            Toast.makeText(TodoList.this, tempoEntrega, Toast.LENGTH_SHORT).show();
                                         }
-                                    },
-                                    // on below line we are passing year,
-                                    // month and day for selected date in our date picker.
-                                    year, month, day);
-                            // at last we are calling show to
-                            // display our date picker dialog.
+                                    }, year, month, day);
                             datePickerDialog.show();
                         }
                     });
-
 
                     btnNewTask = v.findViewById(R.id.btnNewTask);
 
                     btnNewTask.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
                             edtNewTask = v.findViewById(R.id.edtNewTask);
 
-                            String anotation = edtNewTask.getText().toString();
+                            if(edtNewTask.getText().length() != 0){
+                                SimpleDateFormat df = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy", Locale.ENGLISH);
+                                Date dataAtual = null;
+                                Date dataEntrega = null;
 
-                            Anotacao anotacao = new Anotacao(anotation, tokenRecebido);
-                            Call<Anotacao> call = service.incluirAnotacao(anotacao);
+                                // arrumar -> passar esse tipo de data p/ a API
 
-                            call.enqueue(new Callback<Anotacao>() {
-                                @Override
-                                public void onResponse(Call<Anotacao> call, Response<Anotacao> response) {
-                                    if (response.isSuccessful()){
-                                        Toast.makeText(TodoList.this, "Anotação incluída!", Toast.LENGTH_SHORT).show();
+                                try {
+                                    dataAtual = df.parse(tempoAtual);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                try {
+                                    dataEntrega = df.parse(tempoEntrega);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                                String anotation = edtNewTask.getText().toString();
+                                Anotacao anotacao = new Anotacao(anotation, tokenRecebido, dataAtual, dataEntrega);
+                                Call<Anotacao> call = service.incluirAnotacao(anotacao);
+
+                                call.enqueue(new Callback<Anotacao>() {
+                                    @Override
+                                    public void onResponse(Call<Anotacao> call, Response<Anotacao> response) {
+                                        if (response.isSuccessful()){
+                                            Toast.makeText(TodoList.this, "Anotação incluída!", Toast.LENGTH_SHORT).show();
+                                        }
                                     }
-                                }
 
-                                @Override
-                                public void onFailure(Call<Anotacao> call, Throwable t) {
-                                    Toast.makeText(TodoList.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                    @Override
+                                    public void onFailure(Call<Anotacao> call, Throwable t) {
+                                        Toast.makeText(TodoList.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
 
-                            dialog.dismiss();
+                                dialog.dismiss();
+                            }
+                            else
+                                Toast.makeText(TodoList.this, "Coloque corretamente as informações!", Toast.LENGTH_SHORT).show();
                         }
 
                     });

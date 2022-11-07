@@ -30,7 +30,6 @@ class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
 
     //private List<ToDo> todoList;
     private List<Anotacao> todoList;
-    private TodoList activity;
     ItemClickListener itemClickListener;
 
     public ToDoAdaptador(/*List<ToDo> tdList*/ List<Anotacao> todoList){

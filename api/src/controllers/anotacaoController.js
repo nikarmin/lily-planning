@@ -19,6 +19,26 @@ module.exports = {
     )
   },
 
+  async getByDateFinal(req, res) {
+    const { date } = req.params
+
+    console.log(String.toString(date))
+
+    return res.json(
+      await prisma.anotacao.findMany({
+        where: { 
+          //data_entrega: "2022-11-09T00:00:00.000Z"
+          data_entrega: Date.toString(date)
+        },
+        select: {
+          id_anotacao: true,
+          anotacao: true,
+          fk_aluno: true,
+        },
+      })
+    )
+  },
+
   async getByFk(req, res) {
     const { id } = req.params
 

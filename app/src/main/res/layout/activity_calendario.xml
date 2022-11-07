@@ -91,28 +91,59 @@
             android:fontFamily="@font/jost_regular"
             />
 
-         <com.github.sundeepk.compactcalendarview.CompactCalendarView
-             android:id="@+id/compactcalendar_view"
-             android:layout_width="fill_parent"
-             android:paddingRight="10dp"
-             android:paddingLeft="10dp"
-             android:layout_height="250dp"
-             app:compactCalendarTargetHeight="250dp"
-             app:compactCalendarTextSize="12sp"
-             app:compactCalendarBackgroundColor="#00000000"
-             app:compactCalendarCurrentDayBackgroundColor="#DCBFFF"
-             app:compactCalendarCurrentSelectedDayBackgroundColor="@color/verdeClaro"
-             app:compactCalendarMultiEventIndicatorColor="#fff"
-             />
+        <com.github.sundeepk.compactcalendarview.CompactCalendarView
+            android:id="@+id/compactcalendar_view"
+            android:layout_width="fill_parent"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_height="220dp"
+            app:compactCalendarTargetHeight="250dp"
+            app:compactCalendarTextSize="12sp"
+            app:compactCalendarBackgroundColor="#00000000"
+            app:compactCalendarCurrentDayBackgroundColor="#DCBFFF"
+            app:compactCalendarCurrentSelectedDayBackgroundColor="@color/verdeClaro"
+            app:compactCalendarMultiEventIndicatorColor="#fff"
+            />
 
-       <!-- <org.naishadhparmar.zcustomcalendar.CustomCalendar
-            android:id="@+id/calendar"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            app:month_year_format="full_month__with_year"
-            app:day_of_week_start_from="sunday"
-            /> -->
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvHoje"
+                android:layout_width="39dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/compactcalendar_view"
+                android:layout_gravity="right"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/jost_regular"
+                android:text="Hoje"
+                android:textColor="#232323" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="10dp"
+                android:layout_gravity="left" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewLista"
+            android:layout_width="250dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/tvHoje"
+            android:layout_gravity="center" />
+
+        <!-- <org.naishadhparmar.zcustomcalendar.CustomCalendar
+             android:id="@+id/calendar"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="40dp"
+             app:month_year_format="full_month__with_year"
+             app:day_of_week_start_from="sunday"
+             /> -->
 
         <!--<CalendarView
             android:id="@+id/oneCalendar"
@@ -154,19 +185,6 @@
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF">
-
-        <!--<ImageButton
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/i_todolist" />
-
-        <ImageButton
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/i_todolist"
-            /> -->
 
         <TableLayout
             android:layout_width="match_parent"
