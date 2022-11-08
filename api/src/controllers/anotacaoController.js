@@ -20,21 +20,33 @@ module.exports = {
   },
 
   async getByDateFinal(req, res) {
-    const { date } = req.params
+    console.log('pegando data')
 
-    console.log(String.toString(date))
+    const { fk } = req.params
+
+    const anotacoes = await prisma.anotacao.findMany({
+      where: {
+        fk_aluno: parseInt(fk),
+      },
+      select: {
+        id_anotacao: true,
+        anotacao: true,
+        data_inicio: true,
+        data_entrega: true,
+        fk_aluno: true,
+      },
+    })
+
+    const hoje = new Date()
 
     return res.json(
-      await prisma.anotacao.findMany({
-        where: { 
-          //data_entrega: "2022-11-09T00:00:00.000Z"
-          data_entrega: Date.toString(date)
-        },
-        select: {
-          id_anotacao: true,
-          anotacao: true,
-          fk_aluno: true,
-        },
+      anotacoes.filter((anotacao) => {
+        const dataEntrega = new Date(anotacao.data_entrega)
+
+        return (
+          dataEntrega.getDate() === hoje.getDate() &&
+          Math.abs(dataEntrega.getTime() - hoje.getTime()) < 24 * 60 * 60 * 1000
+        )
       })
     )
   },
@@ -75,8 +87,8 @@ module.exports = {
     const nota = await prisma.anotacao.create({
       data: {
         anotacao,
-        data_inicio, //erro
-        data_entrega,
+        data_inicio: new Date(data_inicio),
+        data_entrega: new Date(data_entrega),
         fk_aluno,
       },
       select: {

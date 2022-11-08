@@ -3,14 +3,18 @@ package com.example.applilyplanning;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.applilyplanning.database.RetrofitConfig;
+import com.example.applilyplanning.model.Anotacao;
 import com.example.applilyplanning.model.Materia;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 
@@ -21,8 +25,14 @@ import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class Calendario extends AppCompatActivity {
 
@@ -30,8 +40,15 @@ public class Calendario extends AppCompatActivity {
     LocalDate date = LocalDate.now();
     private Toolbar toolbar;
     Calendar myCalendar;
+    RecyclerView recyclerViewLista;
     ImageButton ibtnTodoListPage, ibtnMaterias;
     private SimpleDateFormat dateFormatForMonth;
+
+    public void populateGridView(List<Anotacao> listaAnotacoes){
+        GridView gridViewAnotacoes = findViewById(R.id.anotacoesGridView);
+        GridViewAnotacoesAdaptador adapter = new GridViewAnotacoesAdaptador(this,listaAnotacoes);
+        gridViewAnotacoes.setAdapter(adapter);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +64,24 @@ public class Calendario extends AppCompatActivity {
         Bundle params = intent.getExtras();
 
         Integer tokenRecebido = params.getInt("token");
+
+        Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
+
+        service.selecionarAnotacaoDate(tokenRecebido).enqueue(
+                new Callback<List<Anotacao>>() {
+                    @Override
+                    public void onResponse(Call<List<Anotacao>> call, Response<List<Anotacao>> response) {
+                        if (response.isSuccessful()) {
+                            List<Anotacao> resposta = response.body();
+                            populateGridView(resposta);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Anotacao>> call, Throwable t) {
+                    }
+                }
+        );
 
         ibtnMaterias.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +156,7 @@ public class Calendario extends AppCompatActivity {
             }
         });
 
+        // aqui vai ser passado como parâmetros a lista de afazeres de hoje
 
 
        /*LocalDate date = LocalDate.now();

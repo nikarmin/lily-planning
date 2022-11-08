@@ -54,7 +54,7 @@ public class TodoList extends AppCompatActivity {
     private ToDoAdaptador taskAdapter;
     EditText edtNewTask;
     Button btnNewTask;
-    ImageButton btnDatePicker, ibtnMateria;
+    ImageButton btnDatePicker, ibtnMateria, ibtnUpload;
     TextView selectedDateTV;
     CheckBox anotacao;
 
@@ -74,11 +74,25 @@ public class TodoList extends AppCompatActivity {
         LayoutInflater inflater = this.getLayoutInflater();
         View titleView = inflater.inflate(R.layout.alert_task, null);
         ibtnMateria = findViewById(R.id.ibtnMaterias);
+        ibtnUpload = findViewById(R.id.ibtnUpload);
 
         Intent intent = getIntent();
         Bundle params = intent.getExtras();
 
         Integer tokenRecebido = params.getInt("token");
+
+        ibtnUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TodoList.this, Upload.class);
+                Bundle params = new Bundle();
+
+                params.putInt("token", tokenRecebido);
+                intent.putExtras(params);
+
+                startActivity(intent);
+            }
+        });
 
         ibtnMateria.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,25 +184,6 @@ public class TodoList extends AppCompatActivity {
                                             }
                                             char[] tempoEntregaCaracteres = tempoEntrega.toCharArray();
 
-                                            for (int x = 0; x <= tempoEntregaCaracteres.length; x++)
-                                            {
-                                                if (x == 10)
-                                                    tempoEntregaCaracteres[x] = 'T';
-
-                                                if (x == 22)
-                                                    tempoEntregaCaracteres[x] = 'Z';
-                                            }
-
-                                            for (int x = 0; x <= tempoAtualCaracteres.length; x++)
-                                            {
-                                                if (x == 10)
-                                                    tempoAtualCaracteres[x] = 'T';
-
-                                                if (x == 22)
-                                                    tempoAtualCaracteres[x] = 'Z';
-
-                                            }
-
                                             tempoEntrega = String.valueOf(tempoEntregaCaracteres);
                                             tempoAtual = String.valueOf(tempoAtualCaracteres);
 
@@ -196,7 +191,7 @@ public class TodoList extends AppCompatActivity {
                                         }
                                     }, year, month, day);
                             datePickerDialog.show();
-                        }
+                         }
                     });
 
                     btnNewTask = v.findViewById(R.id.btnNewTask);
@@ -208,12 +203,11 @@ public class TodoList extends AppCompatActivity {
                             edtNewTask = v.findViewById(R.id.edtNewTask);
 
                             if(edtNewTask.getText().length() != 0){
-                                SimpleDateFormat df = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy", Locale.ENGLISH);
+                                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.ENGLISH);
                                 Date dataAtual = null;
                                 Date dataEntrega = null;
 
                                 // arrumar -> passar esse tipo de data p/ a API
-
                                 try {
                                     dataAtual = df.parse(tempoAtual);
                                 } catch (ParseException e) {
@@ -226,7 +220,7 @@ public class TodoList extends AppCompatActivity {
                                 }
 
                                 String anotation = edtNewTask.getText().toString();
-                                Anotacao anotacao = new Anotacao(anotation, tokenRecebido, dataAtual, dataEntrega);
+                                Anotacao anotacao = new Anotacao(anotation, dataAtual, dataEntrega, tokenRecebido);
                                 Call<Anotacao> call = service.incluirAnotacao(anotacao);
 
                                 call.enqueue(new Callback<Anotacao>() {
@@ -243,6 +237,7 @@ public class TodoList extends AppCompatActivity {
                                     }
                                 });
 
+                                //Toast.makeText(TodoList.this, anotation + " " + dataAtual + " " + dataEntrega + " " + tokenRecebido, Toast.LENGTH_LONG).show();
                                 dialog.dismiss();
                             }
                             else

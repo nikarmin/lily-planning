@@ -1,7 +1,10 @@
 package com.example.applilyplanning;
 
+import android.media.Image;
+
 import com.example.applilyplanning.model.Aluno;
 import com.example.applilyplanning.model.Anotacao;
+import com.example.applilyplanning.model.Imagem;
 import com.example.applilyplanning.model.Professor;
 import com.example.applilyplanning.model.Token;
 
@@ -67,6 +70,9 @@ public interface Service {
     @GET("/anotacoes")
     Call<List<Anotacao>> getAnotacao();
 
+    @GET("anotacoes/date/{fk_aluno}")
+    Call<List<Anotacao>> selecionarAnotacaoDate(@Path("fk_aluno") Integer id);
+
     @GET("/anotacoes/{fk_aluno}")
     Call<List<Anotacao>> selecionarAnotacaoFk(@Path("fk_aluno") Integer id);
 
@@ -81,4 +87,18 @@ public interface Service {
 
     @DELETE("/anotacoes/{id_anotacao}")
     Call<Anotacao> excluirAnotacao(@Path("id_anotacao") Integer id_anotacao);
+
+    // API DAS IMAGENS
+
+    @GET("/upload")
+    Call<List<Imagem>> getImagens();
+
+    @GET("/upload/{id_upload}")
+    Call<List<Anotacao>> selecionarImagem();
+
+    @POST("/upload")
+    Call<Imagem> postImagem(@Body Imagem imagem);
+
+    @DELETE("/upload/{id_upload}")
+    Call<Imagem> excluirImagem(@Path("id_upload") Integer id_upload);
 }

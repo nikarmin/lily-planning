@@ -13,15 +13,20 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.applilyplanning.database.RetrofitConfig;
 import com.example.applilyplanning.model.Aluno;
+import com.example.applilyplanning.model.Imagem;
 import com.example.applilyplanning.model.Professor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

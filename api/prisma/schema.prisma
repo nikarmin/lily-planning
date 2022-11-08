@@ -55,7 +55,7 @@ model Anotacao {
 
 model Upload {
   id_upload Int    @id @default(autoincrement())
-  url_foto  String
+  url_foto  String @db.NText
 }
 
 model Turma {

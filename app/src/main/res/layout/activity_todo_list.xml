@@ -127,6 +127,7 @@
                     android:textSize="22dp" />
 
                 <ImageButton
+                    android:id="@id/ibtnUpload"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
@@ -136,6 +137,7 @@
                     android:background="@drawable/i_uploads" />
 
                 <ImageButton
+                    android:id="@id/ibtnPerfil"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center_vertical"

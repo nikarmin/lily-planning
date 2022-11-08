@@ -29,7 +29,7 @@ public class Materias extends AppCompatActivity {
     private MateriaAdaptador materiaAdaptador;
     Button btnNewSubject, btnPlus;
     EditText edtNewSubjectName, edtNewSubjectColor;
-    ImageButton ibtnTodoList;
+    ImageButton ibtnTodoList, ibtnUpload;
 
     AlertDialog.Builder builder;
     AlertDialog dialog;
@@ -53,6 +53,20 @@ public class Materias extends AppCompatActivity {
 
         AppCompatButton button = findViewById(R.id.btnAdicionar);
         ibtnTodoList = findViewById(R.id.ibtnTodoListPage);
+        ibtnUpload = findViewById(R.id.ibtnUpload);
+
+        ibtnUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Materias.this, Upload.class);
+                Bundle params = new Bundle();
+
+                params.putInt("token", tokenRecebido);
+                intent.putExtras(params);
+
+                startActivity(intent);
+            }
+        });
 
         ibtnTodoList.setOnClickListener(new View.OnClickListener() {
             @Override

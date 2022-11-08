@@ -8,6 +8,7 @@ const notaController = require('./controllers/notaController')
 const professorController = require('./controllers/professorController')
 const todolistController = require('./controllers/todolistController')
 const turmaController = require('./controllers/turmaController')
+const upload_controller = require('./controllers/upload_controller')
 
 //const prisma = new PrismaClient();
 
@@ -43,7 +44,7 @@ router.delete('/tarefas/:id', todolistController.delete)
 // anotacao
 router.get('/anotacoes', anotacaoController.getAll)
 router.get('/anotacoes/:id', anotacaoController.getByFk)
-router.get('/anotacoes/:data_entrega', anotacaoController.getByDateFinal)
+router.get('/anotacoes/date/:fk', anotacaoController.getByDateFinal)
 router.post('/anotacoes', anotacaoController.create)
 router.delete('/anotacoes/:id', anotacaoController.delete)
 router.put('/anotacoes/:id', anotacaoController.update)
@@ -79,5 +80,12 @@ router.get('/alunosturmas/:id', aluno_turmaController.getById)
 router.post('/alunosturmas', aluno_turmaController.create)
 router.delete('/alunosturmas/:id', aluno_turmaController.delete)
 router.put('/alunosturmas/:id', aluno_turmaController.update)
+
+// imagens
+
+router.get('/upload', upload_controller.getAll)
+router.get('/upload/:id', upload_controller.getById)
+router.post('/upload', upload_controller.create)
+router.delete('/upload/:id', upload_controller.delete)
 
 module.exports = { router }
