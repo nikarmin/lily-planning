@@ -24,7 +24,7 @@ public class Upload extends AppCompatActivity {
         setContentView(R.layout.activity_upload);
 
         btnPlus = findViewById(R.id.btnAdicionar);
-        image = findViewById(R.id.imageView);
+        image = findViewById(R.id.gvFotos);
 
         btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +48,6 @@ public class Upload extends AppCompatActivity {
             if (requestCode == SELECT_PICTURE) {
                 Uri selectedImageUri = data.getData();
                 if (null != selectedImageUri) {
-                    Toast.makeText(this, "OOOOOOOOOOOOOOOO", Toast.LENGTH_SHORT).show();
                     image.setImageURI(selectedImageUri);
                 }
             }
