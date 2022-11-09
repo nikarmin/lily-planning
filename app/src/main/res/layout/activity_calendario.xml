@@ -135,48 +135,9 @@
             android:layout_height="wrap_content"
             android:numColumns="1"
             android:verticalSpacing="10dp"
-            android:horizontalSpacing="10dp"/>
-        <!-- <org.naishadhparmar.zcustomcalendar.CustomCalendar
-             android:id="@+id/calendar"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_marginTop="40dp"
-             app:month_year_format="full_month__with_year"
-             app:day_of_week_start_from="sunday"
-             /> -->
-
-        <!--<CalendarView
-            android:id="@+id/oneCalendar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:theme="@style/CalendarViewCustom"
-            android:weekDayTextAppearance="@style/CalendarViewWeekCustomText"
-            android:dateTextAppearance="@style/CalendarViewDateCustomText"
-            /> -->
-
-        <!--<com.applandeo.materialcalendarview.CalendarView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            app:headerColor="@color/black"
-
-            /> -->
-
-        <!-- <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000"
-            /> -->
-
-
-        <!-- theme -> estilizando o calendário
-        <CalendarView
-            android:id="@+id/cvCalendario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/CalenderViewCustom"
-            />-->
+            android:horizontalSpacing="10dp"
+            android:verticalScrollbarPosition="defaultPosition"
+            />
 
     </LinearLayout>
 

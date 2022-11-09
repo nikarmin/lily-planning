@@ -62,6 +62,25 @@ class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
 
         holder.toDoCheckBox.setText(toDoData.getAnotacao());
 
+        holder.toDoCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (holder.toDoCheckBox.isChecked())
+                {
+                    new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        retirarTarefa(toDoData);
+                        notifyDataSetChanged();
+                        todoList.remove(position);
+                        //holder.toDoCheckBox.setChecked(false);
+                    }
+                }, 500);
+                    holder.toDoCheckBox.setChecked(false);
+                }
+            }
+        });
+
         /*if (holder.toDoCheckBox.isChecked())
         {
             new Handler().postDelayed(new Runnable() {
@@ -74,7 +93,7 @@ class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
                 }
             }, 2000);
         }*/
-
+/*
         holder.toDoCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -89,7 +108,7 @@ class ToDoAdaptador extends RecyclerView.Adapter<ToDoAdaptador.ViewHolder> {
                 }, 500);
 
             }
-        });
+        });*/
     }
 
     public void retirarTarefa(Anotacao anotacao){

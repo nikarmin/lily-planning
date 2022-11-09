@@ -11,6 +11,9 @@ public class Anotacao implements Serializable {
     private int idAnotacao;
     @SerializedName("fk_aluno")
     private int fk_aluno;
+
+    @SerializedName("fk_professor")
+    private int fk_professor;
     @SerializedName("anotacao")
     private String anotacao;
     @SerializedName("data_inicio")
@@ -34,6 +37,13 @@ public class Anotacao implements Serializable {
         this.fk_aluno = fkAluno;
     }
 
+    public Anotacao(int fkProfessor, String anotacao, Date inicio, Date entrega) {
+        this.anotacao = anotacao;
+        this.dataInicio = inicio;
+        this.dataEntrega = entrega;
+        this.fk_professor = fkProfessor;
+    }
+
     public int getIdAnotacao() {
         return idAnotacao;
     }
@@ -42,13 +52,6 @@ public class Anotacao implements Serializable {
         this.idAnotacao = idAnotacao;
     }
 
-    public int getFkAluno() {
-        return fk_aluno;
-    }
-
-    public void setFkAluno(int fkAluno) {
-        this.fk_aluno = fkAluno;
-    }
 
     public String getAnotacao() {
         return anotacao;

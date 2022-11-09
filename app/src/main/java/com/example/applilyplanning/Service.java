@@ -70,8 +70,17 @@ public interface Service {
     @GET("/anotacoes")
     Call<List<Anotacao>> getAnotacao();
 
+    @POST("/anotacoes/professores")
+    Call<Anotacao> incluirAnotacaoProf(@Body Anotacao anotacao);
+
+    @GET("/anotacoes/professores/{fk_professor}")
+    Call<List<Anotacao>> selecionarAnotacaoFkProf(@Path("fk_professor") Integer id);
+
     @GET("anotacoes/date/{fk_aluno}")
     Call<List<Anotacao>> selecionarAnotacaoDate(@Path("fk_aluno") Integer id);
+
+    @GET("anotacoes/professores/date/{fk_professor}")
+    Call<List<Anotacao>> selecionarAnotacaoDateProf(@Path("fk_professor") Integer id);
 
     @GET("/anotacoes/{fk_aluno}")
     Call<List<Anotacao>> selecionarAnotacaoFk(@Path("fk_aluno") Integer id);

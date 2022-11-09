@@ -19,6 +19,38 @@ module.exports = {
     )
   },
 
+  // async getByDateFinalProf(req, res) {
+  //   console.log('pegando data')
+
+  //   const { fk } = req.params
+
+  //   const anotacoes = await prisma.anotacao.findMany({
+  //     where: {
+  //       fk_professor: parseInt(fk),
+  //     },
+  //     select: {
+  //       id_anotacao: true,
+  //       anotacao: true,
+  //       data_inicio: true,
+  //       data_entrega: true,
+  //       fk_professor: true,
+  //     },
+  //   })
+
+  //   const hoje = new Date()
+
+  //   return res.json(
+  //     anotacoes.filter((anotacao) => {
+  //       const dataEntrega = new Date(anotacao.data_entrega)
+
+  //       return (
+  //         dataEntrega.getDate() === hoje.getDate() &&
+  //         Math.abs(dataEntrega.getTime() - hoje.getTime()) < 24 * 60 * 60 * 1000
+  //       )
+  //     })
+  //   )
+  // },
+
   async getByDateFinal(req, res) {
     console.log('pegando data')
 
@@ -51,7 +83,7 @@ module.exports = {
     )
   },
 
-  async getByFk(req, res) {
+  async getByFkAluno(req, res) {
     const { id } = req.params
 
     return res.json(
@@ -65,6 +97,21 @@ module.exports = {
       })
     )
   },
+
+  // async getByFkProfessor(req, res) {
+  //   const { id } = req.params
+
+  //   return res.json(
+  //     await prisma.anotacao.findMany({
+  //       where: { fk_professor: Number(id) },
+  //       select: {
+  //         id_anotacao: true,
+  //         anotacao: true,
+  //         fk_professor: true,
+  //       },
+  //     })
+  //   )
+  // },
 
   async getById(req, res) {
     const { id } = req.params
@@ -98,6 +145,24 @@ module.exports = {
 
     return res.status(201).json({ id: nota.id_anotacao })
   },
+
+  // async criarProf(req, res) {
+  //   const { anotacao, data_inicio, data_entrega, fk_professor } = req.body
+
+  //   const nota = await prisma.anotacao.create({
+  //     data: {
+  //       anotacao,
+  //       data_inicio: new Date(data_inicio),
+  //       data_entrega: new Date(data_entrega),
+  //       fk_professor,
+  //     },
+  //     select: {
+  //       id_anotacao: true,
+  //     },
+  //   })
+
+  //   return res.status(201).json({ id: nota.id_anotacao })
+  // },
 
   async delete(req, res) {
     const { id } = req.params

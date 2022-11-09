@@ -26,7 +26,7 @@ module.exports = {
           nome_professor: true,
           senha_professor: true,
           email_professor: true,
-          calendario_professor: true,
+         // calendario_professor: true,
         },
       })
     )
@@ -42,7 +42,7 @@ module.exports = {
           id_professor: true,
           senha_professor: true,
           email_professor: true,
-          calendario_professor: true,
+          //calendario_professor: true,
         },
       })
     )
@@ -58,7 +58,7 @@ module.exports = {
           id_professor: true,
           nome_professor: true,
           email_professor: true,
-          calendario_professor: true,
+          //calendario_professor: true,
         },
       })
     )

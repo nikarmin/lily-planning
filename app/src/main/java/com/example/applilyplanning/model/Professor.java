@@ -13,10 +13,27 @@ public class Professor implements Serializable {
     @SerializedName("senha_professor")
     private String senha_professor;
 
+    public Integer getId_professor() {
+        return id_professor;
+    }
+
+    public void setId_professor(Integer id_professor) {
+        this.id_professor = id_professor;
+    }
+
+    @SerializedName("id_professor")
+    private Integer id_professor;
+
     public Professor (String nome, String email, String senha){
         this.nome_professor = nome;
         this.senha_professor = senha;
         this.email_professor = email;
+    }
+
+    public Professor (String email, String senha, Integer id){
+        this.senha_professor = senha;
+        this.email_professor = email;
+        this.id_professor = id;
     }
 
     public Professor (String email, String senha){

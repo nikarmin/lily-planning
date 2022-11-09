@@ -43,8 +43,11 @@ router.delete('/tarefas/:id', todolistController.delete)
 
 // anotacao
 router.get('/anotacoes', anotacaoController.getAll)
-router.get('/anotacoes/:id', anotacaoController.getByFk)
+router.get('/anotacoes/:id', anotacaoController.getByFkAluno)
+//router.get('/anotacoes/professores/:id', anotacaoController.getByFkProfessor)
+//router.post('/anotacoes/professores', anotacaoController.criarProf)
 router.get('/anotacoes/date/:fk', anotacaoController.getByDateFinal)
+//router.get('/anotacoes/professores/date/:fk', anotacaoController.getByDateFinalProf)
 router.post('/anotacoes', anotacaoController.create)
 router.delete('/anotacoes/:id', anotacaoController.delete)
 router.put('/anotacoes/:id', anotacaoController.update)

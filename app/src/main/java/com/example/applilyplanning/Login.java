@@ -52,8 +52,6 @@ public class Login extends AppCompatActivity {
             else
                 chkProfessor.setChecked(true);
         }
-        /*String emailUser = params.getString("email");
-        String senhaUser = params.getString("senha");*/
 
         chkAluno.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,77 +71,6 @@ public class Login extends AppCompatActivity {
         entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (finalUser.equals("Professor")){
-                    if (!(email.getText() == null) || !(senha.getText() == null))
-                    {
-                        chkProfessor.setChecked(true);
-                        Professor professor = new Professor(email.getText().toString(), senha.getText().toString());
-                        Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
-                        Call<Professor> call = service.verificarProfessor(professor);
-
-                        call.enqueue(new Callback<Professor>() {
-                            @Override
-                            public void onResponse(Call<Professor> call, Response<Professor> response) {
-                                if (response.isSuccessful()){
-                                    Professor professorResponse = response.body();
-
-                                    professorResponse.getEmail_professor();
-                                    professorResponse.getSenha_professor();
-
-                                    startActivity(new Intent(Login.this, Calendario.class));
-                                }
-                                else {
-                                    Toast.makeText(Login.this, "Verifique suas credenciais!", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<Professor> call, Throwable t) {
-                                Toast.makeText(Login.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                    else{
-                        Toast.makeText(Login.this, "Digite em todos os campos!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                else if (finalUser.equals("Aluno")){
-                    if (!(email.getText() == null) || !(senha.getText() == null))
-                    {
-                        chkAluno.setChecked(true);
-                        Aluno aluno = new Aluno(email.getText().toString(), senha.getText().toString());
-                        Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
-                        Call<Aluno> call = service.verificarAluno(aluno);
-
-                        call.enqueue(new Callback<Aluno>() {
-                            @Override
-                            public void onResponse(Call<Aluno> call, Response<Aluno> response) {
-                                if (response.isSuccessful()){
-                                    Aluno alunoResponse = response.body();
-
-                                    alunoResponse.getEmail_aluno();
-                                    alunoResponse.getSenha_aluno();
-
-                                    startActivity(new Intent(Login.this, Calendario.class));
-                                }
-                                else {
-                                    Toast.makeText(Login.this, "Verifique suas credenciais!", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<Aluno> call, Throwable t) {
-                                Toast.makeText(Login.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                    else{
-                        Toast.makeText(Login.this, "Digite em todos os campos!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                else {
                     if (chkAluno.isChecked())
                     {
                         if ((email.getText() != null) && (senha.getText() != null))
@@ -158,12 +85,11 @@ public class Login extends AppCompatActivity {
                                     if (response.isSuccessful()){
                                         Aluno aluno = response.body();
 
-                                        aluno.getId_aluno();
-
                                         Bundle params = new Bundle();
                                         Intent intent = new Intent(Login.this, Calendario.class);
 
                                         params.putInt("token", aluno.getId_aluno());
+                                        //params.putString("key_user", "Aluno");
 
                                         intent.putExtras(params);
 
@@ -201,6 +127,11 @@ public class Login extends AppCompatActivity {
                                         professorResponse.getEmail_professor();
                                         professorResponse.getSenha_professor();
 
+                                        params.putInt("token", professor.getId_professor());
+                                        //params.putString("key_user", "Professor");
+
+                                        intent.putExtras(params);
+
                                         startActivity(new Intent(Login.this, Calendario.class));
                                     }
                                     else {
@@ -220,7 +151,6 @@ public class Login extends AppCompatActivity {
                     else
                         Toast.makeText(Login.this, "Selecione/digite em todos os campos!", Toast.LENGTH_SHORT).show();
                 }
-            }
         });
 
     }

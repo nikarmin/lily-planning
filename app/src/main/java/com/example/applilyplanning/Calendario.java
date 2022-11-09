@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -43,6 +44,8 @@ public class Calendario extends AppCompatActivity {
     RecyclerView recyclerViewLista;
     ImageButton ibtnTodoListPage, ibtnMaterias;
     private SimpleDateFormat dateFormatForMonth;
+    FrameLayout home;
+    Integer tokenRecebido;
 
     public void populateGridView(List<Anotacao> listaAnotacoes){
         GridView gridViewAnotacoes = findViewById(R.id.anotacoesGridView);
@@ -59,11 +62,13 @@ public class Calendario extends AppCompatActivity {
 
         ibtnTodoListPage = findViewById(R.id.ibtnTodoListPage);
         ibtnMaterias = findViewById(R.id.ibtnMaterias);
+        home = findViewById(R.id.iconMenu);
 
         Intent intent = getIntent();
         Bundle params = intent.getExtras();
 
-        Integer tokenRecebido = params.getInt("token");
+        tokenRecebido = params.getInt("token");
+        String user = params.getString("key_user");
 
         Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
 
@@ -79,9 +84,24 @@ public class Calendario extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Anotacao>> call, Throwable t) {
+                        Toast.makeText(Calendario.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
         );
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Calendario.this, Calendario.class);
+                Bundle params = new Bundle();
+
+                params.putInt("token", tokenRecebido);
+                //params.putString("key_user", user);
+                intent.putExtras(params);
+
+                startActivity(intent);
+            }
+        });
 
         ibtnMaterias.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +110,7 @@ public class Calendario extends AppCompatActivity {
                 Bundle params = new Bundle();
 
                 params.putInt("token", tokenRecebido);
+                //params.putString("key_user", user);
                 intent.putExtras(params);
 
                 startActivity(intent);
@@ -99,11 +120,11 @@ public class Calendario extends AppCompatActivity {
         ibtnTodoListPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(Calendario.this, TodoList.class);
                 Bundle params = new Bundle();
 
                 params.putInt("token", tokenRecebido);
+                //params.putString("key_user", user);
                 intent.putExtras(params);
 
                 startActivity(intent);
@@ -139,11 +160,6 @@ public class Calendario extends AppCompatActivity {
         compactCalendarView.setDayColumnNames(testString);
         dateFormatForMonth = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
 
-//        O que a gente viu no stackoverflow sobre setar data no calendarView
-//        https://stackoverflow.com/questions/22583122/how-to-set-focus-on-a-specific-date-in-calendarview-knowing-date-is-dd-mm-yyyy
-//        String selectedDate = "30/09/2016";
-//        mCalendarView.setDate(new SimpleDateFormat("dd/MM/yyyy").parse(selectedDate).getTime(), true, true);
-
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
@@ -156,19 +172,6 @@ public class Calendario extends AppCompatActivity {
             }
         });
 
-        // aqui vai ser passado como parâmetros a lista de afazeres de hoje
-
-
-       /*LocalDate date = LocalDate.now();
-        Locale local = new Locale("pt", "BR");
-        DateFormat dateFormat = new SimpleDateFormat("MMMMM", local);
-        DayOfWeek dow = date.getDayOfWeek();
-        Calendar calendar = Calendar.getInstance();
-        Locale.setDefault(new Locale("pt", "BR"));
-
-        String dayName = dow.getDisplayName(TextStyle.FULL, Locale.getDefault());
-        // arrumar para a lang portugues
-        text.setText(dateFormat.format(calendar.getTime()) + " " + dayName + ", " + dow.getValue() + " de " + date.getYear());*/
     }
 
     private String pesquisarDia(){
@@ -200,6 +203,15 @@ public class Calendario extends AppCompatActivity {
                 break;
         }
         return diaDaSemana;
+    }
 
+    public void IrHome(){
+        Intent intent = new Intent(Calendario.this, TodoList.class);
+        Bundle params = new Bundle();
+
+        params.putInt("token", tokenRecebido);
+        intent.putExtras(params);
+
+        startActivity(intent);
     }
 }

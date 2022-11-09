@@ -22,6 +22,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -63,6 +64,7 @@ public class TodoList extends AppCompatActivity {
     AlertDialog dialog;
     private List<ToDo> listaTarefas;
     String tempoEntrega, tempoAtual;
+    FrameLayout home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,11 +77,26 @@ public class TodoList extends AppCompatActivity {
         View titleView = inflater.inflate(R.layout.alert_task, null);
         ibtnMateria = findViewById(R.id.ibtnMaterias);
         ibtnUpload = findViewById(R.id.ibtnUpload);
+        home = findViewById(R.id.iconMenu);
 
         Intent intent = getIntent();
         Bundle params = intent.getExtras();
 
         Integer tokenRecebido = params.getInt("token");
+        //String user = params.getString("key_user");
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TodoList.this, Calendario.class);
+                Bundle params = new Bundle();
+
+                params.putInt("token", tokenRecebido);
+                intent.putExtras(params);
+
+                startActivity(intent);
+            }
+        });
 
         ibtnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,9 +179,12 @@ public class TodoList extends AppCompatActivity {
                                             Calendar calendar = Calendar.getInstance();
                                             calendar.set(year, month, day);
                                             final DateFormat df = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy", Locale.ENGLISH);
+
                                             Date date = null;
                                             try {
-                                                date = df.parse(calendar.getTime().toString());
+                                                Calendar calendario = Calendar.getInstance();
+                                                calendario.set(year, monthOfYear, dayOfMonth-1);
+                                                date = df.parse(calendario.getTime().toString());
                                             } catch (ParseException e) {
                                                 e.printStackTrace();
                                             }
@@ -269,10 +289,5 @@ public class TodoList extends AppCompatActivity {
          else
              Toast.makeText(TodoList.this, "deu errado", Toast.LENGTH_SHORT).show();
 
-    }
-
-    public void IrHome(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 }

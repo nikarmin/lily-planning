@@ -42,6 +42,8 @@ model Anotacao {
   calendario_professor CalendarioProfessor[]
   aluno                Aluno                 @relation(fields: [fk_aluno], references: [id_aluno])
   fk_aluno             Int
+  // professor                Professor                 @relation(fields: [fk_professor], references: [id_professor])
+  // fk_professor             Int
 }
 
 // model ToDoList {
