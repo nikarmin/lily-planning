@@ -1,8 +1,11 @@
 package com.example.applilyplanning;
 
+import static android.util.Base64.DEFAULT;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,12 +22,15 @@ import com.example.applilyplanning.database.RetrofitConfig;
 import com.example.applilyplanning.model.Anotacao;
 import com.example.applilyplanning.model.Imagem;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -135,46 +141,72 @@ public class Upload extends AppCompatActivity {
 
                     Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
 
-                    String url = "";
+//                    String url = "";
+//
+//                    Bitmap bitmap= null;
+//                    try {
+//                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    ByteArrayOutputStream stream=new ByteArrayOutputStream();
+//                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
+//                    byte[] bytes=stream.toByteArray();
+//                    url = String.valueOf(Base64.getEncoder().encode(bytes));
+//
+//                    Imagem img = new Imagem(Uri.parse(url));
+                    //Call<Imagem> call = service.postImagem(img);
 
-                    Bitmap bitmap= null;
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    // initialize byte stream
-                    ByteArrayOutputStream stream=new ByteArrayOutputStream();
-                    // compress Bitmap
-                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
-                    // Initialize byte array
-                    byte[] bytes=stream.toByteArray();
-                    // get base64 encoded string
-                    url = String.valueOf(Base64.getEncoder().encode(bytes));
-
-                    Imagem img = new Imagem(Uri.parse(url));
-                    Call<Imagem> call = service.postImagem(img);
-
-                    call.enqueue(new Callback<Imagem>() {
-                        @Override
-                        public void onResponse(Call<Imagem> call, Response<Imagem> response) {
-                            if (response.isSuccessful()){
-                                Toast.makeText(Upload.this, "Imagem postada!", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Imagem> call, Throwable t) {
-                            Toast.makeText(Upload.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+//                    call.enqueue(new Callback<Imagem>() {
+//                        @Override
+//                        public void onResponse(Call<Imagem> call, Response<Imagem> response) {
+//                            if (response.isSuccessful()){
+//                                Toast.makeText(Upload.this, "Imagem postada!", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<Imagem> call, Throwable t) {
+//                            Toast.makeText(Upload.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
 
 
-                    itemsList.add(img);
+                    //itemsList.add(img);
                     GridViewAdaptador customAdapter = new GridViewAdaptador(this, R.layout.upload, itemsList);
                     image.setAdapter(customAdapter);
                 }
             }
         }
     }
+//
+//    @SuppressLint("ResourceType")
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        // check condition
+//        if (requestCode==100 && resultCode==RESULT_OK && data!=null)
+//        {
+//            // when result is ok
+//            // initialize uri
+//            Uri uri=data.getData();
+//            // Initialize bitmap
+//            try {
+//                Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
+//                // initialize byte stream
+//                ByteArrayOutputStream stream=new ByteArrayOutputStream();
+//                // compress Bitmap
+//                bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
+//                // Initialize byte array
+//                byte[] bytes=stream.toByteArray();
+//                // get base64 encoded string
+////                sImage= Base64.encodeToString(bytes, Base64.DEFAULT);
+////                // set encoded text on textview
+////                textView.setText(sImage);
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 }
