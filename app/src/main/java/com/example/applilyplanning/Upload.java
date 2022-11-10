@@ -32,8 +32,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Base64;
+import android.util.Base64;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -131,82 +132,84 @@ public class Upload extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
     }
 
+    @SuppressLint("ResourceType")
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK) {
             if (requestCode == SELECT_PICTURE) {
                 Uri selectedImageUri = data.getData();
-                if (null != selectedImageUri) {
 
+                String url = "";
+
+                    try {
+                        Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
+                        byte[] bytes=stream.toByteArray();
+                        url = Base64.encodeToString(bytes, Base64.DEFAULT);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    url = "data:image/png;base64," + url;
                     Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
 
-//                    String url = "";
-//
-//                    Bitmap bitmap= null;
-//                    try {
-//                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                    ByteArrayOutputStream stream=new ByteArrayOutputStream();
-//                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
-//                    byte[] bytes=stream.toByteArray();
-//                    url = String.valueOf(Base64.getEncoder().encode(bytes));
-//
-//                    Imagem img = new Imagem(Uri.parse(url));
-                    //Call<Imagem> call = service.postImagem(img);
+                    Imagem img = new Imagem(url);
+                    Call<Imagem> call = service.postImagem(img);
 
-//                    call.enqueue(new Callback<Imagem>() {
-//                        @Override
-//                        public void onResponse(Call<Imagem> call, Response<Imagem> response) {
-//                            if (response.isSuccessful()){
-//                                Toast.makeText(Upload.this, "Imagem postada!", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<Imagem> call, Throwable t) {
-//                            Toast.makeText(Upload.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
+                    call.enqueue(new Callback<Imagem>() {
+                        @Override
+                        public void onResponse(Call<Imagem> call, Response<Imagem> response) {
+                            if (response.isSuccessful()){
+                                Toast.makeText(Upload.this, "Imagem postada!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Imagem> call, Throwable t) {
+                            Toast.makeText(Upload.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
 
                     //itemsList.add(img);
                     GridViewAdaptador customAdapter = new GridViewAdaptador(this, R.layout.upload, itemsList);
                     image.setAdapter(customAdapter);
-                }
+                /*if (null != selectedImageUri) {
+
+                    Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
+                    // Initialize intent
+                    Intent intent=new Intent(Intent.ACTION_PICK);
+                    // set type
+                    intent.setType("image/*");
+                    // start activity result
+                    startActivityForResult(Intent.createChooser(intent,"Select Image"),100);
+
+                    Imagem img = new Imagem(selectedImageUri);
+                    Call<Imagem> call = service.postImagem(img);
+
+                    call.enqueue(new Callback<Imagem>() {
+                        @Override
+                        public void onResponse(Call<Imagem> call, Response<Imagem> response) {
+                            if (response.isSuccessful()){
+                                Toast.makeText(Upload.this, "Imagem postada!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Imagem> call, Throwable t) {
+                            Toast.makeText(Upload.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
+                    //itemsList.add(img);
+                    GridViewAdaptador customAdapter = new GridViewAdaptador(this, R.layout.upload, itemsList);
+                    image.setAdapter(customAdapter);
+                }*/
             }
         }
     }
-//
-//    @SuppressLint("ResourceType")
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        // check condition
-//        if (requestCode==100 && resultCode==RESULT_OK && data!=null)
-//        {
-//            // when result is ok
-//            // initialize uri
-//            Uri uri=data.getData();
-//            // Initialize bitmap
-//            try {
-//                Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
-//                // initialize byte stream
-//                ByteArrayOutputStream stream=new ByteArrayOutputStream();
-//                // compress Bitmap
-//                bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
-//                // Initialize byte array
-//                byte[] bytes=stream.toByteArray();
-//                // get base64 encoded string
-////                sImage= Base64.encodeToString(bytes, Base64.DEFAULT);
-////                // set encoded text on textview
-////                textView.setText(sImage);
-//
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
 }

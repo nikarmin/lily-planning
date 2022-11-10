@@ -10,22 +10,17 @@ import java.util.List;
 public class Imagem implements Serializable {
     @SerializedName("url_foto")
     private String imagem;
-    List<Uri> listImg;
 
     public Imagem(Uri imagem) {
         this.imagem = String.valueOf(imagem);
     }
 
-    public Imagem(List<Uri> imagem) {
-        this.listImg = imagem;
+    public Imagem(String imagem) {
+        this.imagem = imagem;
     }
 
     public String getImagem() {
         return imagem;
-    }
-
-    public void setImagem(Uri imagem) {
-        this.imagem = String.valueOf(imagem);
     }
 
 }
