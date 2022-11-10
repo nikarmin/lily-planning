@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 import com.example.applilyplanning.model.Anotacao;
@@ -30,6 +31,7 @@ public class Materias extends AppCompatActivity {
     Button btnNewSubject, btnPlus;
     EditText edtNewSubjectName, edtNewSubjectColor;
     ImageButton ibtnTodoList, ibtnUpload;
+    FrameLayout home;
 
     AlertDialog.Builder builder;
     AlertDialog dialog;
@@ -54,6 +56,21 @@ public class Materias extends AppCompatActivity {
         AppCompatButton button = findViewById(R.id.btnAdicionar);
         ibtnTodoList = findViewById(R.id.ibtnTodoListPage);
         ibtnUpload = findViewById(R.id.ibtnUpload);
+        home = findViewById(R.id.iconMenu);
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Materias.this, Calendario.class);
+                Bundle params = new Bundle();
+
+                params.putInt("token", tokenRecebido);
+                //params.putString("key_user", user);
+                intent.putExtras(params);
+
+                startActivity(intent);
+            }
+        });
 
         ibtnUpload.setOnClickListener(new View.OnClickListener() {
             @Override

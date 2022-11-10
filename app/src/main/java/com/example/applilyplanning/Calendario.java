@@ -42,7 +42,7 @@ public class Calendario extends AppCompatActivity {
     private Toolbar toolbar;
     Calendar myCalendar;
     RecyclerView recyclerViewLista;
-    ImageButton ibtnTodoListPage, ibtnMaterias;
+    ImageButton ibtnTodoListPage, ibtnMaterias, ibtnUpload;
     private SimpleDateFormat dateFormatForMonth;
     FrameLayout home;
     Integer tokenRecebido;
@@ -62,6 +62,7 @@ public class Calendario extends AppCompatActivity {
 
         ibtnTodoListPage = findViewById(R.id.ibtnTodoListPage);
         ibtnMaterias = findViewById(R.id.ibtnMaterias);
+        ibtnUpload = findViewById(R.id.ibtnUpload);
         home = findViewById(R.id.iconMenu);
 
         Intent intent = getIntent();
@@ -88,6 +89,20 @@ public class Calendario extends AppCompatActivity {
                     }
                 }
         );
+
+        ibtnUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Calendario.this, Upload.class);
+                Bundle params = new Bundle();
+
+                params.putInt("token", tokenRecebido);
+                //params.putString("key_user", user);
+                intent.putExtras(params);
+
+                startActivity(intent);
+            }
+        });
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
