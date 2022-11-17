@@ -259,7 +259,24 @@ public class TodoList extends AppCompatActivity {
 
                                 //Toast.makeText(TodoList.this, anotation + " " + dataAtual + " " + dataEntrega + " " + tokenRecebido, Toast.LENGTH_LONG).show();
                                 dialog.dismiss();
-                                taskAdapter.notifyDataSetChanged(); /// se der errado e isto
+
+                                Call<List<Anotacao>> callAnot = service.selecionarAnotacaoFk(tokenRecebido);
+                                callAnot.enqueue(new Callback<List<Anotacao>>()
+                                {
+                                    @Override
+                                    public void onResponse(Call<List<Anotacao>> call, Response<List<Anotacao>> response)
+                                    {
+                                        taskAdapter = new ToDoAdaptador(response.body());
+                                        taskRecyclerView = findViewById(R.id.recyclerView);
+                                        taskRecyclerView.setAdapter(taskAdapter);
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<List<Anotacao>> call, Throwable t)
+                                    {
+                                        Toast.makeText(TodoList.this, "talda depressao", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                             }
                             else
                                 Toast.makeText(TodoList.this, "Coloque corretamente as informações!", Toast.LENGTH_SHORT).show();

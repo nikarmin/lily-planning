@@ -147,6 +147,8 @@ public class Upload extends AppCompatActivity {
             public void onClick(View view) {
                 imageChooser();
             }
+
+
         });
 
 //        AlertDialog.Builder builder;
