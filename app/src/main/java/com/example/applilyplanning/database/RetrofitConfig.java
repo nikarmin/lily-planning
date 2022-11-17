@@ -8,7 +8,7 @@ public class RetrofitConfig
     //143.106.202.81 5g
     //177.220.18.15
     //192.168.15.101 normal
-    private static final String BASE_URL = "http://177.220.18.15:3030/";
+    private static final String BASE_URL = "http://192.168.15.101:3030/";
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofitInstance(){
