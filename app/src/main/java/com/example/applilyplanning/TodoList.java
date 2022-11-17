@@ -259,6 +259,7 @@ public class TodoList extends AppCompatActivity {
 
                                 //Toast.makeText(TodoList.this, anotation + " " + dataAtual + " " + dataEntrega + " " + tokenRecebido, Toast.LENGTH_LONG).show();
                                 dialog.dismiss();
+                                taskAdapter.notifyDataSetChanged(); /// se der errado e isto
                             }
                             else
                                 Toast.makeText(TodoList.this, "Coloque corretamente as informações!", Toast.LENGTH_SHORT).show();
