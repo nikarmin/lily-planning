@@ -159,8 +159,6 @@ public class TodoList extends AppCompatActivity {
                                 e.printStackTrace();
                             }
 
-                            //Toast.makeText(TodoList.this, d.toString(), Toast.LENGTH_SHORT).show();
-
                             final Calendar c = Calendar.getInstance();
 
                             int year = c.get(Calendar.YEAR);
@@ -168,12 +166,10 @@ public class TodoList extends AppCompatActivity {
                             int day = c.get(Calendar.DAY_OF_MONTH);
 
                             DatePickerDialog datePickerDialog = new DatePickerDialog(
-                                    // on below line we are passing context.
                                     TodoList.this,new DatePickerDialog.OnDateSetListener() {
                                         @Override
                                         public void onDateSet(DatePicker view, int year,
                                                               int monthOfYear, int dayOfMonth) {
-                                            // on below line we are setting date to our text view.
                                             selectedDateTV.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
 
                                             Calendar calendar = Calendar.getInstance();
@@ -206,8 +202,6 @@ public class TodoList extends AppCompatActivity {
 
                                             tempoEntrega = String.valueOf(tempoEntregaCaracteres);
                                             tempoAtual = String.valueOf(tempoAtualCaracteres);
-
-                                            //Toast.makeText(TodoList.this, tempoEntrega, Toast.LENGTH_SHORT).show();
                                         }
                                     }, year, month, day);
                             datePickerDialog.show();

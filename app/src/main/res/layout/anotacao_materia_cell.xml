@@ -19,7 +19,7 @@
         tools:layout_editor_absoluteY="19dp"
         tools:layout_editor_absoluteX="16dp"
         android:textSize="20sp"
-        android:text="Título genérico"
+        android:text="Título"
         android:id="@+id/tvTittle"/>
 
     <TextView

@@ -146,7 +146,6 @@ public class Calendario extends AppCompatActivity {
                 Bundle params = new Bundle();
 
                 params.putInt("token", tokenRecebido);
-                //params.putString("key_user", user);
                 intent.putExtras(params);
 
                 startActivity(intent);

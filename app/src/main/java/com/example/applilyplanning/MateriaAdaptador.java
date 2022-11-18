@@ -37,7 +37,8 @@ public class MateriaAdaptador extends RecyclerView.Adapter<MateriaAdaptador.View
         TextView subject;
         ImageView color;
 
-        public ViewHolder(View view) {
+        public ViewHolder(View view)
+        {
             super(view);
             subject = view.findViewById(R.id.subjectTextView);
             color = view.findViewById(R.id.subjectImageView);

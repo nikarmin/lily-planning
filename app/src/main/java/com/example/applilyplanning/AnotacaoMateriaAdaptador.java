@@ -70,5 +70,4 @@ public class AnotacaoMateriaAdaptador extends RecyclerView.Adapter<AnotacaoMater
     public int getItemCount(){
         return anotacaoMateriaList.size();
     }
-
 }

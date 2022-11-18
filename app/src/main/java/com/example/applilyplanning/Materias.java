@@ -61,6 +61,7 @@ public class Materias extends AppCompatActivity {
         listaMateriasTemporarias.add(materiaTest);
 
         AppCompatButton button = findViewById(R.id.btnAdicionar);
+
         home = findViewById(R.id.iconMenu);
         ibtnUpload = findViewById(R.id.ibtnUpload);
         ibtnTodoList = findViewById(R.id.ibtnTodoListPage);
