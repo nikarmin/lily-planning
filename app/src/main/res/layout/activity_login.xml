@@ -132,6 +132,7 @@
             android:layout_marginLeft="18dp"
             android:text="Aluno"
             android:textColor="@color/black"
+            android:buttonTint="@color/verdeClaro"
             />
 
         <CheckBox
@@ -142,6 +143,7 @@
             android:layout_marginLeft="100dp"
             android:text="Professor"
             android:textColor="@color/black"
+            android:buttonTint="@color/verdeClaro"
             />
 
         <Button
