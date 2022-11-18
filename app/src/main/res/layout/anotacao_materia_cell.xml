@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_height="30dp"
+        android:layout_width="match_parent"
+        tools:layout_editor_absoluteY="16dp"
+        tools:layout_editor_absoluteX="16dp"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        tools:layout_editor_absoluteY="19dp"
+        tools:layout_editor_absoluteX="16dp"
+        android:textSize="20sp"
+        android:text="Título genérico"
+        android:id="@+id/tvTittle"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        tools:layout_editor_absoluteY="19dp"
+        tools:layout_editor_absoluteX="238dp"
+        android:textSize="20sp"
+        android:text="26/10/2022"
+        android:id="@+id/tvDate"
+        android:layout_marginLeft="15mm"/>
+
+    <Button
+        android:layout_height="40dp"
+        android:layout_width="34dp"
+        tools:layout_editor_absoluteY="16dp"
+        tools:layout_editor_absoluteX="361dp"
+        android:text="Button"
+        android:id="@+id/btnExcluirAnotacaoMateria"
+        android:layout_marginLeft="3mm"
+        android:backgroundTint="@color/verdeClaro"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

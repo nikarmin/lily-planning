@@ -1,43 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:ignore="MissingDefaultResource">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="32dp"
+    tools:ignore="MissingConstraints">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:ignore="MissingConstraints">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textView2"
+        <EditText
+            android:id="@+id/edtNewNoteTittle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="23mm"
-            android:text="Matéria"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="107dp"
-            tools:layout_editor_absoluteY="19dp">
-        </TextView>
+            android:hint="Coloque um título..."
+            android:padding="5dp"
+            android:textSize="20sp"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewNotasMateria"
-            android:layout_width="407dp"
-            android:layout_height="238dp"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="55dp" />
+        <EditText
+            android:id="@+id/edtNewNoteDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00/00/0000"
+            android:textSize="20sp"
+            android:layout_marginLeft="16dp"/>
 
         <Button
-            android:id="@+id/btnPlus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25mm"
+            android:id="@+id/btnExcluir"
+            android:layout_width="33dp"
+            android:layout_height="41dp"
             android:backgroundTint="@color/verdeClaro"
-            android:text="+"
-            tools:layout_editor_absoluteX="159dp"
-            tools:layout_editor_absoluteY="290dp" />
+            android:text="Button"
+            android:layout_marginLeft="16dp"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edtNotaa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:hint="Digite uma anotação..."
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/btnSalvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="45mm"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/verdeClaro"
+        android:text="Salvar"/>
 
     </LinearLayout>
 

@@ -159,7 +159,7 @@ public class TodoList extends AppCompatActivity {
                                 e.printStackTrace();
                             }
 
-                            Toast.makeText(TodoList.this, d.toString(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(TodoList.this, d.toString(), Toast.LENGTH_SHORT).show();
 
                             final Calendar c = Calendar.getInstance();
 
@@ -183,7 +183,7 @@ public class TodoList extends AppCompatActivity {
                                             Date date = null;
                                             try {
                                                 Calendar calendario = Calendar.getInstance();
-                                                calendario.set(year, monthOfYear, dayOfMonth);
+                                                calendario.set(year, monthOfYear, dayOfMonth + 1);
                                                 date = df.parse(calendario.getTime().toString());
                                             } catch (ParseException e) {
                                                 e.printStackTrace();
@@ -207,7 +207,7 @@ public class TodoList extends AppCompatActivity {
                                             tempoEntrega = String.valueOf(tempoEntregaCaracteres);
                                             tempoAtual = String.valueOf(tempoAtualCaracteres);
 
-                                            Toast.makeText(TodoList.this, tempoEntrega, Toast.LENGTH_SHORT).show();
+                                            //Toast.makeText(TodoList.this, tempoEntrega, Toast.LENGTH_SHORT).show();
                                         }
                                     }, year, month, day);
                             datePickerDialog.show();

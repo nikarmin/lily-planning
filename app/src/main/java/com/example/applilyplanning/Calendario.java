@@ -185,7 +185,7 @@ public class Calendario extends AppCompatActivity {
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
-                Toast.makeText(Calendario.this, "Date : " + dateClicked.toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Calendario.this, "Date : " + dateClicked.toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -16,9 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Matéria"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="107dp"
-            tools:layout_editor_absoluteY="19dp">
+            android:textSize="24sp">
         </TextView>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -33,13 +31,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Adicionar matéria"
+            android:text="Adicionar nota"
             android:padding="15dp"
             android:backgroundTint="@color/verdeClaro"
             android:textAllCaps="false"
-            android:textSize="18dp"
-            tools:layout_editor_absoluteX="159dp"
-            tools:layout_editor_absoluteY="290dp" />
+            android:textSize="16dp" />
 
     </LinearLayout>
 

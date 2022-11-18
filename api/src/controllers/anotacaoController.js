@@ -52,8 +52,6 @@ module.exports = {
   // },
 
   async getByDateFinal(req, res) {
-    console.log('pegando data')
-
     const { fk } = req.params
 
     const anotacoes = await prisma.anotacao.findMany({

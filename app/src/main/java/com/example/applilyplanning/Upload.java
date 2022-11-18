@@ -120,8 +120,6 @@ public class Upload extends AppCompatActivity {
             public void onClick(View view) {
                 imageChooser();
             }
-
-
         });
 
         Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
@@ -170,7 +168,6 @@ public class Upload extends AppCompatActivity {
                         Toast.makeText(Upload.this, "Não foi possível excluir essa imagem!", Toast.LENGTH_SHORT).show();
                     }
                 });
-
             }
         });
     }
@@ -215,8 +212,11 @@ public class Upload extends AppCompatActivity {
                             if (response.isSuccessful()){
                                 Imagem imgNova = new Imagem(response.body().getImagem());
                                 itemsList.add(imgNova);
+
                                 Toast.makeText(Upload.this, "Imagem postada!", Toast.LENGTH_SHORT).show();
                             }
+                            else
+                                Toast.makeText(Upload.this, "Imagem muito grande!", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
