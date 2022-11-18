@@ -183,7 +183,7 @@ public class TodoList extends AppCompatActivity {
                                             Date date = null;
                                             try {
                                                 Calendar calendario = Calendar.getInstance();
-                                                calendario.set(year, monthOfYear, dayOfMonth-1);
+                                                calendario.set(year, monthOfYear, dayOfMonth);
                                                 date = df.parse(calendario.getTime().toString());
                                             } catch (ParseException e) {
                                                 e.printStackTrace();

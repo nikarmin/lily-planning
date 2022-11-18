@@ -3,8 +3,14 @@ package com.example.applilyplanning;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -37,6 +43,7 @@ import retrofit2.Retrofit;
 
 public class Calendario extends AppCompatActivity {
 
+    private static final int CHANNEL_ID = 0;
     TextView text;
     LocalDate date = LocalDate.now();
     private Toolbar toolbar;

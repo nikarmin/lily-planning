@@ -8,15 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
 
 import com.example.applilyplanning.model.Anotacao;
 import com.example.applilyplanning.model.Materia;
@@ -24,14 +20,13 @@ import com.example.applilyplanning.model.Materia;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Materias extends AppCompatActivity {
 
     private RecyclerView subjectRecyclerView, notaMateriaRecyclerView;
     private MateriaAdaptador materiaAdaptador;
     Button btnNewSubject, btnPlus;
-    EditText edtNewSubjectName, edtNewSubjectColor;
-    ImageButton ibtnTodoList, ibtnUpload;
-    FrameLayout home;
+    EditText edtNewSubjectName, edtNewSubjectColor, edtNotaa, edtNewNoteTittle, edtNewNoteDate;
 
     AlertDialog.Builder builder;
     AlertDialog dialog;
@@ -42,11 +37,6 @@ public class Materias extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_materias);
 
-        Intent intent = getIntent();
-        Bundle params = intent.getExtras();
-
-        Integer tokenRecebido = params.getInt("token");
-
         listaMaterias = new ArrayList<Materia>();
 
         ArrayList<Materia> listaMateriasTemporarias = new ArrayList<Materia>();
@@ -54,54 +44,11 @@ public class Materias extends AppCompatActivity {
         listaMateriasTemporarias.add(materiaTest);
 
         AppCompatButton button = findViewById(R.id.btnAdicionar);
-        ibtnTodoList = findViewById(R.id.ibtnTodoListPage);
-        ibtnUpload = findViewById(R.id.ibtnUpload);
-        home = findViewById(R.id.iconMenu);
 
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Materias.this, Calendario.class);
-                Bundle params = new Bundle();
-
-                params.putInt("token", tokenRecebido);
-                //params.putString("key_user", user);
-                intent.putExtras(params);
-
-                startActivity(intent);
-            }
-        });
-
-        ibtnUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Materias.this, Upload.class);
-                Bundle params = new Bundle();
-
-                params.putInt("token", tokenRecebido);
-                intent.putExtras(params);
-
-                startActivity(intent);
-            }
-        });
-
-        ibtnTodoList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Materias.this, TodoList.class);
-                Bundle params = new Bundle();
-
-                params.putInt("token", tokenRecebido);
-                intent.putExtras(params);
-
-                startActivity(intent);
-            }
-        });
-
-        builder = new AlertDialog.Builder(this);
+        builder = new AlertDialog.Builder(Materias.this);
 
         builder.setCancelable(true);
-        View v = LayoutInflater.from(this).inflate(R.layout.new_subject, null, false);
+        View v = LayoutInflater.from(Materias.this).inflate(R.layout.new_subject, null, false);
         builder.setView(v);
         dialog = builder.create();
 
@@ -112,30 +59,64 @@ public class Materias extends AppCompatActivity {
                 dialog.show();
 
                 btnNewSubject = v.findViewById(R.id.btnNewSubject);
-
                 btnNewSubject.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view)
-                    {
+                    public void onClick(View view){
                         edtNewSubjectColor = v.findViewById(R.id.edtNewSubjectColor);
                         edtNewSubjectName = v.findViewById(R.id.edtNewSubjectName);
-                        
-                        if (!edtNewSubjectColor.getText().equals("") && !edtNewSubjectName.getText().equals(""))
-                        {
-                            Materia mat = new Materia(edtNewSubjectName.getText().toString(), edtNewSubjectColor.getText().toString());
-                            //listaMateriasTemporarias.add(mat);
-                            listaMaterias.add(mat);
-                            dialog.dismiss();
 
-                            edtNewSubjectName.setText("");
-                            edtNewSubjectColor.setText("");
-                            //AtualizarLista(listaMateriasTemporarias);
-                        }
+                        Materia mat = new Materia(edtNewSubjectName.getText().toString(), edtNewSubjectColor.getText().toString());
+                        listaMateriasTemporarias.add(mat);
+                        dialog.dismiss();
+
+                        edtNewSubjectName.setText("");
+                        edtNewSubjectColor.setText("");
                     }
                 });
+
+                for (Materia materia : listaMateriasTemporarias){
+                    listaMaterias.add(materia);
+                }
             }
         });
-        //AtualizarLista(listaMateriasTemporarias);
+
+        materiaAdaptador.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClick(int position, Anotacao userData) {
+
+            }
+
+            @Override
+            public void onItemClick(int position, Materia userData) {
+                builder = new AlertDialog.Builder(Materias.this);
+                builder.setTitle("Visualizar matéria");
+                builder.setCancelable(false);
+                View view = LayoutInflater.from(Materias.this).inflate(R.layout.notas_materia, null, false); //caixa de diálogo
+
+                Button btnPlus = view.findViewById(R.id.btnPlus);
+
+                btnPlus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder builderAnotacoesMateria = new AlertDialog.Builder(Materias.this);
+                        builderAnotacoesMateria.setCancelable(true);
+                       // View v = LayoutInflater.from(Materias.this).inflate(R.layout.new_anotacao_materia, null, false);
+                        builderAnotacoesMateria.setView(v);
+                        AlertDialog dialogAnotacoesMateria = builderAnotacoesMateria.create();
+                        dialogAnotacoesMateria.show();
+
+
+                    }
+                });
+
+                initUpdateDialog(position, view);
+                builder.setView(view); //seta a caixa de diálogo
+                dialog = builder.create(); //cria a caixa
+                dialog.show(); //mostra a caixa de diálogo
+            }
+        });
+
+
 
 
         materiaAdaptador = new MateriaAdaptador(listaMaterias);
@@ -146,40 +127,35 @@ public class Materias extends AppCompatActivity {
         subjectRecyclerView.setLayoutManager(manager);
         subjectRecyclerView.setAdapter(materiaAdaptador);
 
-        materiaAdaptador.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onItemClick(int position, Anotacao userData) {
-            }
-
-            @Override
-            public void onItemClick(int position, Materia userData) {
-                builder = new AlertDialog.Builder(Materias.this);
-                builder.setCancelable(false);
-                View view = LayoutInflater.from(Materias.this).inflate(R.layout.notas_materia, null, false); //caixa de diálogo
-                initUpdateDialog(position, view);
-                builder.setView(view); //seta a caixa de diálogo
-                dialog = builder.create(); //cria a caixa
-                dialog.show(); //mostra a caixa de diálogo
-            }
-        });
     }
 
-    public void AtualizarLista(ArrayList<Materia> lista)
-    {
-        for (Materia materia:lista){
-            listaMaterias.add(materia);
-        }
+    /*private void initWidgets(){
+        edtNotaa = findViewById(R.id.edtNotaa);
+        edtNewNoteTittle = findViewById(R.id.edtNewNoteTittle);
+        edtNewNoteDate = findViewById(R.id.edtNewNoteDate);
+    }
+
+    private void saveNewNote(View view){
+        String tituloNota = edtNewNoteTittle.getText().toString();
+        String dataNota = edtNewNoteDate.getText().toString();
+        String notaa = edtNotaa.getText().toString();
+
+    }*/
+
+    public void IrHome(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     private void initUpdateDialog(int position, View view){
-        notaMateriaRecyclerView = view.findViewById(R.id.recyclerViewNotasMateria);
-        btnPlus = view.findViewById(R.id.btnPlus);
-
-        btnPlus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                startActivity(new Intent(MainActivity.this, NotaCompleta.class));
-            }
-        });
+        notaMateriaRecyclerView.findViewById(R.id.recyclerViewNotasMateria);
+//        btnPlus.findViewById(R.id.btnPlus);
+//
+//        btnPlus.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(Materias.this, AnotacoesMateria.class));
+//            }
+//        });
     }
 }
